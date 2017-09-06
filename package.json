@@ -1,0 +1,25 @@
+{
+  "name": "brigrid",
+  "version": "1.0.0",
+  "description": "A powerful and flexible SASS grid system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jackardios/brigrid.git"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "grid",
+    "system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jackardios/brigrid/issues"
+  },
+  "homepage": "https://github.com/Jackardios/brigrid#readme"
+}
