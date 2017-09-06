@@ -1,0 +1,25 @@
+$breakpoints: (
+    xs: (320px, 575px), // Extra small screen
+    sm: (576px, 767px), // Small screen
+    md: (768px, 991px), // Medium screen
+    lg: (992px, 1199px), // Large screen
+    xl: (1200px, 1919px), // Extra large screen
+    xx: (1900px, null)
+) !default;
+
+$container-widths: (
+    sm: 575px, // Small screen
+    md: 767px, // Medium screen
+    lg: 991px, // Large screen
+    xl: 1199px, // Extra large screen
+    xx: 1700px // Extra large screen
+) !default;
+
+$default-grid: (
+    driver: flex,
+    columns: 12,
+    gutter: 20px,
+    align-x: left,
+    align-y: top,
+    media-grids: ()
+);

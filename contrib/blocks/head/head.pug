@@ -1,0 +1,13 @@
+mixin head(data)
+    title= data.title
+    meta(charset="UTF-8")
+    meta(content=data.author name="author")
+    meta(content=data.description name="description")
+
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="HandheldFriend", content="true")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    
+    // links
+    each link in data.links
+        link(href=link.href rel=link.rel)
