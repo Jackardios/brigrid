@@ -1,8 +1,7 @@
 @import "normalize";
-
-// run normalize
 @include normalize();
 
 @import "../core/brigrid";
 
-@import "./base/*";
+@import "./base/*.scss";
+@import "./patterns/*.scss";
