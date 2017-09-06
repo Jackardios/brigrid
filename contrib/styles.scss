@@ -1,1 +1,8 @@
-@import "base/*";
+@import "normalize";
+
+// run normalize
+@include normalize();
+
+@import "../core/brigrid";
+
+@import "./base/*";
