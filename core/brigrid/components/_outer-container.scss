@@ -1,0 +1,16 @@
+%outer-container {
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    transition: max-width .12s ease;
+    max-width: 100%;
+    @each $name, $value in $breakpoints {
+        @include for-size-bigger-than($name) {
+            max-width: map-get($container-widths, $name);
+        }
+    }
+}
+
+@mixin outer-container {
+    @extend %outer-container;
+}

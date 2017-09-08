@@ -21,5 +21,7 @@ $default-grid: (
     gutter: 20px,
     align-x: left,
     align-y: top,
+    reversed: false,
+    collapse: false,
     media-grids: ()
 );

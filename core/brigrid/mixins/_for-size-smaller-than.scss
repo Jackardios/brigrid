@@ -1,0 +1,8 @@
+@mixin for-size-smaller-than($size-name, $breakpoints: $breakpoints) {
+    $min-width: nth(map-get($breakpoints, $size-name), 1);
+    @if (min-width != null) {
+        @media screen and (max-width: $min-width - 1) {
+            @content;
+        }
+    }
+}

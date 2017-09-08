@@ -1,0 +1,27 @@
+$my-grid--mobile: (
+    columns: 4,
+    gutter: 10px,
+    media: ""
+);
+
+$my-grid--tablet: (
+    columns: 6,
+    gutter: 20px,
+    media: ""
+);
+
+$my-grid: (
+    driver: flex,
+    columns: 12,
+    gutter: 30px,
+    collapse: true,
+    align-x: center,
+    align-y: center,
+    media-grids: (
+        $my-grid--tablet,
+        $my-grid--mobile
+    )
+);
+
+
+$default-grid: $my-grid;
