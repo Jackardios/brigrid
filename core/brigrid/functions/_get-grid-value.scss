@@ -1,7 +1,7 @@
 @function get-grid-value($key, $grid: $default-grid) {
     $value: map-get($grid, $key);
     @if $value == null {
-        $value: map-get($default-grid, $key);
+        $value: map-get($_default-grid-settings, $key);
     }
     @return $value;
 }

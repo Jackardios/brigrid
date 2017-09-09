@@ -15,7 +15,7 @@ $container-widths: (
     xx: 1700px // Extra large screen
 ) !default;
 
-$default-grid: (
+$_default-grid-settings: (
     driver: flex,
     columns: 12,
     gutter: 20px,
@@ -23,5 +23,9 @@ $default-grid: (
     align-y: top,
     reversed: false,
     collapse: false,
+    breakpoints: $breakpoints,
+    container-widths: $container-widths,
     media-grids: ()
-);
+) !default;
+
+$default-grid: $_default-grid-settings;
