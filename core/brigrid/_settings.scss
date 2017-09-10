@@ -15,7 +15,7 @@ $container-widths: (
     xx: 1700px // Extra large screen
 ) !default;
 
-$_default-grid-settings: (
+$_default-grid-settings: ( // don't change this map!
     driver: flex,
     columns: 12,
     gutter: 20px,

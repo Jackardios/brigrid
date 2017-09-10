@@ -1,0 +1,16 @@
+@function _min-breakpoint($breakpoints) {
+    $first-breakpoint: nth($breakpoints, 1);
+    $min-sizeName: nth($first-breakpoint, 1);
+    $min-width: nth(nth($first-breakpoint, 2), 1);
+
+    @each $sizeName, $widths in $breakpoints {
+        @if ($min-width != null) {
+            $bp-min-width: nth($widths, 1);
+            @if (($bp-min-width == null) or ($bp-min-width < $min-width)) {
+                $min-sizeName: $sizeName;
+                $min-width: $bp-min-width;
+            }
+        }
+    }
+    @return ($min-sizeName: map-get($breakpoints, $min-sizeName));
+}

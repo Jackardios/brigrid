@@ -79,6 +79,6 @@
     } @else if ($driver == float) {
         @include grid-container--float($grid);
     } @else {
-        @error "Incorrect driver value: '" + $driver + "'";
+        @error "Incorrect driver value: '#{$driver}'";
     }
 }

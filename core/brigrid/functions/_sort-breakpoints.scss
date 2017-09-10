@@ -1,21 +1,18 @@
-@function _sort-breakpoints($breakpoints) {
+@function _sort-breakpoints($breakpoints, $sortFunc: min) {
     $sortedMap: ();
 
+    @if ($sortFunc == min) {
+        $sortFunc: _min-breakpoint;
+    } @else if ($sortFunc == max) {
+        $sortFunc: _max-breakpoint;
+    } @else if (not function-exists($sortFunc)) {
+        @error "Unknown sort function'#{$sortFunc}'";
+    }
+
     @for $i from 1 through length($breakpoints) {
-        $first-breakpoint: nth($breakpoints, 1);
-        $min-sizeName: nth($first-breakpoint, 1);
-        $min-width: nth(nth($first-breakpoint, 2), 1);
-
-        @each $sizeName, $widths in $breakpoints {
-            $bp-min-width: nth($widths, 1);
-            @if ($min-width != null) and (($bp-min-width == null) or ($bp-min-width < $min-width)) {
-                $min-sizeName: $sizeName;
-                $min-width: $bp-min-width;
-            }
-        }
-
-        $sortedMap: map-merge($sortedMap, ($min-sizeName: map-get($breakpoints, $min-sizeName)));
-        $breakpoints: map-remove($breakpoints, $min-sizeName);
+        $next-breakpoint: call($sortFunc, $breakpoints);
+        $sortedMap: map-merge($sortedMap, $next-breakpoint);
+        $breakpoints: map-remove($breakpoints, nth(nth($next-breakpoint, 1), 1));
     }
 
     @return $sortedMap;
