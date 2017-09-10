@@ -1,0 +1,22 @@
+@function _sort-breakpoints($breakpoints) {
+    $sortedMap: ();
+
+    @for $i from 1 through length($breakpoints) {
+        $first-breakpoint: nth($breakpoints, 1);
+        $min-sizeName: nth($first-breakpoint, 1);
+        $min-width: nth(nth($first-breakpoint, 2), 1);
+
+        @each $sizeName, $widths in $breakpoints {
+            $bp-min-width: nth($widths, 1);
+            @if ($min-width != null) and (($bp-min-width == null) or ($bp-min-width < $min-width)) {
+                $min-sizeName: $sizeName;
+                $min-width: $bp-min-width;
+            }
+        }
+
+        $sortedMap: map-merge($sortedMap, ($min-sizeName: map-get($breakpoints, $min-sizeName)));
+        $breakpoints: map-remove($breakpoints, $min-sizeName);
+    }
+
+    @return $sortedMap;
+}

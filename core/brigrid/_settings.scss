@@ -1,9 +1,9 @@
 $breakpoints: (
-    xs: (320px, 575px), // Extra small screen
+    xs: (null, 575px), // Extra small screen
     sm: (576px, 767px), // Small screen
     md: (768px, 991px), // Medium screen
     lg: (992px, 1199px), // Large screen
-    xl: (1200px, 1919px), // Extra large screen
+    xl: (1200px, 1899px), // Extra large screen
     xx: (1900px, null)
 ) !default;
 
@@ -24,6 +24,7 @@ $_default-grid-settings: (
     reversed: false,
     collapse: false,
     breakpoints: $breakpoints,
+    _breakpoints-is-sorted: false,
     container-widths: $container-widths,
     media-grids: ()
 ) !default;

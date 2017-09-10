@@ -1,43 +1,11 @@
+// convert media list to map
+@function _list-to-media-map($list) {
+
+}
+
 // generate media queries for column
 @mixin _col-media($size: none, $grid: none) {
-    @if $size == none {
-        @error "No $size argument passed";
-    }
-
-    @if $grid == none {
-        @error "No $grid argument passed";
-    }
-
-    $grid-driver: map-get($grid, driver);
-    $size-type: type-of($size);
-    @if ($size-type == "number") {
-        $col-width: col-width($size, $grid);
-        width: $col-width;
-        @if ($grid-driver == flex) {
-            max-width: $col-width;
-        }
-    } @else {
-        @if ($size-type == "list") {
-            $size: list-to-media-map($size);
-        }
-
-        $max-size: max-size($size);
-        @each $name, $value in $size {
-            @if (($value != none) and ($value != null)) {
-                @if ($name == $max-size) {
-                    $col-width: col-width($value, $grid);
-                    width: $col-width;
-                    @if ($grid-driver == flex) {
-                        max-width: $col-width;
-                    }
-                } @else {
-                    @include for-size-smaller-than($name) {
-                        @include col-change($size: $value, $grid: $grid);
-                    }
-                }
-            }
-        }
-    }
+    
 }
 
 // common styles of grid-column
