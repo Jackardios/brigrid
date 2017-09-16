@@ -1,11 +1,40 @@
-// convert media list to map
-@function _list-to-media-map($list) {
-
-}
-
 // generate media queries for column
-@mixin _col-media($size: none, $grid: none) {
+@mixin _col-media($cols, $grid) {
+    $cols-type: type-of($cols);
+    @if ($cols-type == number) {
+        width: _col-width($cols, $grid);
+    } @else {
+        @if ($cols-type == list) {
+            $cols: _columns-list-to-map($cols, $grid);
+        }
 
+        $grid: _sort-breakpoints-in-grid($grid, min);
+        $breakpoints: get-grid-value(breakpoints, $grid);
+        $cols-length: length($cols);
+        $last-bp-minw: null;
+        $i: 1;
+
+        @each $bp-key, $bp-widths in $breakpoints {
+            $bp-cols: map-get($cols, $bp-key);
+            @if ($bp-cols != null) {
+                $bp-minw: nth($bp-widths, 1);
+                @if ($i == 1) {
+                    width: _col-width($bp-cols, $grid);
+                } @else if ($i == $cols-length) {
+                    @media screen and (min-width: $last-bp-minw) {
+                        width: _col-width($bp-cols, $grid);
+                    }
+                } @else {
+                    @media screen and (min-width: $last-bp-minw) and (max-width: $bp-minw - 1) {
+                        width: _col-width($bp-cols, $grid);
+
+                    }
+                }
+                $last-bp-minw: $bp-minw;
+                $i: $i + 1;
+            }
+        }
+    }
 }
 
 // common styles of grid-column
@@ -17,7 +46,8 @@
 // flex based grid-column
 @mixin grid-column--flex($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
-
+    
+    @include _col-media($columns, $grid);
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     margin-left: $grid-half-gutter;
     margin-right: $grid-half-gutter;

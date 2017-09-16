@@ -1,4 +1,4 @@
-@function col-width($columns, $grid: $default-grid) {
+@function _col-width($columns, $grid: $default-grid) {
     $grid-gutter: get-grid-value(gutter, $grid);
     $grid-columns: get-grid-value(columns, $grid);
 

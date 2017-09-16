@@ -12,5 +12,6 @@
             }
         }
     }
+    
     @return ($max-sizeName: map-get($breakpoints, $max-sizeName));
 }

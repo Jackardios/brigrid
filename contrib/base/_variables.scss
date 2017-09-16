@@ -13,8 +13,8 @@ $my-grid--tablet: (
 $my-grid: (
     driver: flex,
     columns: 12,
-    gutter: 30px,
-    collapse: true,
+    gutter: 10px,
+    collapse: false,
     align-x: center,
     align-y: center,
     media-grids: (

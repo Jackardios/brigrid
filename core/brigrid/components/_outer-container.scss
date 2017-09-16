@@ -18,7 +18,7 @@
     }
 
     @each $name, $value in $breakpoints {
-        @include for-size-bigger-than($name) {
+        @include media-breakpoint-from($name, $grid) {
             max-width: map-get($container-widths, $name);
         }
     }

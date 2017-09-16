@@ -14,9 +14,10 @@
     $align-x: get-grid-value(align-x, $grid);
     $align-y: get-grid-value(align-y, $grid);
     $reversed: get-grid-value(reversed, $grid);
-
+    
+    @debug $collapse;
     // collapse
-    @if $collapse == true {
+    @if ($collapse == true) {
         @include grid-collapse($grid);
     }
 
@@ -66,7 +67,7 @@
 
     // collapse
     $collapse: get-grid-value(collapse, $grid);
-    @if $collapse == true {
+    @if ($collapse == true) {
         @include grid-collapse($grid);
     }
 }

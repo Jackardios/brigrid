@@ -12,5 +12,6 @@
             }
         }
     }
+    
     @return ($min-sizeName: map-get($breakpoints, $min-sizeName));
 }
