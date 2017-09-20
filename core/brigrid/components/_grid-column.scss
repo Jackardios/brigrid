@@ -7,7 +7,7 @@
 // flex based grid-column
 @mixin grid-column--flex($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
-    
+
     @include _col-media($columns, $grid);
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     margin-left: $grid-half-gutter;
@@ -40,6 +40,6 @@
     } @else if ($driver == float) {
         @include grid-column--float($columns, $grid);
     } @else {
-        @error "Incorrect driver value: '#{$driver}'";
+        @error "[ERROR]: Incorrect driver value: '#{$driver}'";
     }
 }

@@ -14,8 +14,7 @@
     $align-x: get-grid-value(align-x, $grid);
     $align-y: get-grid-value(align-y, $grid);
     $reversed: get-grid-value(reversed, $grid);
-    
-    @debug $collapse;
+
     // collapse
     @if ($collapse == true) {
         @include grid-collapse($grid);
@@ -80,6 +79,6 @@
     } @else if ($driver == float) {
         @include grid-container--float($grid);
     } @else {
-        @error "Incorrect driver value: '#{$driver}'";
+        @error "[ERROR]: Incorrect driver value: '#{$driver}'";
     }
 }

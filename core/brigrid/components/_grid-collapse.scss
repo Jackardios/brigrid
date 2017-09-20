@@ -1,5 +1,9 @@
 @mixin grid-collapse($grid: $default-grid) {
     $grid-gutter: get-grid-value(gutter, $grid);
-    margin-left: ($grid-gutter / -2);
-    margin-right: ($grid-gutter / -2);
+    @if (unit($grid-gutter) == '%') {
+        @warn "[WARNING]: grid-collapse is not supported in percentage indents based grids";
+    } @else {
+        margin-left: ($grid-gutter / -2);
+        margin-right: ($grid-gutter / -2);
+    }
 }
