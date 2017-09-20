@@ -1,12 +1,10 @@
+- var cols = 12;
 .outer-container
     .grid-container
-        .grid-column-1
-        .grid-column-2
-        .grid-column-3
-        .grid-column-4
-        .grid-column-2
-        .grid-column-5
-        .grid-column-7
-        .grid-column-6
-        .grid-column-6
+        - var i = 1;
+        while (i < cols)
+            div(class="grid-column-" + i)=  i
+            div(class="grid-column-" + (cols - i))= (cols - i)
+            - i++;
+            
         
