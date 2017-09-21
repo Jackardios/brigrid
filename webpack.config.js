@@ -26,9 +26,9 @@ const normalizePaths = "./node_modules/normalize-scss/sass";
  * @type {Object}
  */
 const PATHS = {
-    contrib: path.join(__dirname, "contrib"),
-    build: path.join(__dirname, "contrib_build"),
-    assets: path.join(__dirname, "contrib/assets"),
+    demo: path.join(__dirname, "demo"),
+    build: path.join(__dirname, "demo_build"),
+    assets: path.join(__dirname, "demo/assets"),
 };
 
 /**
@@ -38,7 +38,7 @@ const PATHS = {
 const common = merge([
     {
         entry: {
-            index: path.resolve(PATHS.contrib, "index.js"),
+            index: path.resolve(PATHS.demo, "index.js"),
         },
         output: {
             path: PATHS.build,
@@ -48,7 +48,7 @@ const common = merge([
             new HTMLWebpackPlugin({
                 filename: 'index.html',
                 chunks: ['index', 'common'],
-                template: path.resolve(PATHS.contrib, "index.pug")
+                template: path.resolve(PATHS.demo, "index.pug")
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common'
