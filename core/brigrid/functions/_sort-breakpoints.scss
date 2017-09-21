@@ -5,7 +5,7 @@
         $sortFunc: _min-breakpoint;
     } @else if ($sortFunc == max) {
         $sortFunc: _max-breakpoint;
-    } @else if (not function-exists($sortFunc)) {
+    } @else {
         @error "Unknown sort function'#{$sortFunc}'";
     }
 

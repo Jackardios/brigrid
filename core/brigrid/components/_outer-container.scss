@@ -10,6 +10,7 @@
     @extend %_outer-container;
 
     @if ($breakpoints == null) {
+        $grid: _sort-breakpoints-in-grid($grid, min);
         $breakpoints: get-grid-value(breakpoints, $grid);
     }
 

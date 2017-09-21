@@ -25,8 +25,7 @@ $_default-grid-settings: ( // don't change this map!
     collapse: false,
     breakpoints: $breakpoints,
     _breakpoints-sorting: null,
-    container-widths: $container-widths,
-    media-grids: ()
-) !default;
+    container-widths: $container-widths
+);
 
-$default-grid: $_default-grid-settings;
+$default-grid: $_default-grid-settings !default;

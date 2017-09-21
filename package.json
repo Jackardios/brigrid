@@ -4,10 +4,10 @@
   "description": "A powerful and flexible SASS grid system",
   "main": "index.js",
   "scripts": {
-    "clean": "rm dist -r -f && rm build -r -f",
-    "clean--win": "rd /s /q dist && rd /s /q build",
-    "prod": "npm run clean--win && webpack -p --env=production",
-    "build": "npm run clean--win && webpack --env=production",
+    "clean": "rm contrib_build -r -f",
+    "clean--win": "rd /s /q contrib_build",
+    "prod": "webpack -p --env=production",
+    "build": "webpack --env=production",
     "dev": "webpack-dev-server --env=development"
   },
   "repository": {

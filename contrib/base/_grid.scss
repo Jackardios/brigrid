@@ -3,9 +3,7 @@ $my-grid: (
     columns: 12,
     gutter: 20px,
     collapse: false,
-    align-x: center,
-    align-y: center
+    reversed: false
 );
-
 
 $default-grid: $my-grid;

@@ -9,9 +9,17 @@
     font-weight: bold;
 
 }
+
 @for $i from 1 through 12 {
     .grid-column-#{$i} {
-        @include grid-column((xx: $i, sm: 12));
         @extend %grid-column;
+        @include grid-column((xx: $i, sm: 12));
     }
+}
+
+
+// media demo
+.grid-column-media-1 {
+    @extend %grid-column;
+    @include grid-column((xl: 6,  md: 12));
 }
