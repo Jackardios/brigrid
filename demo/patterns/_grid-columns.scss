@@ -21,5 +21,10 @@
 // media demo
 .grid-column-media-1 {
     @extend %grid-column;
-    @include grid-column((xl: 6,  md: 12));
+    @include grid-column(hidden null 6 null 12);
+}
+
+.grid-column-media-2 {
+    @extend %grid-column;
+    @include grid-column(12 null 6 null hidden);
 }

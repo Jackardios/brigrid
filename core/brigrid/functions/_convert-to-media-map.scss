@@ -1,0 +1,24 @@
+// convert to map
+@function _convert-to-media-map($obj, $grid: $default-grid) {
+    $obj-type: type-of($obj);
+    @if ($obj-type == map) {
+        @return $obj;
+    } @else {
+        $media-map: ();
+        $grid: _sort-breakpoints-in-grid($grid, min);
+        $breakpoints: get-grid-value(breakpoints, $grid);
+
+        $bp-length: length($breakpoints);
+        $obj-length: length($obj);
+        @for $i from 1 through min($bp-length, $obj-length) {
+            $media-value: nth($obj, $i);
+            $media-bp: nth(nth($breakpoints, $i * -1), 1);
+
+            @if ($media-value != null) {
+                $media-map: map-merge($media-map, ($media-bp: $media-value));
+            }
+        }
+
+        @return $media-map;
+    }
+}
