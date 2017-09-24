@@ -14,7 +14,7 @@
 
         @if ($bp-col != null) {
             @if ($last-bp-col != null) {
-                @include media-breakpoint($last-bp-key, $bp-key, $grid) {
+                @include media-breakpoint-beetween($last-bp-key, $bp-key, $grid) {
                     width: _col-width($last-bp-col, $grid);
                 }
                 $last-bp-key: $bp-key;
