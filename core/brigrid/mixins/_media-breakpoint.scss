@@ -1,16 +1,15 @@
 @mixin media-breakpoint($from, $to: null, $grid: $default-grid) {
-    $widths: map-get(get-grid-value(breakpoints, $grid), $from);
+    $breakpoints: get-grid-value(breakpoints, $grid);
 
-    $min-width: nth($widths, 1);
+    $min-width: map-get($breakpoints, $from);
+    $max-width: null;
+
     @if ($to == null) {
-        $max-width: nth($widths, 2); 
+        $max-width: nth(_next-breakpoint($from ,$breakpoints), 2) - 1;
+    } @else {
+        $max-width: map-get($breakpoints, $to) - 1;
     }
-    @if ($min-width > $max-width) {
-        $temp: $min-width;
-        $min-width: $max-width;
-        $max-width: $temp;
-    }
-    
+
     @if ($min-width == null) {
         @media screen and (max-width: $max-width) {
             @content;
@@ -18,7 +17,7 @@
     } @else if ($max-width == null) {
         @media screen and (min-width: $min-width) {
             @content;
-        }        
+        }
     } @else {
         @media screen and (min-width: $min-width) and (max-width: $max-width) {
             @content;

@@ -1,0 +1,16 @@
+@function _max-breakpoint($breakpoints) {
+    $first-breakpoint: nth($breakpoints, 1);
+    $max-sizeName: nth($first-breakpoint, 1);
+    $max-width: nth($first-breakpoint, 2);
+
+    @each $sizeName, $width in $breakpoints {
+        @if ($width != null) {
+            @if (($max-width == null) or (($width > $max-width))) {
+                $max-width: $width;
+                $max-sizeName: $sizeName;
+            }
+        }
+    }
+
+    @return ($max-sizeName: $max-width);
+}

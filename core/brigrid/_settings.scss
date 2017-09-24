@@ -1,10 +1,10 @@
 $breakpoints: (
-    xs: (null, 575px), // Extra small screen
-    sm: (576px, 767px), // Small screen
-    md: (768px, 991px), // Medium screen
-    lg: (992px, 1199px), // Large screen
-    xl: (1200px, 1899px), // Extra large screen
-    xx: (1900px, null)
+    xs: null, // Extra small screen
+    sm: 576px, // Small screen
+    md: 768px, // Medium screen
+    lg: 992px, // Large screen
+    xl: 1200px, // Extra large screen
+    xx: 1900px // Extra extra large screen
 ) !default;
 
 $container-widths: (
@@ -12,7 +12,7 @@ $container-widths: (
     md: 767px, // Medium screen
     lg: 991px, // Large screen
     xl: 1199px, // Extra large screen
-    xx: 1560px // Extra large screen
+    xx: 1560px // Extra extra large screen
 ) !default;
 
 $_default-grid-settings: ( // don't change this map!

@@ -1,0 +1,12 @@
+@function _next-breakpoint($bp-name, $breakpoints) {
+    $l: 0;
+    @each $bp-key, $bp-value in $breakpoints {
+        @if ($l == 1) {
+            @return ($bp-key: $bp-value);
+        }
+        @if ($bp-key == $bp-name) {
+            $l: 1;
+        }
+    }
+    @return null;
+}

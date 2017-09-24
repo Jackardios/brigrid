@@ -1,8 +1,9 @@
-@import "functions/get-grid-value";
-@import "functions/set-grid-value";
-@import "functions/min-breakpoint";
-@import "functions/max-breakpoint";
-@import "functions/sort-breakpoints";
-@import "functions/sort-breakpoints-in-grid";
+@import "functions/grid/get-grid-value";
+@import "functions/grid/set-grid-value";
+@import "functions/breakpoint/min-breakpoint";
+@import "functions/breakpoint/max-breakpoint";
+@import "functions/breakpoint/sort-breakpoints";
+@import "functions/breakpoint/sort-breakpoints-in-grid";
+@import "functions/breakpoint/next-breakpoint";
+@import "functions/media-map/convert-to-media-map";
 @import "functions/col-width";
-@import "functions/convert-to-media-map";

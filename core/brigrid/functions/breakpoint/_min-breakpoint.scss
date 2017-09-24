@@ -1,0 +1,14 @@
+@function _min-breakpoint($breakpoints) {
+    $first-breakpoint: nth($breakpoints, 1);
+    $min-sizeName: nth($first-breakpoint, 1);
+    $min-width: nth($first-breakpoint, 2);
+
+    @each $sizeName, $width in $breakpoints {
+        @if (($min-width != null) and (($width == null) or ($width < $min-width))) {
+            $min-width: $width;
+            $min-sizeName: $sizeName;
+        }
+    }
+
+    @return ($min-sizeName: $min-width);
+}
