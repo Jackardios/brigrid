@@ -1,17 +1,3 @@
-@mixin _generate-mq($idx, $cols-length, $bp-minw, $last-bp-minw) {
-    @if ($idx == 1) {
-        @content;
-    } @else if ($idx == $cols-length) {
-        @media screen and (min-width: $last-bp-minw) {
-            @content;
-        }
-    } @else {
-        @media screen and (min-width: $last-bp-minw) and (max-width: $bp-minw - 1) {
-            @content;
-        }
-    }
-}
-
 // generate media queries for column
 @mixin _col-media($cols, $grid: $default-grid) {
     $grid: _sort-breakpoints-in-grid($grid, min);
@@ -20,23 +6,22 @@
     $cols: _convert-to-media-map($cols, $grid);
     $cols-length: length($cols);
 
-    $cols-last-minw: null;
-    $cols-i: 1;
+    $last-bp-col: null;
+    $last-bp-key: null;
 
-    @each $bp-key, $bp-widths in $breakpoints {
-        $bp-cols: map-get($cols, $bp-key);
+    @each $bp-key, $bp-width in $breakpoints {
+        $bp-col: map-get($cols, $bp-key);
 
-        @if ($bp-cols != null) {
-            $bp-minw: nth($bp-widths, 1);
-            @include _generate-mq($cols-i, $cols-length, $bp-minw, $cols-last-minw) {
-                @if (($bp-cols == 0) or ($bp-cols == hide) or ($bp-cols == hidden)) {
-                    display: none;
-                } @else {
-                    width: _col-width($bp-cols, $grid);
+        @if ($bp-col != null) {
+            @if ($last-bp-col != null) {
+                @include media-breakpoint($last-bp-key, $bp-key, $grid) {
+                    width: _col-width($last-bp-col, $grid);
                 }
-            };
-            $cols-last-minw: $bp-minw;
-            $cols-i: $cols-i + 1;
+                $last-bp-key: $bp-key;
+            }
+            $last-bp-col: $bp-col;
         }
+
     }
+    width: _col-width($last-bp-col, $grid);
 }

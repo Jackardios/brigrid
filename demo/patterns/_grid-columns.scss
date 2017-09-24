@@ -13,7 +13,7 @@
 @for $i from 1 through 12 {
     .grid-column-#{$i} {
         @extend %grid-column;
-        @include grid-column((xx: $i, sm: 12));
+        @include grid-column(null null null $i 12);
     }
 }
 
@@ -21,10 +21,5 @@
 // media demo
 .grid-column-media-1 {
     @extend %grid-column;
-    @include grid-column(hidden null 6 null 12);
-}
-
-.grid-column-media-2 {
-    @extend %grid-column;
-    @include grid-column(12 null 6 null hidden);
+    @include grid-column((lg: 6, sm: 12, xl: 1));
 }
