@@ -6,22 +6,32 @@
     $cols: _convert-to-media-map($cols, $grid);
     $cols-length: length($cols);
 
-    $last-bp-col: null;
-    $last-bp-key: null;
+    $prev-bp-col: null;
+    $prev-bp-key: null;
 
     @each $bp-key, $bp-width in $breakpoints {
         $bp-col: map-get($cols, $bp-key);
 
         @if ($bp-col != null) {
-            @if ($last-bp-col != null) {
-                @include media-breakpoint-beetween($last-bp-key, $bp-key, $grid) {
-                    width: _col-width($last-bp-col, $grid);
+            @if ($prev-bp-col != null) {
+                @include media-breakpoint-beetween($prev-bp-key, $bp-key, $grid) {
+                    @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {
+                        display: none;
+                    } @else {
+                        width: _col-width($prev-bp-col, $grid);
+                    }
                 }
-                $last-bp-key: $bp-key;
+                $prev-bp-key: $bp-key;
             }
-            $last-bp-col: $bp-col;
+            $prev-bp-col: $bp-col;
         }
-
     }
-    width: _col-width($last-bp-col, $grid);
+
+    @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {
+        @include media-breakpoint-from($prev-bp-key, $grid) {
+            display: none;
+        }
+    } @else {
+        width: _col-width($prev-bp-col, $grid);
+    }
 }
