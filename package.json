@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jackardios/brigrid.git"
+    "url": "https://github.com/Jackardios/brigrid.git"
   },
   "keywords": [
     "css",
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/Jackardios/brigrid/issues"
   },
-  "homepage": "https://github.com/Jackardios/brigrid#readme",
+  "homepage": "https://github.com/Jackardios/brigrid",
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
