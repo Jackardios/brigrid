@@ -73,7 +73,7 @@
 
 //common grid-container mixin
 @mixin grid-container($grid: $default-grid) {
-    $driver: get-grid-value($grid, driver);
+    $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
         @include grid-container--flex($grid);
     } @else if ($driver == float) {

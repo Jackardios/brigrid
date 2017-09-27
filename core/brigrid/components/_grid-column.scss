@@ -32,7 +32,7 @@
 }
 
 @mixin grid-column($columns, $grid: $default-grid) {
-    $driver: map-get($grid, driver);
+    $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
         @include grid-column--flex($columns, $grid);
     } @else if ($driver == float) {
