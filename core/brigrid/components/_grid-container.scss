@@ -52,12 +52,13 @@
 %_grid-container--float {
     box-sizing: border-box;
     overflow-x: hidden;
+    &::before,
     &::after {
-        content: ' ';
-        display: block;
-        height: 0;
+        display: table;
+        content: "";
+    }
+    &::after {
         clear: both;
-        visibility: hidden;
     }
 }
 
