@@ -1,9 +1,7 @@
 @mixin media-breakpoint-before($bp-name, $grid: $default-grid) {
     $min-width: map-get(get-grid-value(breakpoints, $grid), $bp-name);
 
-    @if ($min-width == null) {
-        @content;
-    } @else {
+    @if (($min-width != null) and ($min-width != 0)) {
         @media screen and (max-width: $min-width - 1) {
             @content;
         }

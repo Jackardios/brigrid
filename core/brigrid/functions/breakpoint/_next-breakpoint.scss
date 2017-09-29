@@ -1,4 +1,4 @@
-@function _next-breakpoint($bp-name, $breakpoints) {
+@function next-breakpoint($bp-name, $breakpoints) {
     $l: 0;
     @each $bp-key, $bp-value in $breakpoints {
         @if ($l == 1) {

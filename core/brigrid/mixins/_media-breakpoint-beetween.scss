@@ -4,19 +4,33 @@
     $min-width: map-get($breakpoints, $from);
     $max-width: map-get($breakpoints, $to);
 
-    @if (($min-width == null) and ($max-width == null)) {
-        @content;
-    } @else if ($min-width == null) {
-        @media screen and (max-width: $max-width - 1) {
-            @content;
+    $min-width-is-null: (($min-width == null) or ($min-width == 0));
+    $max-width-is-null: (($max-width == null) or ($max-width == 0));
+
+    @if (not ($min-width-is-null and $max-width-is-null)) {
+        @if ($max-width-is-null) {
+            $temp: $min-width;
+            $min-width: $max-width;
+            $max-width: $temp;
+
+            $temp: $min-width-is-null;
+            $min-width-is-null: $max-width-is-null;
+            $max-width-is-null: $temp;
         }
-    } @else if ($max-width == null) {
-        @media screen and (min-width: $min-width) {
-            @content;
-        }
-    } @else {
-        @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
-            @content;
+
+        @if ($min-width-is-null) {
+            @media screen and (max-width: $max-width - 1) {
+                @content;
+            }
+        } @else {
+            @if ($min-width > $max-width) {
+                $temp: $min-width;
+                $min-width: $max-width;
+                $max-width: $temp;
+            }
+            @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+                @content;
+            }
         }
     }
 }

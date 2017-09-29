@@ -2,21 +2,27 @@
     $breakpoints: get-grid-value(breakpoints, $grid);
 
     $min-width: map-get($breakpoints, $bp-name);
-    $max-width: nth(nth(_next-breakpoint($from ,$breakpoints), 1), 2);
+    $max-width: next-breakpoint($bp-name ,$breakpoints);
+    @if ($max-width != null) {
+        $max-width: nth(nth($max-width, 1), 2);
+    }
 
-    @if (($min-width == null) and ($max-width == null)) {
-        @content;
-    } @else if ($min-width == null) {
-        @media screen and (max-width: $max-width - 1) {
-            @content;
-        }
-    } @else if ($max-width == null) {
-        @media screen and (min-width: $min-width) {
-            @content;
-        }
-    } @else {
-        @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
-            @content;
+    $min-width-is-null: (($min-width == null) or ($min-width == 0));
+    $max-width-is-null: (($max-width == null) or ($max-width == 0));
+
+    @if (not ($min-width-is-null and $max-width-is-null)) {
+        @if ($min-width-is-null) {
+            @media screen and (max-width: $max-width - 1) {
+                @content;
+            }
+        } @else if ($max-width-is-null) {
+            @media screen and (min-width: $min-width) {
+                @content;
+            }
+        } @else {
+            @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+                @content;
+            }
         }
     }
 }
