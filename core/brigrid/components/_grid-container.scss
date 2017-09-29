@@ -16,7 +16,7 @@
     $reversed: get-grid-value(reversed, $grid);
 
     // collapse
-    @if ($collapse == true) {
+    @if ($collapse) {
         @include grid-collapse($grid);
     }
 
@@ -51,7 +51,6 @@
 // float driver based grid-container
 %_grid-container--float {
     box-sizing: border-box;
-    overflow-x: hidden;
     &::before,
     &::after {
         display: table;
@@ -67,7 +66,7 @@
 
     // collapse
     $collapse: get-grid-value(collapse, $grid);
-    @if ($collapse == true) {
+    @if ($collapse) {
         @include grid-collapse($grid);
     }
 }

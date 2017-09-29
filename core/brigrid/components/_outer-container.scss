@@ -9,6 +9,11 @@
 @mixin outer-container($grid: $default-grid, $breakpoints: null, $container-widths: null) {
     @extend %_outer-container;
 
+    $grid-collapse: get-grid-value(collapse, $grid);
+    @if ($grid-collapse) {
+        overflow-x: hidden;
+    }
+
     @if ($breakpoints == null) {
         $grid: _sort-breakpoints-in-grid($grid, min);
         $breakpoints: get-grid-value(breakpoints, $grid);

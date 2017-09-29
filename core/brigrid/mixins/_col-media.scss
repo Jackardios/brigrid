@@ -1,3 +1,13 @@
+@mixin _col-width-props($cols, $grid) {
+    $driver: get-grid-value(driver, $grid);
+
+    @if ($driver == flex) {
+        max-width: _col-width($cols, $grid);
+    }
+
+    width: _col-width($cols, $grid);
+}
+
 // generate media queries for column
 @mixin _col-media($cols, $grid: $default-grid) {
     $grid: _sort-breakpoints-in-grid($grid, min);
@@ -18,7 +28,7 @@
                     @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {
                         display: none;
                     } @else {
-                        width: _col-width($prev-bp-col, $grid);
+                        @include _col-width-props($prev-bp-col, $grid);
                     }
                 }
                 $prev-bp-key: $bp-key;
@@ -32,6 +42,6 @@
             display: none;
         }
     } @else {
-        width: _col-width($prev-bp-col, $grid);
+        @include _col-width-props($prev-bp-col, $grid);
     }
 }

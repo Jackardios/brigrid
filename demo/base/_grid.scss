@@ -1,5 +1,7 @@
 $my-grid: (
-    driver: float
+    driver: float,
+    gutter: 30px,
+    collapse: true
 );
 
 $default-grid: $my-grid;
