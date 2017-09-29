@@ -2,14 +2,14 @@
     $driver: get-grid-value(driver, $grid);
 
     @if ($driver == flex) {
-        max-width: _col-width($cols, $grid);
+        max-width: _column-width($cols, $grid);
     }
 
-    width: _col-width($cols, $grid);
+    width: _column-width($cols, $grid);
 }
 
 // generate media queries for column
-@mixin _col-media($cols, $grid: $default-grid) {
+@mixin _grid-column-media($cols, $grid: $default-grid) {
     $grid: _sort-breakpoints-in-grid($grid, min);
     $breakpoints: get-grid-value(breakpoints, $grid);
 

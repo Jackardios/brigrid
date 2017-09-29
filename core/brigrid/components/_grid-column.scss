@@ -7,7 +7,7 @@
 // flex based grid-column
 @mixin grid-column--flex($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
-    @include _col-media($columns, $grid);
+    @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     margin-left: $grid-half-gutter;
@@ -17,7 +17,7 @@
 // float based grid-column
 @mixin grid-column--float($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
-    @include _col-media($columns, $grid);
+    @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     margin-left: $grid-half-gutter;
