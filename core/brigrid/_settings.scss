@@ -1,18 +1,18 @@
-$breakpoints: (
+$default-breakpoints: (
     xs: 0, // Extra small screen
     sm: 576px, // Small screen
     md: 768px, // Medium screen
     lg: 992px, // Large screen
     xl: 1200px, // Extra large screen
-    xx: 1900px // Extra extra large screen
+    xx: 1600px // Extra extra large screen
 ) !default;
 
-$container-widths: (
-    sm: 575px, // Small screen
-    md: 767px, // Medium screen
-    lg: 991px, // Large screen
-    xl: 1199px, // Extra large screen
-    xx: 1560px // Extra extra large screen
+$default-container-widths: (
+    sm: 576px, // Small screen
+    md: 768px, // Medium screen
+    lg: 960px, // Large screen
+    xl: 1170px, // Extra large screen
+    xx: 1400px // Extra extra large screen
 ) !default;
 
 $_default-grid-settings: ( // don't change this map!
@@ -23,9 +23,9 @@ $_default-grid-settings: ( // don't change this map!
     align-y: top,
     reversed: false,
     collapse: false,
-    breakpoints: $breakpoints,
+    breakpoints: $default-breakpoints,
     _breakpoints-sorting: null,
-    container-widths: $container-widths
+    container-widths: $default-container-widths
 );
 
 $default-grid: $_default-grid-settings !default;

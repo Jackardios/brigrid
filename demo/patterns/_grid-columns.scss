@@ -35,5 +35,5 @@
 
 .test-col-4 {
     @extend %grid-column;
-    @include grid-column((md: 2, sm: 12), center, center);
+    @include grid-column((md: 2, sm: 12), right, center);
 }
