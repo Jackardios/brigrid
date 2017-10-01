@@ -10,27 +10,35 @@
     @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
-    margin-left: $grid-half-gutter;
-    margin-right: $grid-half-gutter;
 
     @if ($align-x != none) {
         @if ($align-x == left) {
             margin-right: auto;
+            margin-left: $grid-half-gutter;
         } @else if ($align-x == right) {
             margin-left: auto;
+            margin-right: $grid-half-gutter;
         } @else if ($align-x == center) {
             margin-left: auto;
             margin-right: auto;
+        } @else {
+            @error "Unknown $align-x value: '#{$align-x}'";
         }
+    } @else {
+        margin-left: $grid-half-gutter;
+        margin-right: $grid-half-gutter;
     }
 
     @if ($align-y != none) {
+        $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
         @if ($align-y == top) {
             align-self: flex-start;
         } @else if ($align-y == bottom) {
             align-self: flex-end;
-        } @else {
+        } @else if (index($allowed-align-y-values, $align-y) != null){
             align-self: $align-y;
+        } @else {
+            @error "Unknown $align-y value: '#{$align-y}'";
         }
     }
 }
