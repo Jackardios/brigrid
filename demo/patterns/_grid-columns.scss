@@ -23,3 +23,17 @@
     @extend %grid-column;
     @include grid-column(1 2 3 4 6 12);
 }
+
+// test col
+.test-col-1,
+.test-col-2,
+.test-col-3 {
+    @extend %grid-column;
+    @include grid-column((md: 2, sm: 12));
+    height: 100px;
+}
+
+.test-col-4 {
+    @extend %grid-column;
+    @include grid-column((md: 2, sm: 12), center, center);
+}

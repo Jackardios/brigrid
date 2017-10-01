@@ -5,13 +5,34 @@
 }
 
 // flex based grid-column
-@mixin grid-column--flex($columns, $grid: $default-grid) {
+@mixin grid-column--flex($columns, $align-x: none, $align-y: none, $grid: $default-grid) {
     @extend %_grid-column-base;
     @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     margin-left: $grid-half-gutter;
     margin-right: $grid-half-gutter;
+
+    @if ($align-x != none) {
+        @if ($align-x == left) {
+            margin-right: auto;
+        } @else if ($align-x == right) {
+            margin-left: auto;
+        } @else if ($align-x == center) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    @if ($align-y != none) {
+        @if ($align-y == top) {
+            align-self: flex-start;
+        } @else if ($align-y == bottom) {
+            align-self: flex-end;
+        } @else {
+            align-self: $align-y;
+        }
+    }
 }
 
 // float based grid-column
@@ -31,10 +52,10 @@
     }
 }
 
-@mixin grid-column($columns, $grid: $default-grid) {
+@mixin grid-column($columns, $align-x: none, $align-y: none, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
-        @include grid-column--flex($columns, $grid);
+        @include grid-column--flex($columns, $align-x, $align-y, $grid);
     } @else if ($driver == float) {
         @include grid-column--float($columns, $grid);
     } @else {
