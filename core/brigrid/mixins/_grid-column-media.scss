@@ -22,7 +22,7 @@
     @each $bp-key, $bp-width in $breakpoints {
         $bp-col: map-get($cols, $bp-key);
 
-        @if ($bp-col != null) {
+        @if (($bp-col != null) and ($bp-col != $prev-bp-col)) {
             @if ($prev-bp-col != null) {
                 @include media-breakpoint-beetween($prev-bp-key, $bp-key, $grid) {
                     @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {

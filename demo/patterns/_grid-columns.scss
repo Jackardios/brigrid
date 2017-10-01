@@ -13,7 +13,7 @@
 @for $i from 1 through 12 {
     .grid-column-#{$i} {
         @extend %grid-column;
-        @include grid-column((sm: $i, xs: 12));
+        @include grid-column((sm: 12, md: $i));
     }
 }
 
