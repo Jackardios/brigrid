@@ -2,7 +2,7 @@
     $grid-gutter: get-grid-value(gutter, $grid);
 
     @if (unit($grid-gutter) == '%') {
-        @warn "grid-collapse in percentage based grids may not work correctly";
+        @warn "grid-collapse in percentage gutter based grids may not work correctly";
     }
     margin-left: ($grid-gutter / -2);
     margin-right: ($grid-gutter / -2);

@@ -5,7 +5,7 @@
     $width: 0;
 
     @if $grid-gutter == 0 {
-        $width: #{100% / $grid-columns * $columns};
+        $width: 100% / $grid-columns * $columns;
     } @else if unit($grid-gutter) == '%' {
         $width: (100% / $grid-columns * $columns) - $grid-gutter;
     } @else {

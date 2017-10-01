@@ -1,7 +1,7 @@
 $my-grid: (
     driver: flex,
-    gutter: 30px,
-    collapse: true
+    gutter: 2%,
+    collapse: false
 );
 
 $default-grid: $my-grid;

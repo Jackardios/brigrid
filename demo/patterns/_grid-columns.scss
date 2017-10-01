@@ -37,3 +37,15 @@
     @extend %grid-column;
     @include grid-column((md: 2, sm: 12), right, center);
 }
+
+// test push
+.test-push-1,
+.test-push-2,
+.test-push-3 {
+    @extend %grid-column;
+    @include grid-column((md: 2, sm: 12));
+}
+
+.test-push-2 {
+    @include grid-push(6);
+}
