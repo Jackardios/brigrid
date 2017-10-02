@@ -39,6 +39,7 @@
 @mixin grid-column-align($align-x: none, $align-y: none, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
+        // X-axis alignment
         @if ($align-x != none) {
             $align-x: _convert-to-media-map($align-x, $grid);
             @include _for-media-map($align-x, $grid) {
@@ -58,6 +59,7 @@
             }
         }
 
+        // Y-axis alignment
         @if ($align-y != none) {
             $align-y: _convert-to-media-map($align-y, $grid);
             @include _for-media-map($align-y, $grid) {

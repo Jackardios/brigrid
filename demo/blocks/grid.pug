@@ -78,7 +78,9 @@
                 .card
         .grid-container
             div(class="grid-column-" + cols)
-                h3.grid-container__title Dynamically horizontal self alignment
+                h3.grid-container__title
+                    | Dynamically horizontal self alignment 
+                    span.accent (md:left, lg:center, xl:right)
             .grid-column-1
                 .card
             .grid-column-1
@@ -136,7 +138,9 @@
                 .card.card--large 
         .grid-container
             div(class="grid-column-" + cols)
-                h3.grid-container__title Dynamically vertical self alignment
+                h3.grid-container__title
+                    | Dynamically vertical self alignment 
+                    span.accent (md:top, lg:center, xl:bottom)
             .grid-column-2
                 .card.card--large 
             .grid-column-2
@@ -200,6 +204,25 @@
                 .card
             .grid-column-1
                 .card
+        .grid-container.grid-container--h-dynamic
+            div(class="grid-column-" + cols)
+                h2.grid-container__title
+                    | Dynamically horizontal alignment 
+                    span.accent (md:left, lg:center, xl:right)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
     section.demo-section
         h2.demo-section__title Vertical container alignment
         .grid-container.grid-container--v-left
@@ -227,6 +250,19 @@
         .grid-container.grid-container--v-bottom
             div(class="grid-column-" + cols)
                 h2.grid-container__title Bottom vertical alignment
+            .grid-column-3
+                .card.card--large 
+            .grid-column-3
+                .card
+            .grid-column-3
+                .card.card--small
+            .grid-column-3
+                .card.card--large
+        .grid-container.grid-container--v-dynamic
+            div(class="grid-column-" + cols)
+                h2.grid-container__title
+                    | Dynamically vertical alignment 
+                    span.accent (md:top, lg:center, xl:bottom)
             .grid-column-3
                 .card.card--large 
             .grid-column-3

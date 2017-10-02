@@ -14,11 +14,29 @@
             @include grid-container-align($align-x: $alignment);
         }
     }
+    &--h-dynamic {
+        @include grid-container-align(
+            $align-x: (
+                md: left,
+                lg: center,
+                xl: right
+            )
+        )
+    }
 
     $y-alignments: (top center bottom);
     @each $alignment in $y-alignments {
         &--v-#{$alignment} {
             @include grid-container-align($align-y: $alignment);
         }
+    }
+    &--v-dynamic {
+        @include grid-container-align(
+            $align-y: (
+                md: top,
+                lg: center,
+                xl: bottom
+            )
+        )
     }
 }

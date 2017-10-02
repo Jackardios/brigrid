@@ -11,31 +11,41 @@
     @if ($driver == flex) {
         // X-axis alignment
         @if ($align-x != none) {
-            $allowed-align-x-values: (flex-start, flex-end, center, space-between, space-around);
-            @if ($align-x == left and $reversed == false) or
-                ($align-x == right and $reversed == true) {
-                justify-content: flex-start;
-            } @else if ($align-x == left and $reversed == true) or
-                       ($align-x == right and $reversed == false) {
-                justify-content: flex-end;
-            } @else if (index($allowed-align-x-values, $align-x) != null) {
-                justify-content: $align-x;
-            } @else {
-                @error "Unknown $align-x value: '#{$align-x}'";
+            $align-x: _convert-to-media-map($align-x, $grid);
+            $grid: set-grid-value(align-x, $align-x $grid);
+            @include _for-media-map($align-x, $grid) {
+                $bp-align-x: $_for-media-map-value;
+                $allowed-align-x-values: (flex-start, flex-end, center, space-between, space-around);
+                @if ($bp-align-x == left and $reversed == false) or
+                    ($bp-align-x == right and $reversed == true) {
+                    justify-content: flex-start;
+                } @else if ($bp-align-x == left and $reversed == true) or
+                           ($bp-align-x == right and $reversed == false) {
+                    justify-content: flex-end;
+                } @else if (index($allowed-align-x-values, $bp-align-x) != null) {
+                    justify-content: $bp-align-x;
+                } @else {
+                    @error "Unknown $align-x value: '#{$bp-align-x}'";
+                }
             }
         }
 
         // Y-axis alignment
         @if ($align-y != none) {
-            $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
-            @if ($align-y == top) {
-                align-items: flex-start;
-            } @else if ($align-y == bottom) {
-                align-items: flex-end;
-            } @else if (index($allowed-align-y-values, $align-y) != null) {
-                align-items: $align-y;
-            } @else {
-                @error "Unknown $align-y value: '#{$align-y}'";
+            $align-y: _convert-to-media-map($align-y, $grid);
+            $grid: set-grid-value(align-y, $align-y $grid);
+            @include _for-media-map($align-y, $grid) {
+                $bp-align-y: $_for-media-map-value;
+                $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
+                @if ($bp-align-y == top) {
+                    align-items: flex-start;
+                } @else if ($bp-align-y == bottom) {
+                    align-items: flex-end;
+                } @else if (index($allowed-align-y-values, $bp-align-y) != null) {
+                    align-items: $bp-align-y;
+                } @else {
+                    @error "Unknown $align-y value: '#{$bp-align-y}'";
+                }
             }
         }
     } @else {
