@@ -42,20 +42,12 @@
     @extend %_grid-column-base;
     @include grid-column-media($columns, $grid: $grid);
     @include grid-column-align($align-x, $align-y, $grid: $grid);
-
-    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
-    padding-left: $grid-half-gutter;
-    padding-right: $grid-half-gutter;
 }
 
 // float based grid-column
 @mixin grid-column--float($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
     @include grid-column-media($columns, $grid);
-
-    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
-    padding-left: $grid-half-gutter;
-    padding-right: $grid-half-gutter;
 
     $reversed: get-grid-value(reversed, $grid);
     @if $reversed == true {

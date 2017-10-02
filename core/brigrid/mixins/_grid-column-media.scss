@@ -1,4 +1,4 @@
-@mixin _col-props($cols, $grid) {
+@mixin _col-width-props($cols, $grid) {
     @if (($cols == hidden) or ($cols == hide) or ($cols == 0)) {
         display: none;
     } @else {
@@ -12,11 +12,25 @@
     }
 }
 
+@mixin _col-gutter-props($gutter, $grid) {
+    @if (type-of($gutter) == number) {
+        $grid-half-gutter: $gutter / 2;
+        padding-left: $grid-half-gutter;
+        padding-right: $grid-half-gutter;
+    } @else {
+        @error "Invalid type of gutter. Gutter must be a number!";
+    }
+}
+
 // generate media queries for column
 @mixin grid-column-media($cols, $grid: $default-grid) {
     $cols: _convert-to-media-map($cols, $grid);
+    $gutters: _convert-to-media-map(get-grid-value(gutter, $grid), $grid);
 
     @include _for-media-map($cols, $grid) {
-        @include _col-props($_for-media-map-value, $grid); // $_for-media-map-value is a global variable, defined in _for-media-map mixin
+        @include _col-width-props($_for-media-map-value, $grid); // $_for-media-map-value is a global variable, defined in _for-media-map mixin
+    }
+    @include _for-media-map($gutters, $grid) {
+        @include _col-gutter-props($_for-media-map-value, $grid); // $_for-media-map-value is a global variable, defined in _for-media-map mixin
     }
 }
