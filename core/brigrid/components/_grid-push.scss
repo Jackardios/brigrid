@@ -1,3 +1,3 @@
 @mixin grid-push($columns, $grid: $default-grid) {
-    margin-left: _column-offset($columns, $grid);
+    margin-left: _column-width($columns, $grid);
 }

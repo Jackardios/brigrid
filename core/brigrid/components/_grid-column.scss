@@ -10,23 +10,20 @@
     @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    padding-left: $grid-half-gutter;
+    padding-right: $grid-half-gutter;
 
     @if ($align-x != none) {
         @if ($align-x == left) {
             margin-right: auto;
-            margin-left: $grid-half-gutter;
         } @else if ($align-x == right) {
             margin-left: auto;
-            margin-right: $grid-half-gutter;
         } @else if ($align-x == center) {
             margin-left: auto;
             margin-right: auto;
         } @else {
             @error "Unknown $align-x value: '#{$align-x}'";
         }
-    } @else {
-        margin-left: $grid-half-gutter;
-        margin-right: $grid-half-gutter;
     }
 
     @if ($align-y != none) {
@@ -49,8 +46,8 @@
     @include _grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
-    margin-left: $grid-half-gutter;
-    margin-right: $grid-half-gutter;
+    padding-left: $grid-half-gutter;
+    padding-right: $grid-half-gutter;
 
     $reversed: get-grid-value(reversed, $grid);
     @if $reversed == true {

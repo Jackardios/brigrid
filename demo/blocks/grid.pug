@@ -5,22 +5,32 @@
     .grid-container
         - var i = 1; 
         while (i < cols)
-            div(class="grid-column-" + i)=  i
-            div(class="grid-column-" + (cols - i))= (cols - i)
+            div(class="grid-column-" + i)
+                .card= i
+            div(class="grid-column-" + (cols - i))
+                .card= (cols - i)
             - i++;
     .grid-container
         - var i = 1; 
         while (i <= cols)
             .grid-column-media-1
+                .card
             - i++;
     .grid-container
         .test-col-1 
+            .card
         .test-col-2
+            .card
         .test-col-3
+            .card
         .test-col-4
+            .card
     .grid-container
         .test-push-1
+            .card
         .test-push-2
+            .card
         .test-push-3
+            .card
             
         

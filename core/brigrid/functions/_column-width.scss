@@ -1,16 +1,7 @@
 @function _column-width($columns, $grid: $default-grid) {
-    $grid-gutter: get-grid-value(gutter, $grid);
     $grid-columns: get-grid-value(columns, $grid);
 
-    $width: 0;
-
-    @if $grid-gutter == 0 {
-        $width: 100% / $grid-columns * $columns;
-    } @else if unit($grid-gutter) == '%' {
-        $width: (100% / $grid-columns * $columns) - $grid-gutter;
-    } @else {
-        $width: calc(#{100% / $grid-columns * $columns} - #{$grid-gutter});
-    }
+    $width: 100% / $grid-columns * $columns;
 
     @return $width;
 
