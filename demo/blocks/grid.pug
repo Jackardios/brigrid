@@ -1,7 +1,7 @@
 - var cols = 12;
 .outer-container
     h1.header
-        | Brigrid
+        | Brigrid 
         span.accent Demo
     section.demo-section
         .grid-container
@@ -34,7 +34,7 @@
                 .card 
             .grid-column-1
                 .card 
-            .grid-column-2.grid-column--h-left
+            .grid-column-1.grid-column--h-left
                 .card.card--accent LEFT
             .grid-column-1
                 .card
@@ -76,6 +76,23 @@
                 .card
             .grid-column-1
                 .card
+        .grid-container
+            div(class="grid-column-" + cols)
+                h3.grid-container__title Dynamically horizontal self alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-column--h-dynamic
+                .card.card--accent DYNAMIC
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card  
     section.demo-section
         h2.demo-section__title Vertical self alignment
         .grid-container
@@ -113,6 +130,19 @@
                 .card.card--large 
             .grid-column-4.grid-column--v-bottom
                 .card.card--accent.card--small BOTTOM
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+        .grid-container
+            div(class="grid-column-" + cols)
+                h3.grid-container__title Dynamically vertical self alignment
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+            .grid-column-4.grid-column--v-dynamic
+                .card.card--accent.card--small DYNAMIC
             .grid-column-2
                 .card.card--large 
             .grid-column-2
