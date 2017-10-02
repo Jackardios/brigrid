@@ -1,6 +1,6 @@
 {
   "name": "brigrid",
-  "version": "0.2.1",
+  "version": "1.0.1",
   "description": "A powerful and flexible SASS grid system",
   "main": "index.js",
   "scripts": {
