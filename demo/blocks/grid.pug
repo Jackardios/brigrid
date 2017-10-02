@@ -3,98 +3,243 @@
     h1.header
         | Brigrid
         span.accent Demo
-    .grid-container
-        - var i = 1; 
-        while (i < cols)
-            div(class="grid-column-" + i)
-                .card= i
-            div(class="grid-column-" + (cols - i))
-                .card= (cols - i)
-            - i++;
-        div(class="grid-column-" + cols)
-            .card= cols
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Test media queries
-        - var i = 1; 
-        while (i <= cols)
-            .grid-column-media
+    section.demo-section
+        .grid-container
+            - var i = 1; 
+            while (i < cols)
+                div(class="grid-column-" + i)
+                    .card= i
+                div(class="grid-column-" + (cols - i))
+                    .card= (cols - i)
+                - i++;
+            div(class="grid-column-" + cols)
+                .card= cols
+    section.demo-section
+        h2.demo-section__title Media queries (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
+        .grid-container
+            div(class="grid-column-" + cols)
+            - var i = 1; 
+            while (i <= cols)
+                .grid-column-media
+                    .card
+                - i++;
+    section.demo-section
+        h2.demo-section__title Horizontal self alignment
+        .grid-container
+            div(class="grid-column-" + cols)
+                h3.grid-container__title Left-side self horizontal self alignment
+            .grid-column-1
                 .card
-            - i++;
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Left-side column alignment
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card 
-        .grid-column-2.grid-column--left
-            .card LEFT
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card  
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Central column alignment
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card 
-        .grid-column-2.grid-column--center
-            .card CENTER
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card   
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Right-side column alignment
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card 
-        .grid-column-2.grid-column--right
-            .card RIGHT
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Column with grid-push(4)
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card 
-        .grid-column-2.grid-push-4
-            .card PUSH(4)
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-    .grid-container
-        div(class="grid-column-" + cols)
-            h2.grid-container__title Column with grid-shift(4)
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card 
-        .grid-column-2.grid-shift-4
-            .card SHIFT(4)
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
-        .grid-column-1
-            .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-column--h-left
+                .card LEFT
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card  
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Central self horizontal self alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-column--h-center
+                .card CENTER
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card   
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Right-side self horizontal self alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-column--h-right
+                .card RIGHT
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+    section.demo-section
+        h2.demo-section__title Vertical self alignment
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Top self vertical self alignment
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+            .grid-column-4.grid-column--v-top
+                .card.card--small TOP
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Central self vertical self alignment
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+            .grid-column-4.grid-column--v-center
+                .card.card--small CENTER
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Bottom self vertical self alignment
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+            .grid-column-4.grid-column--v-bottom
+                .card.card--small BOTTOM
+            .grid-column-2
+                .card.card--large 
+            .grid-column-2
+                .card.card--large 
+    section.demo-section
+        h2.demo-section__title Horizontal container alignment
+        .grid-container.grid-container--h-left
+            div(class="grid-column-" + cols)
+                h3.grid-container__title Left-side self horizontal alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+        .grid-container.grid-container--h-center
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Central self horizontal alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+        .grid-container.grid-container--h-right
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Right-side self horizontal alignment
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+    section.demo-section
+        h2.demo-section__title Vertical container alignment
+        .grid-container.grid-container--v-left
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Top self vertical alignment
+            .grid-column-3
+                .card.card--large 
+            .grid-column-3
+                .card
+            .grid-column-3
+                .card.card--small
+            .grid-column-3
+                .card.card--large
+        .grid-container.grid-container--v-center
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Central self vertical alignment
+            .grid-column-3
+                .card.card--large 
+            .grid-column-3
+                .card
+            .grid-column-3
+                .card.card--small
+            .grid-column-3
+                .card.card--large
+        .grid-container.grid-container--v-bottom
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Bottom self vertical alignment
+            .grid-column-3
+                .card.card--large 
+            .grid-column-3
+                .card
+            .grid-column-3
+                .card.card--small
+            .grid-column-3
+                .card.card--large
+    section.demo-section
+        h2.demo-section__title Column with grid-push(4)
+        .grid-container
+            div(class="grid-column-" + cols)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-push-4
+                .card PUSH(4)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+    section.demo-section
+        h2.demo-section__title Column with grid-shift(4)
+        .grid-container
+            div(class="grid-column-" + cols)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-shift-4
+                .card SHIFT(4)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
             
         

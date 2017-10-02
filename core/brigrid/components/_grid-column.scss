@@ -4,46 +4,54 @@
     min-height: 1px;
 }
 
+@mixin grid-column-align($align-x: none, $align-y: none, $grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
+    @if ($driver == flex) {
+        @if ($align-x != none) {
+            @if ($align-x == left) {
+                margin-right: auto;
+            } @else if ($align-x == right) {
+                margin-left: auto;
+            } @else if ($align-x == center) {
+                margin-left: auto;
+                margin-right: auto;
+            } @else {
+                @error "Unknown $align-x value: '#{$align-x}'";
+            }
+        }
+
+        @if ($align-y != none) {
+            $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
+            @if ($align-y == top) {
+                align-self: flex-start;
+            } @else if ($align-y == bottom) {
+                align-self: flex-end;
+            } @else if (index($allowed-align-y-values, $align-y) != null) {
+                align-self: $align-y;
+            } @else {
+                @error "Unknown $align-y value: '#{$align-y}'";
+            }
+        }
+    } @else {
+        @warn "Driver '#{$driver}' is not support alignment";
+    }
+}
+
 // flex based grid-column
 @mixin grid-column--flex($columns, $align-x: none, $align-y: none, $grid: $default-grid) {
     @extend %_grid-column-base;
-    @include _grid-column-media($columns, $grid);
+    @include grid-column-media($columns, $grid: $grid);
+    @include grid-column-align($align-x, $align-y, $grid: $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     padding-left: $grid-half-gutter;
     padding-right: $grid-half-gutter;
-
-    @if ($align-x != none) {
-        @if ($align-x == left) {
-            margin-right: auto;
-        } @else if ($align-x == right) {
-            margin-left: auto;
-        } @else if ($align-x == center) {
-            margin-left: auto;
-            margin-right: auto;
-        } @else {
-            @error "Unknown $align-x value: '#{$align-x}'";
-        }
-    }
-
-    @if ($align-y != none) {
-        $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
-        @if ($align-y == top) {
-            align-self: flex-start;
-        } @else if ($align-y == bottom) {
-            align-self: flex-end;
-        } @else if (index($allowed-align-y-values, $align-y) != null){
-            align-self: $align-y;
-        } @else {
-            @error "Unknown $align-y value: '#{$align-y}'";
-        }
-    }
 }
 
 // float based grid-column
 @mixin grid-column--float($columns, $grid: $default-grid) {
     @extend %_grid-column-base;
-    @include _grid-column-media($columns, $grid);
+    @include grid-column-media($columns, $grid);
 
     $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
     padding-left: $grid-half-gutter;

@@ -5,6 +5,44 @@
     box-sizing: border-box;
 }
 
+@mixin grid-container-align($align-x: none, $align-y: none, $grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
+    $reversed: get-grid-value(reversed, $grid);
+    @if ($driver == flex) {
+        // X-axis alignment
+        @if ($align-x != none) {
+            $allowed-align-x-values: (flex-start, flex-end, center, space-between, space-around);
+            @if ($align-x == left and $reversed == false) or
+                ($align-x == right and $reversed == true) {
+                justify-content: flex-start;
+            } @else if ($align-x == left and $reversed == true) or
+                       ($align-x == right and $reversed == false) {
+                justify-content: flex-end;
+            } @else if (index($allowed-align-x-values, $align-x) != null) {
+                justify-content: $align-x;
+            } @else {
+                @error "Unknown $align-x value: '#{$align-x}'";
+            }
+        }
+
+        // Y-axis alignment
+        @if ($align-y != none) {
+            $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
+            @if ($align-y == top) {
+                align-items: flex-start;
+            } @else if ($align-y == bottom) {
+                align-items: flex-end;
+            } @else if (index($allowed-align-y-values, $align-y) != null) {
+                align-items: $align-y;
+            } @else {
+                @error "Unknown $align-y value: '#{$align-y}'";
+            }
+        }
+    } @else {
+        @warn "Driver '#{$driver}' is not support alignment";
+    }
+}
+
 @mixin grid-container--flex($grid: $default-grid) {
     @extend %_grid-container--flex;
 
@@ -15,29 +53,10 @@
     $align-y: get-grid-value(align-y, $grid);
     $reversed: get-grid-value(reversed, $grid);
 
+    @include grid-container-align($align-x, $align-y, $grid: $grid);
     // collapse
     @if ($collapse) {
         @include grid-collapse($grid);
-    }
-
-    // X-axis alignment
-    @if ($align-x == left and $reversed == false) or
-        ($align-x == right and $reversed == true) {
-        justify-content: flex-start;
-    } @else if ($align-x == left and $reversed == true) or
-               ($align-x == right and $reversed == false) {
-        justify-content: flex-end;
-    } @else {
-        justify-content: $align-x;
-    }
-
-    // Y-axis alignment
-    @if ($align-y == top) {
-        align-items: flex-start;
-    } @else if ($align-y == bottom) {
-        align-items: flex-end;
-    } @else {
-        align-items: $align-y;
     }
 
     // Reverse

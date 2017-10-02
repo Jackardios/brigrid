@@ -13,9 +13,8 @@
 }
 
 // generate media queries for column
-@mixin _grid-column-media($cols, $grid: $default-grid) {
+@mixin grid-column-media($cols, $grid: $default-grid) {
     $cols: _convert-to-media-map($cols, $grid);
-    $cols-length: length($cols);
 
     @include _for-media-map($cols, $grid) {
         @include _col-props($_for-media-map-value, $grid); // $_for-media-map-value is a global variable, defined in _for-media-map mixin
