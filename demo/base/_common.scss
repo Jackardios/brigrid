@@ -1,5 +1,6 @@
 * {
-    font-family: "Lato",
+    font-family: "Source Sans Pro",
+                 "Lato",
                  "Open Sans",
                  "Segoe UI",
                  sans-serif;
@@ -9,12 +10,5 @@ html,
 body {
     overflow-x: hidden;
     background-color: #fff;
-}
-
-.header {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #43cd9b;
-    padding: 2rem 1rem;
+    color: $color-primary;
 }

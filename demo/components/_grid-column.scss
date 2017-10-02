@@ -1,0 +1,22 @@
+.grid-column {
+    // columns
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            @include grid-column((xs: 12, sm: $i));
+        }
+    }
+
+    // alignments
+    // $alignments: (left center right);
+    // @each $alignment in $alignments {
+    //     &--#{$alignment} {
+    //         @include grid-column-change($align-x: $alignment);
+    //     }
+    // }
+
+    // media
+    &-media {
+        @include grid-column(1 2 3 4 6 12);
+    }
+
+}

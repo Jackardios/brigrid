@@ -3,8 +3,9 @@
 
 @import "../core/brigrid";
 
+@import "./base/colors";
 @import "./base/reset";
 @import "./base/common";
 @import "./base/grid";
 
-@import "./patterns/*.scss";
+@import "./components/*.scss";
