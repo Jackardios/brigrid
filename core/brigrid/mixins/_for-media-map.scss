@@ -1,0 +1,23 @@
+@mixin _for-media-map($media-map, $grid) {
+    $grid: _sort-breakpoints-in-grid($grid, min);
+    $breakpoints: get-grid-value(breakpoints, $grid);
+
+    $_for-media-map-value: null !global;
+    $prev-bp-key: null;
+
+    @each $bp-key, $bp-width in $breakpoints {
+        $bp-value: map-get($media-map, $bp-key);
+
+        @if (($bp-value != null) and ($bp-value != $_for-media-map-value)) {
+            @if ($_for-media-map-value != null) {
+                @include media-breakpoint-beetween($prev-bp-key, $bp-key, $grid) {
+                    @content;
+                }
+                $prev-bp-key: $bp-key;
+            }
+            $_for-media-map-value: $bp-value !global;
+        }
+    }
+
+    @content;
+}

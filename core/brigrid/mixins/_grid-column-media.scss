@@ -1,47 +1,23 @@
-@mixin _col-width-props($cols, $grid) {
-    $driver: get-grid-value(driver, $grid);
+@mixin _col-props($cols, $grid) {
+    @if (($cols == hidden) or ($cols == hide) or ($cols == 0)) {
+        display: none;
+    } @else {
+        display: block;
 
-    @if ($driver == flex) {
-        max-width: _column-width($cols, $grid);
+        $driver: get-grid-value(driver, $grid);
+        @if ($driver == flex) {
+            max-width: _column-width($cols, $grid);
+        }
+        width: _column-width($cols, $grid);
     }
-
-    width: _column-width($cols, $grid);
 }
 
 // generate media queries for column
 @mixin _grid-column-media($cols, $grid: $default-grid) {
-    $grid: _sort-breakpoints-in-grid($grid, min);
-    $breakpoints: get-grid-value(breakpoints, $grid);
-
     $cols: _convert-to-media-map($cols, $grid);
     $cols-length: length($cols);
 
-    $prev-bp-col: null;
-    $prev-bp-key: null;
-
-    @each $bp-key, $bp-width in $breakpoints {
-        $bp-col: map-get($cols, $bp-key);
-
-        @if (($bp-col != null) and ($bp-col != $prev-bp-col)) {
-            @if ($prev-bp-col != null) {
-                @include media-breakpoint-beetween($prev-bp-key, $bp-key, $grid) {
-                    @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {
-                        display: none;
-                    } @else {
-                        @include _col-width-props($prev-bp-col, $grid);
-                    }
-                }
-                $prev-bp-key: $bp-key;
-            }
-            $prev-bp-col: $bp-col;
-        }
-    }
-
-    @if (($prev-bp-col == hidden) or ($prev-bp-col == hide) or ($prev-bp-col == 0)) {
-        @include media-breakpoint-from($prev-bp-key, $grid) {
-            display: none;
-        }
-    } @else {
-        @include _col-width-props($prev-bp-col, $grid);
+    @include _for-media-map($cols, $grid) {
+        @include _col-props($_for-media-map-value, $grid); // $_for-media-map-value is a global variable, defined in _for-media-map mixin
     }
 }

@@ -47,5 +47,7 @@
 }
 
 .test-push-2 {
-    @include grid-push(6);
+    @include media-breakpoint-from(md) {
+        @include grid-push(6);    
+    }
 }
