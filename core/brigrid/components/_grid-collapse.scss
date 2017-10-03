@@ -1,9 +1,13 @@
 @mixin grid-collapse($grid: $default-grid) {
-    $grid-gutter: get-grid-value(gutter, $grid);
-
-    @if (unit($grid-gutter) == '%') {
-        @warn "grid-collapse in percentage gutter based grids may not work correctly";
+    $grid-gutters: _convert-to-media-map(get-grid-value(gutter, $grid), $grid);
+    @debug $grid-gutters;
+    @include _for-media-map($grid-gutters, $grid) {
+        $bp-gutter: $_for-media-map-value;
+        @debug $bp-gutter;
+        @if (unit($bp-gutter) == '%') {
+            @warn "grid-collapse in percentage gutter based grids may not work correctly";
+        }
+        margin-left: ($bp-gutter / -2);
+        margin-right: ($bp-gutter / -2);
     }
-    margin-left: ($grid-gutter / -2);
-    margin-right: ($grid-gutter / -2);
 }
