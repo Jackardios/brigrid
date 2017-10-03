@@ -4,8 +4,8 @@
   "description": "A powerful and flexible SASS grid system",
   "main": "index.js",
   "scripts": {
-    "clean": "rm contrib_build -r -f",
-    "clean--win": "rd /s /q contrib_build",
+    "clean": "rm demo_build -r -f",
+    "clean--win": "rd /s /q demo_build",
     "prod": "webpack -p --env=production",
     "build": "webpack --env=production",
     "dev": "webpack-dev-server --env=development"
