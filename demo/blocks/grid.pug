@@ -5,6 +5,8 @@
         span.accent Demo
     section.demo-section
         .grid-container
+            div(class="grid-column-" + cols)
+                h3.grid-container__title Static grid columns
             - var i = 1; 
             while (i < cols)
                 div(class="grid-column-" + i)
@@ -14,10 +16,9 @@
                 - i++;
             div(class="grid-column-" + cols)
                 .card= cols
-    section.demo-section
-        h2.demo-section__title Media queries (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
         .grid-container
             div(class="grid-column-" + cols)
+                h3.grid-container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
             - var i = 1; 
             while (i <= cols)
                 .grid-column-media
