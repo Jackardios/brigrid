@@ -1,5 +1,45 @@
 @charset "UTF-8";
 
+/// Push or pull a grid column by manipulating its left margin.
+///
+/// @name Grid push
+///
+/// @group components
+///
+/// @argument {number (unitless) | string | map} $columns
+///     Specifies the number of columns to push the column.
+///     It can be indicated by:
+///     1) a number of columns
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     .element {
+///         @include grid-push(
+///             $columns: (md: 2, lg: 3, xl: 4)
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         margin-left: 33.33333%;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             margin-left: 16.66667%;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             margin-left: 25%;
+///         }
+///     }
+
 @mixin grid-push($columns, $grid: $default-grid) {
     $columns: _convert-to-media-map($columns, $grid);
     @include _for-media-map($columns, $grid) {

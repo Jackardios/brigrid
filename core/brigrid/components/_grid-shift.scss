@@ -1,5 +1,46 @@
 @charset "UTF-8";
 
+/// Shifts columns and reorder them within their container using relative positioning.
+///
+/// @name Grid shift
+///
+/// @group components
+///
+/// @argument {number (unitless) | string | map} $columns
+///     Specifies the number of columns to shift the column.
+///     It can be indicated by:
+///     1) a number of columns
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     .element {
+///         @include grid-shift(
+///             $columns: (md: 2, lg: 3, xl: 4)
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         position: relative;
+///         left: 33.33333%;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             left: 16.66667%;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             left: 25%;
+///         }
+///     }
+
 @mixin grid-shift($columns, $grid: $default-grid) {
     position: relative;
     $columns: _convert-to-media-map($columns, $grid);
