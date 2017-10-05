@@ -2,7 +2,12 @@
     // columns
     @for $i from 1 through 12 {
         &-#{$i} {
-            @include grid-shift($i);
+            @include grid-shift($columns: $i);
         }
+    }
+    &-dynamic {
+        @include grid-shift(
+            $columns: (md: 2, lg: 3, xl: 4)
+        );
     }
 }

@@ -6,7 +6,7 @@
     section.demo-section
         .grid-container
             div(class="grid-column-" + cols)
-                h3.grid-container__title Static grid columns
+                h3.grid-container__title Grid columns
             - var i = 1; 
             while (i < cols)
                 div(class="grid-column-" + i)
@@ -80,7 +80,7 @@
         .grid-container
             div(class="grid-column-" + cols)
                 h3.grid-container__title
-                    | Dynamically horizontal self alignment 
+                    | Dynamic horizontal self alignment 
                     span.accent (md:left, lg:center, xl:right)
             .grid-column-1
                 .card
@@ -140,7 +140,7 @@
         .grid-container
             div(class="grid-column-" + cols)
                 h3.grid-container__title
-                    | Dynamically vertical self alignment 
+                    | Dynamic vertical self alignment 
                     span.accent (md:top, lg:center, xl:bottom)
             .grid-column-2
                 .card.card--large 
@@ -208,7 +208,7 @@
         .grid-container.grid-container--h-dynamic
             div(class="grid-column-" + cols)
                 h2.grid-container__title
-                    | Dynamically horizontal alignment 
+                    | Dynamic horizontal alignment 
                     span.accent (md:left, lg:center, xl:right)
             .grid-column-1
                 .card
@@ -262,7 +262,7 @@
         .grid-container.grid-container--v-dynamic
             div(class="grid-column-" + cols)
                 h2.grid-container__title
-                    | Dynamically vertical alignment 
+                    | Dynamic vertical alignment 
                     span.accent (md:top, lg:center, xl:bottom)
             .grid-column-3
                 .card.card--large 
@@ -273,9 +273,10 @@
             .grid-column-3
                 .card.card--large
     section.demo-section
-        h2.demo-section__title Column with grid-push(4)
+        h2.demo-section__title Grid push
         .grid-container
             div(class="grid-column-" + cols)
+                h2.grid-container__title Column with grid-push(4)
             .grid-column-1
                 .card
             .grid-column-1
@@ -290,10 +291,28 @@
                 .card
             .grid-column-1
                 .card
-    section.demo-section
-        h2.demo-section__title Column with grid-shift(4)
         .grid-container
             div(class="grid-column-" + cols)
+                h2.grid-container__title Dynamic grid-push(md: 2, lg: 3, xl: 4)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-push-dynamic
+                .card.card--accent DYNAMIC
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+    section.demo-section
+        h2.demo-section__title Grid shift
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Column with grid-shift(4)
             .grid-column-1
                 .card
             .grid-column-1
@@ -308,5 +327,21 @@
                 .card
             .grid-column-1
                 .card
-            
+        .grid-container
+            div(class="grid-column-" + cols)
+                h2.grid-container__title Dynamic grid-shift(md: 2, lg: 3, xl: 4)
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card 
+            .grid-column-1
+                .card 
+            .grid-column-2.grid-shift-dynamic
+                .card.card--accent DYNAMIC
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card            
         

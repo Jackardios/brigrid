@@ -2,7 +2,12 @@
     // columns
     @for $i from 1 through 12 {
         &-#{$i} {
-            @include grid-push($i);
+            @include grid-push($columns: $i);
         }
+    }
+    &-dynamic {
+        @include grid-push(
+            $columns: (md: 2, lg: 3, xl: 4)
+        );
     }
 }

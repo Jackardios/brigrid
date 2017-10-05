@@ -2,5 +2,9 @@
 
 @mixin grid-shift($columns, $grid: $default-grid) {
     position: relative;
-    left: _column-width($columns, $grid);
+    $columns: _convert-to-media-map($columns, $grid);
+    @include _for-media-map($columns, $grid) {
+        $bp-columns: $_for-media-map-value;
+        left: _column-width($bp-columns, $grid);
+    }
 }

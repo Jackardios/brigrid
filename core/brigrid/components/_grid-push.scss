@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
 @mixin grid-push($columns, $grid: $default-grid) {
-    margin-left: _column-width($columns, $grid);
+    $columns: _convert-to-media-map($columns, $grid);
+    @include _for-media-map($columns, $grid) {
+        $bp-columns: $_for-media-map-value;
+        margin-left: _column-width($bp-columns, $grid);
+    }
 }
