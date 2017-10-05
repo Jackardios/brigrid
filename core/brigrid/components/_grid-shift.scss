@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @mixin grid-shift($columns, $grid: $default-grid) {
     position: relative;
     left: _column-width($columns, $grid);

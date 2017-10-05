@@ -1,16 +1,90 @@
-// flex driver based grid-container
-%_grid-container--flex {
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
+@charset "UTF-8";
 
-@mixin grid-container-align($align-x: none, $align-y: none, $grid: $default-grid) {
+/// Creates grid columns alignment in container (Supports only flex driver)
+///
+/// @name Grid container columns alignment
+///
+/// @group features
+///
+/// @argument {string | map} $align-x [null]
+///     Specifies the horizontal alignment of the container columns
+///     It can be indicated by:
+///     1) a string (none | left | center | right)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the horizontal alignment of the container columns
+///         (Example: (md: left, lg: center, xl: right))
+///
+/// @argument {string | map} $align-y [null]
+///     Specifies the vertical alignment of the container columns
+///     It can be indicated by:
+///     1) a string (none | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the vertical alignment of the container columns
+///         (Example: (md: top, lg: center, xl: bottom))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (driver, breakpoints) will be used to create an alignment of the container columns.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         driver: flex,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-container-align(
+///             $align-x: (
+///                 md: left,
+///                 lg: center,
+///                 xl: right
+///             ),
+///             $align-y: (
+///                 md: top,
+///                 lg: center,
+///                 xl: bottom
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         justify-content: flex-end;
+///         align-items: flex-end;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             justify-content: flex-start;
+///             align-items: flex-start;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             justify-content: center;
+///             align-items: center;
+///         }
+///     }
+
+@mixin grid-container-align($align-x: null, $align-y: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
-    $reversed: get-grid-value(reversed, $grid);
     @if ($driver == flex) {
+        $reversed: get-grid-value(reversed, $grid);
+        @if ($align-x == null) {
+            $align-x: get-grid-value(align-x, $grid);
+        }
+        @if ($align-y == null) {
+            $align-y: get-grid-value(align-y, $grid);
+        }
+
         // X-axis alignment
-        @if ($align-x != none) {
+        @if ($align-x != null) {
             $align-x: _convert-to-media-map($align-x, $grid);
             $grid: set-grid-value(align-x, $align-x $grid);
             @include _for-media-map($align-x, $grid) {
@@ -31,7 +105,7 @@
         }
 
         // Y-axis alignment
-        @if ($align-y != none) {
+        @if ($align-y != null) {
             $align-y: _convert-to-media-map($align-y, $grid);
             $grid: set-grid-value(align-y, $align-y $grid);
             @include _for-media-map($align-y, $grid) {
@@ -53,20 +127,95 @@
     }
 }
 
+
+// flex driver based grid-container
+%_grid-container--flex {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+/// Creates a grid container based on flexbox
+///
+/// @name Grid container (flex driver)
+///
+/// @group features
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         driver: flex,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         ),
+///         align-x: (
+///             md: left,
+///             lg: center,
+///             xl: right
+///         ),
+///         align-y: (
+///             md: top,
+///             lg: center,
+///             xl: bottom
+///         ),
+///         gutter: (md: 10px, lg: 20px, xl: 30px),
+///         collapse: true
+///     );
+///
+///     .element {
+///         @include grid-container(
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         display: flex;
+///         flex-wrap: wrap;
+///         box-sizing: border-box;
+///         justify-content: flex-end;
+///         align-items: flex-end;
+///         margin-left: -15px;
+///         margin-right: -15px;
+///         flex-direction: row;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             margin-left: -5px;
+///             margin-right: -5px;
+///             justify-content: flex-start;
+///             align-items: flex-start;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             margin-left: -10px;
+///             margin-right: -10px;
+///             justify-content: center;
+///             align-items: center;
+///         }
+///     }
+
 @mixin grid-container--flex($grid: $default-grid) {
     @extend %_grid-container--flex;
 
     flex-wrap: get-grid-value(wrap, $grid);
 
     $collapse: get-grid-value(collapse, $grid);
-    $align-x: get-grid-value(align-x, $grid);
-    $align-y: get-grid-value(align-y, $grid);
     $reversed: get-grid-value(reversed, $grid);
 
-    @include grid-container-align($align-x, $align-y, $grid: $grid);
+    @include grid-container-align($grid: $grid);
     // collapse
     @if ($collapse) {
-        @include grid-collapse($grid);
+        @include grid-collapse($grid: $grid);
     }
 
     // Reverse
@@ -76,6 +225,7 @@
         flex-direction: row;
     }
 }
+
 
 // float driver based grid-container
 %_grid-container--float {
@@ -90,23 +240,100 @@
     }
 }
 
+/// Creates a grid container based on float
+///
+/// @name Grid container (float driver)
+///
+/// @group features
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         driver: float,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         ),
+///         align-x: (
+///             md: left,
+///             lg: center,
+///             xl: right
+///         ),
+///         align-y: (
+///             md: top,
+///             lg: center,
+///             xl: bottom
+///         ),
+///         gutter: (md: 10px, lg: 20px, xl: 30px),
+///         collapse: true
+///     );
+///
+///     .element {
+///         @include grid-container(
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         box-sizing: border-box;
+///         margin-left: -15px;
+///         margin-right: -15px;
+///     }
+///     .element::before, .element::after {
+///         display: table;
+///         content: "";
+///     }
+///     .element::after {
+///         clear: both;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             margin-left: -5px;
+///             margin-right: -5px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             margin-left: -10px;
+///             margin-right: -10px;
+///         }
+///     }
+
 @mixin grid-container--float($grid: $default-grid) {
     @extend %_grid-container--float;
 
     // collapse
     $collapse: get-grid-value(collapse, $grid);
     @if ($collapse) {
-        @include grid-collapse($grid);
+        @include grid-collapse($grid: $grid);
     }
 }
 
-//common grid-container mixin
+
+/// Creates a grid container
+///
+/// @name Grid container
+///
+/// @group features
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+
 @mixin grid-container($grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
-        @include grid-container--flex($grid);
+        @include grid-container--flex($grid: $grid);
     } @else if ($driver == float) {
-        @include grid-container--float($grid);
+        @include grid-container--float($grid: $grid);
     } @else {
         @error "Incorrect driver value: '#{$driver}'";
     }

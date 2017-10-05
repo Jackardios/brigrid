@@ -1,9 +1,31 @@
+@charset "UTF-8";
+/// Collapses grid container by consuming the gutters of its container, for use in nested layouts.
+///
+/// @name Grid collapse
+///
+/// @group features
+/// @argument {map} $grid [$default-grid]
+///     The grid that will be used to generate a collapse.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///   $example-grid: (
+///       gutter: 20px
+///   );
+///   .element {
+///       @include grid-collapse($example-grid);
+///   }
+///
+/// @example css
+///   .element {
+///       margin-left: -10px;
+///       margin-right: -10px;
+///   }
+
 @mixin grid-collapse($grid: $default-grid) {
     $grid-gutters: _convert-to-media-map(get-grid-value(gutter, $grid), $grid);
-    @debug $grid-gutters;
     @include _for-media-map($grid-gutters, $grid) {
         $bp-gutter: $_for-media-map-value;
-        @debug $bp-gutter;
         @if (unit($bp-gutter) == '%') {
             @warn "grid-collapse in percentage gutter based grids may not work correctly";
         }

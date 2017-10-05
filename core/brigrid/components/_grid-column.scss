@@ -1,3 +1,66 @@
+@charset "UTF-8";
+
+/// Generates column width properties based on the number of occupied columns and grid settings
+///
+/// @name Grid column width
+///
+/// @group features
+///
+/// @argument {number (unitless) | string | map} $columns
+///     The number of columns that the item should occupy.
+///     It can be indicated by:
+///     1) a number of columns
+///     2) a string ('hide' or 'hidden' that hides an element)
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints, columns, driver) will be used to generate a column width.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         columns: 12,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-width(
+///             $columns: (
+///                 sm: 12,
+///                 lg: 6,
+///                 xl: hidden
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         display: none;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             display: block;
+///             max-width: 100%;
+///             width: 100%;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             display: block;
+///             max-width: 50%;
+///             width: 50%;
+///         }
+///     }
+
 @mixin grid-column-width($columns, $grid: $default-grid) {
     $columns: _convert-to-media-map($columns, $grid);
     @include _for-media-map($columns, $grid) {
@@ -16,8 +79,71 @@
     }
 }
 
-@mixin grid-column-gutter($gutters, $grid: $default-grid) {
-    $gutters: _convert-to-media-map($gutters, $grid);
+
+/// Sets grid gutter width around column, ignoring the gutter property in grid map.
+///
+/// @name Grid column gutter
+///
+/// @group features
+///
+/// @argument {number (with unit) | map} $gutter [null]
+///     Grid gutter width around column.
+///     It can be indicated by:
+///     1) a grid gutter width around column
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the grid gutter width around column.
+///         (Example: (sm: 10px, lg: 20px, xl: 30px))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints) will be used to generate a grid gutter width around column.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         gutter: 50px, // will be ignored
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-gutter(
+///             $gutter: (
+///                 sm: 10px,
+///                 lg: 20px,
+///                 xl: 30px
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         padding-left: 15px;
+///         padding-right: 15px;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             padding-left: 5px;
+///             padding-right: 5px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             padding-left: 10px;
+///             padding-right: 10px;
+///         }
+///     }
+
+@mixin grid-column-gutter($gutter: null, $grid: $default-grid) {
+    @if ($gutter == null) {
+        $gutter: get-grid-value(gutter, $grid);
+    }
+    $gutters: _convert-to-media-map($gutter, $grid);
     @include _for-media-map($gutters, $grid) {
         $bp-gutter: $_for-media-map-value;
         @if (type-of($bp-gutter) == number) {
@@ -30,11 +156,87 @@
     }
 }
 
-@mixin grid-column-align($align-x: none, $align-y: none, $grid: $default-grid) {
+
+/// Creates column alignment (Supports only flex driver)
+///
+/// @name Grid column alignment
+///
+/// @group features
+///
+/// @argument {string | map} $align-x [null]
+///     Specifies the horizontal alignment of the column
+///     It can be indicated by:
+///     1) a string (none | left | center | right)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the horizontal self-alignment of the column
+///         (Example: (md: left, lg: center, xl: right))
+///
+/// @argument {string | map} $align-y [null]
+///     Specifies the vertical alignment of the column
+///     It can be indicated by:
+///     1) a string (none | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the vertical self-alignment of the column
+///         (Example: (md: top, lg: center, xl: bottom))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (driver, breakpoints) will be used to create a column alignment.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         driver: flex,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-align(
+///             $align-x: (
+///                 md: left,
+///                 lg: center,
+///                 xl: right
+///             ),
+///             $align-y: (
+///                 md: top,
+///                 lg: center,
+///                 xl: bottom
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         margin-left: auto;
+///         margin-right: 0;
+///         align-self: flex-end;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             margin-right: auto;
+///             margin-left: 0;
+///             align-self: flex-start;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             margin-left: auto;
+///             margin-right: auto;
+///             align-self: center;
+///         }
+///     }
+
+@mixin grid-column-align($align-x: null, $align-y: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
         // X-axis alignment
-        @if ($align-x != none) {
+        @if ($align-x != null) {
             $align-x: _convert-to-media-map($align-x, $grid);
             @include _for-media-map($align-x, $grid) {
                 $bp-align-x: $_for-media-map-value;
@@ -54,7 +256,7 @@
         }
 
         // Y-axis alignment
-        @if ($align-y != none) {
+        @if ($align-y != null) {
             $align-y: _convert-to-media-map($align-y, $grid);
             @include _for-media-map($align-y, $grid) {
                 $bp-align-y: $_for-media-map-value;
@@ -73,25 +275,250 @@
     }
 }
 
+
 // common styles of grid-column
 %_grid-column-base {
     box-sizing: border-box;
     min-height: 1px;
 }
 
-// flex based grid-column
-@mixin grid-column--flex($columns, $align-x: none, $align-y: none, $order: none, $grid: $default-grid) {
+/// Creates a grid column based on flexbox
+///
+/// @name Grid column (flex driver)
+///
+/// @group features
+///
+/// @argument {number (unitless) | string | map} $columns
+///     Specifies the number of columns that the item should occupy.
+///     It can be indicated by:
+///     1) a number of columns
+///     2) a string ('hide' or 'hidden' that hides an element)
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {string | map} $align-x [null]
+///     Specifies the horizontal alignment of the column
+///     It can be indicated by:
+///     1) a string (none | left | center | right)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the horizontal self-alignment of the column
+///         (Example: (md: left, lg: center, xl: right))
+///
+/// @argument {string | map} $align-y [null]
+///     Specifies the vertical alignment of the column
+///     It can be indicated by:
+///     1) a string (none | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the vertical self-alignment of the column
+///         (Example: (md: top, lg: center, xl: bottom))
+///
+/// @argument {number (with unit) | map} $gutter [null]
+///     Grid gutter width around column.
+///     It can be indicated by:
+///     1) a grid gutter width around column
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the grid gutter width around column.
+///         (Example: (sm: 10px, lg: 20px, xl: 30px))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create grid column.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         driver: flex,
+///         columns: 12,
+///         gutter: 50px,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column(
+///             $columns: (xs: 12, sm: 6, lg: 1, xx:hidden),
+///             $align-x: (
+///                 md: left,
+///                 lg: center,
+///                 xl: right
+///             ),
+///             $align-y: (
+///                 md: top,
+///                 lg: center,
+///                 xl: bottom
+///             ),
+///             $gutter: (sm: 10px, lg: 20px, xl: 30px),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         box-sizing: border-box;
+///         min-height: 1px;
+///         display: none;
+///         margin-left: auto;
+///         margin-right: 0;
+///         align-self: flex-end;
+///         padding-left: 15px;
+///         padding-right: 15px;
+///     }
+///     @media screen and (max-width: 575px) {
+///         .element {
+///             display: block;
+///             max-width: 100%;
+///             width: 100%;
+///         }
+///     }
+///     @media screen and (min-width: 576px) and (max-width: 991px) {
+///         .element {
+///             display: block;
+///             max-width: 50%;
+///             width: 50%;
+///         }
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             margin-right: auto;
+///             margin-left: 0;
+///             align-self: flex-start;
+///             padding-left: 5px;
+///             padding-right: 5px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             margin-left: auto;
+///             margin-right: auto;
+///             align-self: center;
+///             padding-left: 10px;
+///             padding-right: 10px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1599px) {
+///         .element {
+///             display: block;
+///             max-width: 8.33333%;
+///             width: 8.33333%;
+///         }
+///     }
+
+@mixin grid-column--flex($columns, $align-x: null, $align-y: null, $gutter: null, $grid: $default-grid) {
     @extend %_grid-column-base;
     @include grid-column-width($columns: $columns, $grid: $grid);
     @include grid-column-align($align-y: $align-y, $align-x: $align-x, $grid: $grid);
-    @include grid-column-gutter($gutters: get-grid-value(gutter, $grid), $grid: $grid);
+    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
 }
 
-// float based grid-column
-@mixin grid-column--float($columns, $grid: $default-grid) {
+
+/// Creates a grid column based on float
+///
+/// @name Grid column (float driver)
+///
+/// @group features
+///
+/// @argument {number (unitless) | string | map} $columns
+///     Specifies the number of columns that the item should occupy.
+///     It can be indicated by:
+///     1) a number of columns
+///     2) a string ('hide' or 'hidden' that hides an element)
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {number (with unit) | map} $gutter [null]
+///     Grid gutter width around column.
+///     It can be indicated by:
+///     1) a grid gutter width around column
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the grid gutter width around column.
+///         (Example: (sm: 10px, lg: 20px, xl: 30px))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create grid column.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///    $example-grid: (
+///         driver: float,
+///         columns: 12,
+///         gutter: 50px,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column(
+///             $columns: (xs: 12, sm: 6, lg: 1, xx:hidden),
+///             $align-x: (
+///                 md: left,
+///                 lg: center,
+///                 xl: right
+///             ), // ! will be ignored because alignment is not supported in float driver!
+///             $align-y: (
+///                 md: top,
+///                 lg: center,
+///                 xl: bottom
+///             ), // ! will be ignored because alignment is not supported in float driver!
+///             $gutter: (sm: 10px, lg: 20px, xl: 30px),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         box-sizing: border-box;
+///         min-height: 1px;
+///         display: none;
+///         padding-left: 15px;
+///         padding-right: 15px;
+///         float: left;
+///     }
+///     @media screen and (max-width: 575px) {
+///         .element {
+///             display: block;
+///             width: 100%;
+///         }
+///     }
+///     @media screen and (min-width: 576px) and (max-width: 991px) {
+///         .element {
+///             display: block;
+///             width: 50%;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1599px) {
+///         .element {
+///             display: block;
+///             width: 8.33333%;
+///         }
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             padding-left: 5px;
+///             padding-right: 5px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             padding-left: 10px;
+///             padding-right: 10px;
+///         }
+///     }
+
+@mixin grid-column--float($columns, $gutter: null, $grid: $default-grid) {
     @extend %_grid-column-base;
     @include grid-column-width($columns: $columns, $grid: $grid);
-    @include grid-column-gutter($gutters: get-grid-value(gutter, $grid), $grid: $grid);
+    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
 
     $reversed: get-grid-value(reversed, $grid);
     @if $reversed == true {
@@ -101,12 +528,66 @@
     }
 }
 
-@mixin grid-column($columns, $align-x: none, $align-y: none, $grid: $default-grid) {
+
+/// Creates a grid column based on the driver specified in the grid map
+///
+/// @name Grid column
+///
+/// @group features
+///
+/// @argument {number (unitless) | string | map} $columns
+///     Specifies the number of columns that the item should occupy.
+///     It can be indicated by:
+///     1) a number of columns
+///     2) a string ('hide' or 'hidden' that hides an element)
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {string | map} $align-x [null]
+///     Specifies the horizontal alignment of the column
+///     It can be indicated by:
+///     1) a string (none | left | center | right)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the horizontal self-alignment of the column
+///         (Example: (md: left, lg: center, xl: right))
+///
+/// @argument {string | map} $align-y [null]
+///     Specifies the vertical alignment of the column
+///     It can be indicated by:
+///     1) a string (none | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the vertical self-alignment of the column
+///         (Example: (md: top, lg: center, xl: bottom))
+///
+/// @argument {number (with unit) | map} $gutter [null]
+///     Grid gutter width around column.
+///     It can be indicated by:
+///     1) a grid gutter width around column
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the grid gutter width around column.
+///         (Example: (sm: 10px, lg: 20px, xl: 30px))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create grid column.
+///     By default, the global '$default-grid' will be used.
+
+@mixin grid-column($columns, $align-x: null, $align-y: null, $gutter: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
-        @include grid-column--flex($columns, $align-x, $align-y, $grid);
+        @include grid-column--flex(
+            $columns: $columns,
+            $align-x: $align-x,
+            $align-y: $align-y,
+            $gutter: $gutter,
+            $grid: $grid
+        );
     } @else if ($driver == float) {
-        @include grid-column--float($columns, $grid);
+        @include grid-column--float(
+            $columns: $columns,
+            $gutter: $gutter,
+            $grid: $grid
+        );
     } @else {
         @error "Incorrect driver value: '#{$driver}'";
     }
