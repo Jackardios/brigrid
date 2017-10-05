@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/// Sets grid gutter width around column, ignoring the gutter property in grid map.
+///
+/// @name Grid column gutter
+///
+/// @group features
+///
+/// @argument {number (with unit) | map} $gutter [null]
+///     Grid gutter width around column.
+///     It can be indicated by:
+///     1) a grid gutter width around column
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the grid gutter width around column.
+///         (Example: (sm: 10px, lg: 20px, xl: 30px))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints) will be used to generate a grid gutter width around column.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         gutter: 50px, // will be ignored
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-gutter(
+///             $gutter: (
+///                 sm: 10px,
+///                 lg: 20px,
+///                 xl: 30px
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         padding-left: 15px;
+///         padding-right: 15px;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             padding-left: 5px;
+///             padding-right: 5px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             padding-left: 10px;
+///             padding-right: 10px;
+///         }
+///     }
+
+@mixin grid-column-gutter($gutter: null, $grid: $default-grid) {
+    @if ($gutter == null) {
+        $gutter: get-grid-value(gutter, $grid);
+    }
+    $gutters: _convert-to-media-map($gutter, $grid);
+    @include _for-media-map($gutters, $grid) {
+        $bp-gutter: $_for-media-map-value;
+        @if (type-of($bp-gutter) == number) {
+            $grid-half-gutter: $bp-gutter / 2;
+            padding-left: $grid-half-gutter;
+            padding-right: $grid-half-gutter;
+        } @else {
+            @error "Invalid type of gutter. Gutter must be a number!";
+        }
+    }
+}

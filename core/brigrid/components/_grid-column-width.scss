@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/// Generates column width properties based on the number of occupied columns and grid settings
+///
+/// @name Grid column width
+///
+/// @group features
+///
+/// @argument {number (unitless) | string | map} $columns
+///     The number of columns that the item should occupy.
+///     It can be indicated by:
+///     1) a number of columns
+///     2) a string ('hide' or 'hidden' that hides an element)
+///     3) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the number of columns that the item should occupy
+///         (Example: (sm: 12, lg: 6, xl: hidden))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints, columns, driver) will be used to generate a column width.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         columns: 12,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-width(
+///             $columns: (
+///                 sm: 12,
+///                 lg: 6,
+///                 xl: hidden
+///             ),
+///             $grid: $example-grid
+///         );
+///     }
+///
+/// @example css
+///     .element {
+///         display: none;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .element {
+///             display: block;
+///             max-width: 100%;
+///             width: 100%;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .element {
+///             display: block;
+///             max-width: 50%;
+///             width: 50%;
+///         }
+///     }
+
+@mixin grid-column-width($columns, $grid: $default-grid) {
+    $columns: _convert-to-media-map($columns, $grid);
+    @include _for-media-map($columns, $grid) {
+        $bp-columns: $_for-media-map-value;
+        @if (($bp-columns == hidden) or ($bp-columns == hide) or ($bp-columns == 0)) {
+            display: none;
+        } @else {
+            display: block;
+
+            $driver: get-grid-value(driver, $grid);
+            @if ($driver == flex) {
+                max-width: _column-width($bp-columns, $grid);
+            }
+            width: _column-width($bp-columns, $grid);
+        }
+    }
+}
