@@ -5,7 +5,7 @@
 ///
 /// @group components
 /// @argument {map} $grid [$default-grid]
-///     The grid that will be used to generate a collapse.
+///     The grid map settings (gutter, breakpoints) will be used to create a collapse.
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss

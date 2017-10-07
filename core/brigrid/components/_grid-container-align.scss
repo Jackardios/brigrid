@@ -7,12 +7,13 @@
 /// @group components
 ///
 /// @argument {string | map} $align-x [null]
-///     Specifies the horizontal alignment of the container columns
+///     Specifies the horizontal alignment of the container columns.
 ///     It can be indicated by:
 ///     1) a string (none | left | center | right)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the horizontal alignment of the container columns
 ///         (Example: (md: left, lg: center, xl: right))
+///     By default, the value of align-x in the grid map will be used
 ///
 /// @argument {string | map} $align-y [null]
 ///     Specifies the vertical alignment of the container columns
@@ -21,6 +22,7 @@
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical alignment of the container columns
 ///         (Example: (md: top, lg: center, xl: bottom))
+///     By default, the value of align-y in the grid map will be used
 ///
 /// @argument {map} $grid [$default-grid]
 ///     The grid map settings (driver, breakpoints) will be used to create an alignment of the container columns.

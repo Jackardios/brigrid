@@ -1,12 +1,90 @@
 @charset "UTF-8";
 
+// outer-container base
 %_outer-container {
-    margin-left: auto;
-    margin-right: auto;
+    margin: {
+        left: auto;
+        right: auto;
+    };
     box-sizing: border-box;
     transition: max-width .12s ease;
     max-width: 100%;
 }
+
+/// Creates an outer-container by centering it in the viewport and setting its max-width.
+///
+/// @name Outer container
+///
+/// @group components
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings will be used to create the grid container.
+///     By default, the global '$default-grid' will be used.
+///
+/// @argument {map} $breakpoints [null]
+///     The breakpoints will be used to create media queries
+///     By default, the value of breakpoints in the grid map will be
+///
+/// @argument {map} $container-widths [null]
+///     A media map where each of its keys points to a breakpoint,
+///     and the value specifies the container width.
+///     By default, the value of container-widths in the grid map will be used
+///
+/// @example scss
+///     $example-grid {
+///         breakpoints: (
+///             xs: 0, // Extra small screen
+///             sm: 576px, // Small screen
+///             md: 768px, // Medium screen
+///             lg: 992px, // Large screen
+///             xl: 1200px, // Extra large screen
+///             xx: 1600px // Extra extra large screen
+///         ),
+///         container-widths: (
+///             sm: 576px, // Small screen
+///             md: 768px, // Medium screen
+///             lg: 960px, // Large screen
+///             xl: 1170px, // Extra large screen
+///             xx: 1400px // Extra extra large screen
+///         )
+///     }
+///     .outer-container {
+///         @include outer-container($grid: $example-grid);
+///     }
+///
+/// @example css
+///     .element {
+///         margin-left: auto;
+///         margin-right: auto;
+///         box-sizing: border-box;
+///         transition: max-width .12s ease;
+///         max-width: 100%;
+///     }
+///     @media screen and (min-width: 576px) {
+///         .element {
+///             max-width: 576px;
+///         }
+///     }
+///     @media screen and (min-width: 768px) {
+///         .element {
+///             max-width: 768px;
+///         }
+///     }
+///     @media screen and (min-width: 992px) {
+///         .element {
+///             max-width: 960px;
+///         }
+///     }
+///     @media screen and (min-width: 1200px) {
+///         .element {
+///             max-width: 1170px;
+///         }
+///     }
+///     @media screen and (min-width: 1600px) {
+///         .element {
+///             max-width: 1400px;
+///         }
+///     }
 
 @mixin outer-container($grid: $default-grid, $breakpoints: null, $container-widths: null) {
     @extend %_outer-container;
