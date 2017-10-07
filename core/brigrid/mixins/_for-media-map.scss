@@ -10,7 +10,7 @@
 
         @if (($bp-value != null) and ($bp-value != $_for-media-map-value)) {
             @if ($_for-media-map-value != null) {
-                @include media-breakpoint-beetween($prev-bp-key, $bp-key, $grid) {
+                @include media-breakpoint-between($prev-bp-key, $bp-key, $grid) {
                     @content;
                 }
                 $prev-bp-key: $bp-key;

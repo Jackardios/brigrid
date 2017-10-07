@@ -1,4 +1,6 @@
-@mixin media-breakpoint-beetween($from, $to, $grid: $default-grid) {
+@charset "UTF-8";
+
+@mixin media-breakpoint-between($from, $to, $grid: $default-grid) {
     $breakpoints: get-grid-value(breakpoints, $grid);
 
     $min-width: map-get($breakpoints, $from);
