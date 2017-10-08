@@ -1,3 +1,47 @@
+@charset "UTF-8";
+
+/// Creates a media query between the breakpoint's minimum and maximum widths.
+/// and applies @content to it.
+///
+/// @name Media breakpoint only
+///
+/// @group helpers
+///
+/// @argument {string} $bp-name
+///     The breakpoint name, the minimum and maximum width of which will be used to create a media query.
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints) will be used to create a media query.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         breakpoints: (
+///             xs: 0, // Extra small screen
+///             sm: 576px, // Small screen
+///             md: 768px, // Medium screen
+///             lg: 992px, // Large screen
+///             xl: 1200px, // Extra large screen
+///             xx: 1600px // Extra extra large screen
+///         )
+///     );
+///     .element {
+///         display: block;
+///         @include media-breakpoint-only(sm, $grid: $example-grid) {
+///             display: none;
+///         }
+///     }
+///
+/// @example css
+///     .element {
+///         display: block;
+///     }
+///     @media screen and (min-width: 576px) and (max-width: 767px) {
+///         .element {
+///             display: none;
+///         }
+///     }
+
 @mixin media-breakpoint-only($bp-name, $grid: $default-grid) {
     $breakpoints: get-grid-value(breakpoints, $grid);
 

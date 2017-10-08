@@ -1,3 +1,47 @@
+@charset "UTF-8";
+
+/// Creates a media query before the breakpoint width.
+/// and applies @content to it.
+///
+/// @name Media breakpoint before
+///
+/// @group helpers
+///
+/// @argument {string} $bp-name
+///     The breakpoint name, which specifies the final width of the media query.
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (breakpoints) will be used to create a media query.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///     $example-grid: (
+///         breakpoints: (
+///             xs: 0, // Extra small screen
+///             sm: 576px, // Small screen
+///             md: 768px, // Medium screen
+///             lg: 992px, // Large screen
+///             xl: 1200px, // Extra large screen
+///             xx: 1600px // Extra extra large screen
+///         )
+///     );
+///     .element {
+///         display: block;
+///         @include media-breakpoint-before(sm, $grid: $example-grid) {
+///             display: none;
+///         }
+///     }
+///
+/// @example css
+///     .element {
+///         display: block;
+///     }
+///     @media screen and (max-width: 575px) {
+///         .element {
+///             display: none;
+///         }
+///     }
+
 @mixin media-breakpoint-before($bp-name, $grid: $default-grid) {
     $min-width: map-get(get-grid-value(breakpoints, $grid), $bp-name);
 
