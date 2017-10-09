@@ -28,6 +28,7 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 
 ## Requirements
 - [Sass](https://github.com/sass/sass) 3.4+ or [LibSass](https://github.com/sass/libsass) 3.3+
+- Also I strongly recommend using [css-mqpacker](https://github.com/hail2u/node-css-mqpacker) and [autoprefixer](https://github.com/postcss/autoprefixer) to generate beautiful output CSS code
 
 ## Installation
 ### Installing with npm and using a Node-based asset pipeline:
@@ -62,7 +63,7 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
     ```
 4. Import Brigrid in your stylesheet:
     ```scss
-    @import "brigrid/brigrid";
+    @import "brigrid";
     ```
 
 ## Documentation
