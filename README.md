@@ -154,7 +154,7 @@ Creates an outer container by centering it in the viewport and setting its max-w
 | `container-widths` | `Map` | `null` | A media map where each of its keys points to a breakpoint and the value specifies the container width. |
 ##### Example SCSS:
 ```scss
-$example-grid {
+$example-grid: (
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -170,7 +170,7 @@ $example-grid {
         xl: 1170px, // Extra large screen
         xx: 1400px // Extra extra large screen
     )
-}
+);
 .outer-container {
     @include outer-container($grid: $example-grid);
 }
