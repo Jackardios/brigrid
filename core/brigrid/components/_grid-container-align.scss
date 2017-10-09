@@ -9,7 +9,7 @@
 /// @argument {string | map} $align-x [null]
 ///     Specifies the horizontal alignment of the container columns.
 ///     It can be indicated by:
-///     1) a string (none | left | center | right)
+///     1) a string (null | left | center | right)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the horizontal alignment of the container columns
 ///         (Example: (md: left, lg: center, xl: right))
@@ -18,7 +18,7 @@
 /// @argument {string | map} $align-y [null]
 ///     Specifies the vertical alignment of the container columns
 ///     It can be indicated by:
-///     1) a string (none | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     1) a string (null | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical alignment of the container columns
 ///         (Example: (md: top, lg: center, xl: bottom))

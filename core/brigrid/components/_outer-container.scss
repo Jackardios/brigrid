@@ -18,7 +18,7 @@
 /// @group components
 ///
 /// @argument {map} $grid [$default-grid]
-///     The grid map settings will be used to create the grid container.
+///     The grid map settings (breakpoints, container-widths) will be used to create the outer container.
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @argument {map} $breakpoints [null]
