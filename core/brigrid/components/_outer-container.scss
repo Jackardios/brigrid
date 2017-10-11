@@ -8,7 +8,6 @@
     };
     box-sizing: border-box;
     transition: max-width .12s ease;
-    max-width: 100%;
 }
 
 /// Creates an outer-container by centering it in the viewport and setting its max-width.
@@ -98,12 +97,20 @@
         $container-widths: get-grid-value(container-widths, $grid);
     }
 
-    @each $name, $value in $breakpoints {
-        $container-width: map-get($container-widths, $name);
-        @if ($container-width != null) {
-            @include media-breakpoint-from($name, $grid) {
-                max-width: $container-width;
+    $container-widths-type: type-of($container-widths);
+    @if ($container-widths-type == number) {
+        max-width: $container-widths;
+    } @else if ($container-widths-type == map) {
+        max-width: 100%;
+        @each $name, $value in $breakpoints {
+            $container-width: map-get($container-widths, $name);
+            @if ($container-width != null) {
+                @include media-breakpoint-from($name, $grid) {
+                    max-width: $container-width;
+                }
             }
         }
+    } @else {
+        @error "Wrong type of `$container-widths`. It must be a map or number";
     }
 }
