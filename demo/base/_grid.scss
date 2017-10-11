@@ -1,6 +1,24 @@
 $my-grid: (
     driver: flex,
-    gutter: 2%,
+    gutter: (
+        sm: 16px,
+        md: 24px
+    ),
+    breakpoints: (
+        xl: 1200px, // Extra large screen
+        md: 768px, // Medium screen
+        xx: 1600px, // Extra extra large screen
+        sm: 576px, // Small screen
+        lg: 992px, // Large screen
+        xs: 0 // Extra small screen
+    ),
+    container-widths: (
+        xl: 1170px, // Extra large screen
+        lg: 960px, // Large screen
+        xx: 1400px, // Extra extra large screen
+        md: 768px, // Medium screen
+        sm: 576px // Small screen
+    ),
     collapse: false
 );
 

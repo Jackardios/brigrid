@@ -1,0 +1,30 @@
+$test-grid: $my-grid;
+$test-breakpoints: get-grid-value(breakpoints, $test-grid);
+
+/* ------ TESTS START ------  */
+/* media-breakpoint mixins test */
+@each $bp-name, $bp-value in $test-breakpoints {
+    .media-breakpoint-before-#{$bp-name} {
+        @include media-breakpoint-before($bp-name, $grid: $my-grid) {
+            display: none;
+        }
+    }
+    .media-breakpoint-from-#{$bp-name} {
+        @include media-breakpoint-from($bp-name, $grid: $my-grid) {
+            display: none;
+        }
+    }
+    .media-breakpoint-only-#{$bp-name} {
+        @include media-breakpoint-only($bp-name, $grid: $my-grid) {
+            display: none;
+        }
+    }
+    @each $bp-name-2, $bp-value in $test-breakpoints {
+        .media-breakpoint-between-#{$bp-name}-#{$bp-name-2} {
+            @include media-breakpoint-between($bp-name, $bp-name-2, $grid: $my-grid) {
+                display: none;
+            }
+        }
+    }
+}
+/* ------ TESTS END ------  */
