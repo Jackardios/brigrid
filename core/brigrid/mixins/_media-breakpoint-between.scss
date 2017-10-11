@@ -70,11 +70,14 @@
                 @content;
             }
         } @else {
-            @if ($min-width > $max-width) {
+            @if ($min-width == $max-width) {
+                @error "To create a media query, the widths of the `$from`(#{$min-width}) and `$to`(#{$max-width}) must be different!";
+            } @else if ($min-width > $max-width) {
                 $temp: $min-width;
                 $min-width: $max-width;
                 $max-width: $temp;
             }
+
             @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
                 @content;
             }

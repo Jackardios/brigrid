@@ -19,10 +19,12 @@ $test-breakpoints: get-grid-value(breakpoints, $test-grid);
             display: none;
         }
     }
-    @each $bp-name-2, $bp-value in $test-breakpoints {
-        .media-breakpoint-between-#{$bp-name}-#{$bp-name-2} {
-            @include media-breakpoint-between($bp-name, $bp-name-2, $grid: $my-grid) {
-                display: none;
+    @each $bp-name-2, $bp-value-2 in $test-breakpoints {
+        @if ($bp-value != $bp-value-2) {
+            .media-breakpoint-between-#{$bp-name}-#{$bp-name-2} {
+                @include media-breakpoint-between($bp-name, $bp-name-2, $grid: $my-grid) {
+                    display: none;
+                }
             }
         }
     }
