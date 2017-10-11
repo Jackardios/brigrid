@@ -35,7 +35,7 @@
                 .card 
             .grid-column-1
                 .card 
-            .grid-column-1.grid-column--h-left
+            .grid-column-2.grid-column--h-left
                 .card.card--accent LEFT
             .grid-column-1
                 .card
@@ -82,6 +82,7 @@
                 h3.grid-container__title
                     | Dynamic horizontal self alignment 
                     span.accent (md:left, lg:center, xl:right)
+                    div.additional (resize the window to see the changes)
             .grid-column-1
                 .card
             .grid-column-1
@@ -142,6 +143,7 @@
                 h3.grid-container__title
                     | Dynamic vertical self alignment 
                     span.accent (md:top, lg:center, xl:bottom)
+                    div.additional (resize the window to see the changes)
             .grid-column-2
                 .card.card--large 
             .grid-column-2
@@ -210,6 +212,7 @@
                 h2.grid-container__title
                     | Dynamic horizontal alignment 
                     span.accent (md:left, lg:center, xl:right)
+                    div.additional (resize the window to see the changes)
             .grid-column-1
                 .card
             .grid-column-1
@@ -264,6 +267,7 @@
                 h2.grid-container__title
                     | Dynamic vertical alignment 
                     span.accent (md:top, lg:center, xl:bottom)
+                    div.additional (resize the window to see the changes)
             .grid-column-3
                 .card.card--large 
             .grid-column-3
@@ -337,7 +341,10 @@
                 .card
         .grid-container
             div(class="grid-column-" + cols)
-                h2.grid-container__title Dynamic grid-push(md: 2, lg: 3, xl: 4)
+                h2.grid-container__title
+                    | Dynamic grid-push 
+                    span.accent (md: 2, lg: 3, xl: 4)
+                    div.additional (resize the window to see the changes)
             .grid-column-1
                 .card
             .grid-column-1
@@ -373,7 +380,10 @@
                 .card
         .grid-container
             div(class="grid-column-" + cols)
-                h2.grid-container__title Dynamic grid-shift(md: 2, lg: 3, xl: 4)
+                h2.grid-container__title
+                    | Dynamic grid-shift 
+                    span.accent (md: 2, lg: 3, xl: 4)
+                    div.additional (resize the window to see the changes)
             .grid-column-1
                 .card
             .grid-column-1
