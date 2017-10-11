@@ -1,20 +1,3 @@
-$default-breakpoints: (
-    xs: 0, // Extra small screen
-    sm: 576px, // Small screen
-    md: 768px, // Medium screen
-    lg: 992px, // Large screen
-    xl: 1200px, // Extra large screen
-    xx: 1600px // Extra extra large screen
-) !default;
-
-$default-container-widths: (
-    sm: 576px, // Small screen
-    md: 768px, // Medium screen
-    lg: 960px, // Large screen
-    xl: 1170px, // Extra large screen
-    xx: 1400px // Extra extra large screen
-) !default;
-
 $_default-grid-settings: ( // don't change this map!
     driver: flex,
     columns: 12,
@@ -23,9 +6,22 @@ $_default-grid-settings: ( // don't change this map!
     align-y: top,
     reversed: false,
     collapse: false,
-    breakpoints: $default-breakpoints,
+    breakpoints: (
+        xs: 0, // Extra small screen
+        sm: 576px, // Small screen
+        md: 768px, // Medium screen
+        lg: 992px, // Large screen
+        xl: 1200px, // Extra large screen
+        xx: 1600px // Extra extra large screen
+    ),
     _breakpoints-sorting: null,
-    container-widths: $default-container-widths
+    container-widths: (
+        sm: 576px, // Small screen
+        md: 768px, // Medium screen
+        lg: 960px, // Large screen
+        xl: 1170px, // Extra large screen
+        xx: 1400px // Extra extra large screen
+    )
 );
 
 $default-grid: $_default-grid-settings !default;
