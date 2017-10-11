@@ -19,11 +19,39 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///
+///     $example-grid: (
+///         driver: flex,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     );
+///     .element {
+///         @include grid-column-order((
+///             md: -1,
+///             lg: 0,
+///             xl: 1
+///         ));
+///     }
 ///
 /// @example css
-///
-///
+///     .element {
+///         order: 1;
+///     }
+///     @media screen and (max-width: 991px) {
+///         .grid-column--order-dynamic {
+///             order: -1;
+///         }
+///     }
+///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///         .grid-column--order-dynamic {
+///             order: 0;
+///         }
+///     }
 
 @mixin grid-column-order($order: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
