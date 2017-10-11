@@ -1,4 +1,4 @@
-$my-grid: (
+$my-grid: prepare-grid((
     driver: flex,
     gutter: (
         sm: 16px,
@@ -20,6 +20,6 @@ $my-grid: (
         sm: 576px // Small screen
     ),
     collapse: false
-);
+));
 
 $default-grid: $my-grid;

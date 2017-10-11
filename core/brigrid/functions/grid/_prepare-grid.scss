@@ -1,4 +1,7 @@
 @function prepare-grid($grid) {
+    @if (type-of($grid) != map) {
+        @error "The $grid argument must be a map!"
+    }
     $grid: _sort-breakpoints-in-grid($grid, min);
     @return $grid;
 }
