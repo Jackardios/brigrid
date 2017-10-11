@@ -14,7 +14,7 @@ $_default-grid-settings: ( // don't change this map!
         xl: 1200px, // Extra large screen
         xx: 1600px // Extra extra large screen
     ),
-    _breakpoints-sorting: null,
+    _breakpoints-sorting: min,
     container-widths: (
         sm: 576px, // Small screen
         md: 768px, // Medium screen

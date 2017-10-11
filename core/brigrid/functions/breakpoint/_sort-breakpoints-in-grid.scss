@@ -1,5 +1,7 @@
 @function _sort-breakpoints-in-grid($grid, $sortFunc: min) {
-    @if (get-grid-value(_breakpoints-sorting, $grid) != $sortFunc) {
+    $breakpoints-sorting: map-get($grid, _breakpoints-sorting);
+    @if ($breakpoints-sorting != $sortFunc) {
+        $breakpoints: get-grid-value(breakpoints, $grid);
         $grid-sorted-breakpoints: _sort-breakpoints(get-grid-value(breakpoints, $grid), $sortFunc);
         $grid: set-grid-value(breakpoints, $grid-sorted-breakpoints, $grid);
         $grid: set-grid-value(_breakpoints-sorting, $sortFunc, $grid);

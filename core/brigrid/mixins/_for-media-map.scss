@@ -1,7 +1,7 @@
 @mixin _for-media-map($media-map, $grid) {
     $grid: _sort-breakpoints-in-grid($grid, min);
     $breakpoints: get-grid-value(breakpoints, $grid);
-
+    
     $_for-media-map-value: null !global;
     $prev-bp-key: null;
 

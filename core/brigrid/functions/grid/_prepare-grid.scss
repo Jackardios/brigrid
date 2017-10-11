@@ -1,0 +1,4 @@
+@function prepare-grid($grid) {
+    $grid: _sort-breakpoints-in-grid($grid, min);
+    @return $grid;
+}
