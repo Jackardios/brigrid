@@ -81,16 +81,17 @@
 
     flex-wrap: get-grid-value(wrap, $grid);
 
-    $collapse: get-grid-value(collapse, $grid);
-    $reversed: get-grid-value(reversed, $grid);
 
     @include grid-container-align($grid: $grid);
+    
     // collapse
+    $collapse: get-grid-value(collapse, $grid);
     @if ($collapse) {
         @include grid-collapse($grid: $grid);
     }
 
     // Reverse
+    $reversed: get-grid-value(reversed, $grid);
     @if $reversed == true {
         flex-direction: row-reverse;
     } @else {
