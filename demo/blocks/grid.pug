@@ -273,6 +273,50 @@
             .grid-column-3
                 .card.card--large
     section.demo-section
+        h2.demo-section__title Grid column order
+        .grid-container
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-2.grid-column--order--1
+                .card.card--accent -1
+            .grid-column-2.grid-column--order-0
+                .card.card--accent 0
+            .grid-column-2.grid-column--order-1
+                .card.card--accent 1
+        .grid-container
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+            .grid-column-2.grid-column--order-dynamic
+                .card.card--accent DYNAMIC
+            .grid-column-1
+                .card
+            .grid-column-1
+                .card
+    section.demo-section
         h2.demo-section__title Grid push
         .grid-container
             div(class="grid-column-" + cols)

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/// Creates column order (Supports only flex driver)
+///
+/// @name Grid column order
+///
+/// @group components
+///
+/// @argument {string | map} $order [null]
+///     Specifies the order of the column
+///     It can be indicated by:
+///     1) a string (null | left | center | right)
+///     2) or a media map where each of its keys points to a breakpoint,
+///     and the value specifies the order of the column
+///         (Example: (md: 0, lg: 1, xl: 2))
+///
+/// @argument {map} $grid [$default-grid]
+///     The grid map settings (driver, breakpoints) will be used to create a column order.
+///     By default, the global '$default-grid' will be used.
+///
+/// @example scss
+///
+///
+/// @example css
+///
+///
+
+@mixin grid-column-order($order: null, $grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
+    @if ($driver == flex) {
+        @if ($order != null) {
+            $orders: _convert-to-media-map($order, $grid);
+            @include _for-media-map($orders, $grid) {
+                $bp-order: $_for-media-map-value;
+                @if (type-of($bp-order) == number) {
+                    order: $bp-order;
+                } @else {
+                    @error "Invalid type of order. Order must be a number!";
+                }
+            }
+        }
+    } @else {
+        @warn "Driver '#{$driver}' is not support alignment";
+    }
+}

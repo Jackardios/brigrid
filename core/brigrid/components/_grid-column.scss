@@ -132,11 +132,12 @@
 ///         }
 ///     }
 
-@mixin grid-column--flex($columns, $align-x: null, $align-y: null, $gutter: null, $grid: $default-grid) {
+@mixin grid-column--flex($columns, $align-x: null, $align-y: null, $gutter: null, $order: null, $grid: $default-grid) {
     @extend %_grid-column-base;
     @include grid-column-width($columns: $columns, $grid: $grid);
-    @include grid-column-align($align-y: $align-y, $align-x: $align-x, $grid: $grid);
     @include grid-column-gutter($gutter: $gutter, $grid: $grid);
+    @include grid-column-align($align-y: $align-y, $align-x: $align-x, $grid: $grid);
+    @include grid-column-order($order: $order, $grid: $grid);
 }
 
 
@@ -296,7 +297,7 @@
 ///     The grid map settings will be used to create grid column.
 ///     By default, the global '$default-grid' will be used.
 
-@mixin grid-column($columns, $align-x: null, $align-y: null, $gutter: null, $grid: $default-grid) {
+@mixin grid-column($columns, $align-x: null, $align-y: null, $gutter: null, $order: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
         @include grid-column--flex(
@@ -304,6 +305,7 @@
             $align-x: $align-x,
             $align-y: $align-y,
             $gutter: $gutter,
+            $order: $order,
             $grid: $grid
         );
     } @else if ($driver == float) {

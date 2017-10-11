@@ -43,4 +43,18 @@
     &-media {
         @include grid-column(1 2 3 4 6 12);
     }
+
+    // order
+    @for $i from -6 through 6 {
+        &--order-#{$i} {
+            @include grid-column-order($i);
+        }
+    }
+    &--order-dynamic {
+        @include grid-column-order((
+            md: -1,
+            lg: 0,
+            xl: 1)
+        );
+    }
 }
