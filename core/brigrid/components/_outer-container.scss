@@ -99,8 +99,11 @@
     }
 
     @each $name, $value in $breakpoints {
-        @include media-breakpoint-from($name, $grid) {
-            max-width: map-get($container-widths, $name);
+        $container-width: map-get($container-widths, $name);
+        @if ($container-width != null) {
+            @include media-breakpoint-from($name, $grid) {
+                max-width: $container-width;
+            }
         }
     }
 }
