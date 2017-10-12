@@ -78,7 +78,7 @@
                 $max-width: $temp;
             }
 
-            @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+            @media only screen and (min-width: $min-width) and (max-width: $max-width - 1) {
                 @content;
             }
         }

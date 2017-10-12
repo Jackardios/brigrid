@@ -57,15 +57,15 @@
 
     @if (not ($min-width-is-null and $max-width-is-null)) {
         @if ($min-width-is-null) {
-            @media screen and (max-width: $max-width - 1) {
+            @media only screen and (max-width: $max-width - 1) {
                 @content;
             }
         } @else if ($max-width-is-null) {
-            @media screen and (min-width: $min-width) {
+            @media only screen and (min-width: $min-width) {
                 @content;
             }
         } @else {
-            @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+            @media only screen and (min-width: $min-width) and (max-width: $max-width - 1) {
                 @content;
             }
         }

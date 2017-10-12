@@ -48,7 +48,7 @@
     @if (($min-width == null) or ($min-width == 0)) {
         @content;
     } @else {
-        @media screen and (min-width: $min-width) {
+        @media only screen and (min-width: $min-width) {
             @content;
         }
     }
