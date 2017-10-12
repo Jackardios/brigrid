@@ -1,6 +1,9 @@
-@function _sort-breakpoints-in-grid($grid, $sortFunc: min) {
+@function _sort-breakpoints-in-grid($grid, $sortFunc: min, $error: true) {
     $breakpoints-sorting: map-get($grid, _breakpoints-sorting);
     @if ($breakpoints-sorting != $sortFunc) {
+        @if ($error) {
+            @error "`breakpoints` in `grid-map` is not sorted. Please use the `prepare-grid` function when creating custom `grid-map`";
+        }
         $breakpoints: get-grid-value(breakpoints, $grid);
         $grid-sorted-breakpoints: _sort-breakpoints(get-grid-value(breakpoints, $grid), $sortFunc);
         $grid: set-grid-value(breakpoints, $grid-sorted-breakpoints, $grid);
