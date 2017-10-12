@@ -19,15 +19,6 @@
 ///     The grid map settings (breakpoints, container-widths) will be used to create the outer container.
 ///     By default, the global '$default-grid' will be used.
 ///
-/// @argument {map} $breakpoints [null]
-///     The breakpoints will be used to create media queries
-///     By default, the value of breakpoints in the grid map will be
-///
-/// @argument {map} $container-widths [null]
-///     A media map where each of its keys points to a breakpoint,
-///     and the value specifies the container width.
-///     By default, the value of container-widths in the grid map will be used
-///
 /// @example scss
 ///     $example-grid {
 ///         breakpoints: (
@@ -78,30 +69,19 @@
 ///         }
 ///     }
 
-@mixin outer-container($grid: $default-grid, $breakpoints: null, $container-widths: null) {
+@mixin outer-container($grid: $default-grid) {
     @extend %_outer-container;
 
-    @if ($breakpoints == null) {
-        $grid: _sort-breakpoints-in-grid($grid, min);
-        $breakpoints: get-grid-value(breakpoints, $grid);
-    }
-
-    @if ($container-widths == null) {
-        $container-widths: get-grid-value(container-widths, $grid);
-    }
-
+    $container-widths: get-grid-value(container-widths, $grid);
     $container-widths-type: type-of($container-widths);
+
     @if ($container-widths-type == number) {
         max-width: $container-widths;
     } @else if ($container-widths-type == map) {
-        max-width: 100%;
-        @each $name, $value in $breakpoints {
-            $container-width: map-get($container-widths, $name);
-            @if ($container-width != null) {
-                @include media-breakpoint-from($name, $grid) {
-                    max-width: $container-width;
-                }
-            }
+        $container-widths: _convert-to-media-map($container-widths, $grid);
+        @include _for-media-map($container-widths, $grid) {
+            $container-width: $_for-media-map-value;
+            max-width: $container-width;
         }
     } @else {
         @error "Wrong type of `$container-widths`. It must be a map or number";
