@@ -39,7 +39,6 @@
 ///             xx: 1600px // Extra extra large screen
 ///         ),
 ///         container-widths: (
-///             sm: 576px, // Small screen
 ///             md: 768px, // Medium screen
 ///             lg: 960px, // Large screen
 ///             xl: 1170px, // Extra large screen
@@ -57,11 +56,6 @@
 ///         box-sizing: border-box;
 ///         transition: max-width .12s ease;
 ///         max-width: 100%;
-///     }
-///     @media screen and (min-width: 576px) {
-///         .element {
-///             max-width: 576px;
-///         }
 ///     }
 ///     @media screen and (min-width: 768px) {
 ///         .element {

@@ -6,10 +6,10 @@
 ///
 /// @group components
 ///
-/// @argument {string | map} $order [null]
+/// @argument {number (unitless) | map} $order [null]
 ///     Specifies the order of the column
 ///     It can be indicated by:
-///     1) a string (null | left | center | right)
+///     1) a number (unitless)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the order of the column
 ///         (Example: (md: 0, lg: 1, xl: 2))
