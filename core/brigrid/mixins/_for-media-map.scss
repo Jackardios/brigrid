@@ -3,27 +3,20 @@
     $breakpoints: get-grid-value(breakpoints, $grid);
 
     $_for-media-map-value: null !global;
-    $prev-bp-key: null;
 
     @each $bp-key, $bp-width in $breakpoints {
         $bp-value: map-get($media-map, $bp-key);
 
         @if (($bp-value != null) and ($bp-value != $_for-media-map-value)) {
-            @if ($_for-media-map-value != null) {
-                @if ($prev-bp-key == null) {
-                    // for smaller screens
+            @if ($_for-media-map-value == null) {
+                $_for-media-map-value: $bp-value !global;
+                @content;
+            } @else {
+                $_for-media-map-value: $bp-value !global;
+                @include media-breakpoint-from($bp-key, $grid) {
                     @content;
-                } @else {
-                    @include media-breakpoint-between($prev-bp-key, $bp-key, $grid) {
-                        @content;
-                    }
                 }
-                $prev-bp-key: $bp-key;
             }
-            $_for-media-map-value: $bp-value !global;
         }
-    }
-    @include media-breakpoint-from($prev-bp-key, $grid) {
-        @content;
     }
 }
