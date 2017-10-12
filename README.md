@@ -7,8 +7,8 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 2. [Installation](#installation)
 3. [Documentation](#documentation)
     1. [Configuration](#configuration)
-    2.  [Default grid settings](#default-grid-settings)
-    3.  [Media maps](#media-maps)
+    2. [Grid maps](#grid-maps)
+    3. [Media maps](#media-maps)
     4. [Components](#components)
         - [outer-container](#outer-container)
         - [grid-collapse](#grid-collapse)
@@ -68,36 +68,38 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 
 ## Documentation
 ### Configuration
-By default, all mixines and functions in Brigrid use the global variable `$default-grid`, which defines all the default grid settings.
-#### Default grid settings
+To generate CSS properties, all components in Brigrid use `grid-map`, which defines the general grid settings. By default, all components use the global variable `$default-grid` as the `grid-map`. All the possible `grid-map` options are listed below.
+#### Grid maps
 | Key | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `driver` | `String` | `flex` | The driver that will be used to build the grid |
-| `columns` | `Number (unitless)` | `12` | The number of columns in the grid |
-| `gutter` | `Number (with unitless)` or `Map` | `20px` | The grid gutter width beetween columns. |
-| `align-x` | `String` or `Map` | `left` | Specifies the horizontal alignment of the columns. (Supported only in `flex` driver) |
-| `align-y` | `String` or `Map` | `top` | Specifies the vertical alignment of the columns (Supported only in `flex` driver)  |
-| `reversed` | `Boolean` | `false` | Defines the reverse order of the elements in the grid |
+| `driver` | `String` (`flex` or `float`) | `flex` | The driver that will be used to build the grid. |
+| `columns` | `Number (unitless)` | `12` | The number of columns in the grid. |
+| `gutter` | `Number (with unit)` or [`Media-map`](#media-maps) | `20px` | The grid gutter width beetween columns. |
+| `align-x` | `String` or [`Media-map`](#media-maps) | `left` | Specifies the horizontal alignment of the columns (Supported only in `flex` driver). Possible values: `null`, `flex-start`, `flex-end`, `left`, `right`, `center`, `baseline`, `stretch`, `auto` |
+| `align-y` | `String` or [`Media-map`](#media-maps) | `top` | Specifies the vertical alignment of the columns (Supported only in `flex` driver). Possible values: `null`, `flex-start`, `flex-end`, `top`, `bottom`, `center`, `baseline`, `stretch`, `auto` |
+| `reversed` | `Boolean` | `false` | Defines the reverse order of the elements in the grid. |
 | `collapse` | `Boolean` | `false` | Defines the grid collapse by consuming the gutters of its container, for use in nested layouts. |
-| `breakpoints` | `Map` | `(xs:0, sm:576px, md:768px, lg:992px, xl:1200px, xx:1600px)` | The breakpoints of the grid, where each key is the name of the breakpoint, and the value is its minimum width |
-| `container-widths` | `Map` | `(sm:576px, md:768px, lg:960px, xl:1170px,  xx:1400px)` | Maximum width of the outer container for each breakpoint. |
+| `breakpoints` | `Map` | `(xs:0, sm:576px, md:768px, lg:992px, xl:1200px, xx:1600px)` | The breakpoints of the grid, where each key is the name of the breakpoint, and the value is its minimum width. |
+| `container-widths` | `Number (with unit)` or [`Media-map`](#media-maps) | `(sm:576px, md:768px, lg:960px, xl:1170px,  xx:1400px)` | Maximum width of the outer container for each breakpoint. |
 
 You can override the `$default-grid` by assigning it a map, where each key-value pair replaces the default settings. For all non-overridden keys, the standard values will be used.
 Example:
 ```scss
-$default-grid: (
+$default-grid: prepare-grid((
     driver: float,
     columns: 16
-);
+));
 .element {
     @include grid-container(); // By default, $default-grid will be used
 }
 ```
+
 #### Media maps
-For keys `gutter`,` align-x` and `align-y` in your grid map, you can set a media-map, where each key is the breakpoint name, and the value specifies the state for this breakpoint. The media map allows you to set a dynamic value that will change at certain breakpoints using media queries.
+For some grid settings you can set a dynamic value that will change for each breakpoint specified. Such values are called `Media-maps` and are defined by the SASS map, each key of which is the breakpoint name, and the value specifies the state for this breakpoint.
+
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     align-x: (
         md: left,
         lg: center,
@@ -113,7 +115,7 @@ $example-grid: (
         lg: 20px,
         xl: 30px
     ),
-);
+));
 .element {
     @include grid-container(
         $grid: $example-grid
@@ -123,23 +125,20 @@ $example-grid: (
 ##### Output CSS:
 ```scss
 .element {
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-direction: row;
-}
-@media screen and (max-width: 991px) {
-    .element {
         justify-content: flex-start;
         align-items: flex-start;
-    }
+        flex-direction: row;
 }
-@media screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
     .element {
         justify-content: center;
         align-items: center;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .element {
+        justify-content: flex-end;
+        align-items: flex-end;
     }
 }
 ```
@@ -150,12 +149,12 @@ Creates an outer container by centering it in the viewport and setting its max-w
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints, container-widths) will be used to create the outer container. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints, container-widths) will be used to create the outer container. |
 | `breakpoints` | `Map` | `null` | The breakpoints will be used to create media queries |
-| `container-widths` | `Map` | `null` | A media map where each of its keys points to a breakpoint and the value specifies the container width. |
+| `container-widths` | `Number (with unit)` or [`Media-map`](#media-maps)| `null` | A media map where each of its keys points to a breakpoint and the value specifies the container width. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -165,14 +164,13 @@ $example-grid: (
         xx: 1600px // Extra extra large screen
     ),
     container-widths: (
-        sm: 576px, // Small screen
         md: 768px, // Medium screen
         lg: 960px, // Large screen
         xl: 1170px, // Extra large screen
         xx: 1400px // Extra extra large screen
     )
-);
-.outer-container {
+));
+.element {
     @include outer-container($grid: $example-grid);
 }
 ```
@@ -181,31 +179,25 @@ $example-grid: (
 .element {
     margin-left: auto;
     margin-right: auto;
-    box-sizing: border-box;
-    transition: max-width .12s ease;
+    box-sizing: border-box; 
     max-width: 100%;
 }
-@media screen and (min-width: 576px) {
-    .element {
-        max-width: 576px;
-    }
-}
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
     .element {
         max-width: 768px;
     }
 }
-@media screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     .element {
         max-width: 960px;
     }
 }
-@media screen and (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
     .element {
         max-width: 1170px;
     }
 }
-@media screen and (min-width: 1600px) {
+@media only screen and (min-width: 1600px) {
     .element {
         max-width: 1400px;
     }
@@ -219,12 +211,12 @@ Collapses grid container by consuming the gutters of its container, for use in n
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `grid` | `Map` | `$default-grid` | The grid map settings (gutter, breakpoints) will be used to create the grid collapse. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (gutter, breakpoints) will be used to create the grid collapse. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     gutter: 20px
-);
+));
 .element {
     @include grid-collapse($example-grid);
 }
@@ -244,7 +236,7 @@ Creates a grid container.
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `grid` | `Map` | `$default-grid` | The grid map settings will be used to create the grid container. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings will be used to create the grid container. |
 ##### Example SCSS (Float driver):
 ```scss
 $example-grid: (
@@ -371,9 +363,9 @@ Creates grid columns alignment in container (Supported only in flex driver)
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `align-x` | `String` or `Map` | `null` | Specifies the horizontal alignment of the columns. |
-| `align-y` | `String` or `Map` | `null` | Specifies the vertical alignment of the columns.  |
-| `grid` | `Map` | `$default-grid` | The grid map settings (driver, breakpoints) will be used to create an alignment of the container columns. |
+| `align-x` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the horizontal alignment of the columns. Possible values: `null`, `flex-start`, `flex-end`, `left`, `right`, `center`, `baseline`, `stretch`, `auto` |
+| `align-y` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the vertical alignment of the columns. Possible values: `null`, `flex-start`, `flex-end`, `top`, `bottom`, `center`, `baseline`, `stretch`, `auto`  |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (driver, breakpoints) will be used to create an alignment of the container columns. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -430,9 +422,9 @@ Creates column alignment (Supported only in flex driver)
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `align-x` | `String` or `Map` | `null` | Specifies the horizontal alignment of the column. |
-| `align-y` | `String` or `Map` | `null` | Specifies the vertical alignment of the column.  |
-| `grid` | `Map` | `$default-grid` | The grid map settings (driver, breakpoints) will be used to create a column alignment. |
+| `align-x` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the horizontal alignment of the column. |
+| `align-y` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the vertical alignment of the column.  |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (driver, breakpoints) will be used to create a column alignment. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -492,8 +484,8 @@ Sets grid gutter width around column, ignoring the gutter property in grid map.
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `gutter` | `Number` (with unit) or `Map` | `null` | Grid gutter width around column. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints) will be used to generate a grid gutter width around column. |
+| `gutter` | `Number` (with unit) or [`Media-map`](#media-maps) | `null` | Grid gutter width around column. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints) will be used to generate a grid gutter width around column. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -545,8 +537,8 @@ Sets column width properties based on the number of occupied columns and grid se
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `columns` | `Number` (unitless) or `String` or `Map` | - | The number of columns that the item should occupy. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
+| `columns` | `Number` (unitless) or `String` (`hide` or `hidden`) or [`Media-map`](#media-maps) | - | The number of columns that the item should occupy. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -596,15 +588,16 @@ $example-grid: (
 ---
 
 #### `grid-column`
-Sets column width properties based on the number of occupied columns and grid settings.
+Creates a grid column based on the driver specified in the grid map.
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `columns` | `Number` (unitless) or `String` or `Map` | - | The number of columns that the item should occupy. |
-| `align-x` | `String` or `Map` | `null` | Specifies the horizontal alignment of the column. |
-| `align-y` | `String` or `Map` | `null` | Specifies the vertical alignment of the column. |
-| `gutter` | `Number` (with unit) or `Map` | `null` | Grid gutter width around column. |
-| `grid` | `Map` | `$default-grid` | The grid map settings will be used to create grid column. |
+| `columns` | `Number` (unitless) or `String` (`hide` or `hidden`) or [`Media-map`](#media-maps) | - | The number of columns that the item should occupy. |
+| `align-x` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the horizontal alignment of the column. Possible values: `null`, `left`, `right`, `center` |
+| `align-y` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the vertical alignment of the column. Possible values: `null`, `flex-start`, `flex-end`, `top`, `bottom`, `center`, `baseline`, `stretch`, `auto` |
+| `gutter` | `Number` (with unit) or [`Media-map`](#media-maps) | `null` | Grid gutter width around column. |
+| `order` | `Number` (unitless) or [`Media-map`](#media-maps) | `null` | Specifies the order of the column. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings will be used to create grid column. |
 ##### Example SCSS (Flex driver):
 ```scss
 $example-grid: (
@@ -633,7 +626,16 @@ $example-grid: (
             lg: center,
             xl: bottom
         ),
-        $gutter: (sm: 10px, lg: 20px, xl: 30px),
+        $gutter: (
+            sm: 10px,
+            lg: 20px,
+            xl: 30px
+        ),
+        $order: (
+            sm: -1,
+            lg: 0,
+            xl: 1
+        ),
         $grid: $example-grid
     );
 }
@@ -772,8 +774,8 @@ Push or pull a grid column by manipulating its left margin.
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `columns` | `Number` (unitless) or `String` or `Map` | - | Specifies the number of columns to push the column. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
+| `columns` | `Number` (unitless) or `String` (`hide` or `hidden`) or [`Media-map`](#media-maps) | - | Specifies the number of columns to push the column. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
 ##### Example SCSS:
 ```scss
 .element {
@@ -806,8 +808,8 @@ Shifts columns and reorder them within their container using relative positionin
 ##### Arguments
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `columns` | `Number` (unitless) or `String` or `Map` | - | Specifies the number of columns to shift the column. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
+| `columns` | `Number` (unitless) or `String` (`hide` or `hidden`) or [`Media-map`](#media-maps) | - | Specifies the number of columns to shift the column. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints, columns, driver) will be used to generate a column width. |
 ##### Example SCSS:
 ```scss
 .element {
@@ -842,7 +844,7 @@ Creates a media query before the breakpoint width and applies @content to it.
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bp-name` | `String` | - | The breakpoint name, which specifies the final width of the media query. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -882,7 +884,7 @@ Creates a media query from the breakpoint width and applies @content to it.
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bp-name` | `String` | - | The breakpoint name, which specifies the starting width of the media query. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -923,7 +925,7 @@ Creates a media query that spans multiple breakpoint widths and applies @content
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `from` | `String` | - | The breakpoint name, which specifies the starting width of the media query. |
 | `to` | `String` | - | The breakpoint name, which specifies the final width of the media query. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
@@ -963,7 +965,7 @@ Creates a media query between the breakpoint's minimum and maximum widths and ap
 | Name | Type | Default | Description |
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bp-name` | `String` | - | The breakpoint name, the minimum and maximum width of which will be used to create a media query. |
-| `grid` | `Map` | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The grid map settings (breakpoints) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
 $example-grid: (
