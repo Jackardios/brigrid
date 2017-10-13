@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "A powerful and flexible SASS grid system",
   "main": "index.js",
+  "style": "core/_brigrid.scss",
   "scripts": {
     "clean": "rm demo_build -r -f",
     "clean--win": "rd /s /q demo_build",
@@ -17,12 +18,23 @@
   "keywords": [
     "css",
     "sass",
+    "scss",
     "grid",
+    "layout",
     "system",
     "columns",
-    "mixins"
+    "flexbox",
+    "float",
+    "mixins",
+    "media",
+    "queries",
+    "media-queries",
+    "brigrid"
   ],
-  "author": "",
+  "author": {
+    "name": "Jackardios (Salahutdinov Salavat)",
+    "url": "https://github.com/Jackardios"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Jackardios/brigrid/issues"
