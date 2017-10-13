@@ -169,8 +169,8 @@ Returns the value of the requested key in the `grid-map`. If there is no value f
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `key` | `String` | - | Requested key of the [`grid-map`](#grid-maps)   |
-| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | `grid-map` in which the requested key will be searched. |
+| `key` | `String` | - | Requested key of the [`grid-map`](#grid-maps).   |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | [`grid-map`](#grid-maps) in which the requested key will be searched. |
 
 ##### Example SCSS:
 ```scss
@@ -191,9 +191,9 @@ Sets the value for the key in the `grid-map`.
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `key` | `String` | - | The key for which the value will be set |
-| `value` | `String` | - | The value that will be set for the key  |
-| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | `grid-map` in which the value for the key will be set. |
+| `key` | `String` | - | The key for which the value will be set. |
+| `value` | `String` | - | The value that will be set for the key.  |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | [`grid-map`](#grid-maps) in which the value for the key will be set. |
 
 ##### Example SCSS:
 ```scss
@@ -229,7 +229,7 @@ Prepares a `grid-map` for use in components, helpers and functions (sorts breakp
 ##### Arguments
 | Name | Type | Default | Description |
 |--------------------|-------|---------------|--------------------------------------------------------------------------------------------------------|
-| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | `grid-map` which will be prepared. |
+| `grid` | [`Grid-map`](#grid-maps) | - | `grid-map` which will be prepared. |
 
 ##### Example SCSS:
 ```scss
@@ -447,7 +447,7 @@ $example-grid: prepare-grid((
     );
 }
 ```
-##### Output CSS:
+##### Output CSS (Float driver):
 ```css
 .element {
     box-sizing: border-box;
@@ -474,6 +474,7 @@ $example-grid: prepare-grid((
     }
 }
 ```
+
 ##### Example SCSS (Flex driver):
 ```scss
 $example-grid: prepare-grid((
