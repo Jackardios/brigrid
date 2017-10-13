@@ -1,0 +1,38 @@
+{
+  "name": "brigrid",
+  "version": "1.2.0",
+  "description": "A simple, powerful, fully customizable, fully responsive SASS grid system",
+  "main": "core/_brigrid.scss",
+  "authors": [
+    "Jackardios <salahutdinov.salavat@gmail.com> (https://github.com/Jackardios)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "grid",
+    "layout",
+    "system",
+    "columns",
+    "flexbox",
+    "float",
+    "mixins",
+    "media",
+    "queries",
+    "media-queries",
+    "brigrid"
+  ],
+  "homepage": "https://github.com/Jackardios/brigrid",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jackardios/brigrid.git"
+  },
+}
