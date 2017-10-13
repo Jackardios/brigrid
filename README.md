@@ -954,9 +954,22 @@ Push or pull a grid column by manipulating its left margin.
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`, `columns`, `driver`) will be used to create a grid push. |
 ##### Example SCSS:
 ```scss
+$example-grid: prepare-grid((
+    driver: float,
+    columns: 12,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
 .element {
     @include grid-push(
-        $columns: (md: 2, lg: 3, xl: 4)
+        $columns: (md: 2, lg: 3, xl: 4),
+        $grid: $example-grid
     );
 }
 ```
@@ -988,9 +1001,22 @@ Shifts columns and reorder them within their container using relative positionin
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`, `columns`, `driver`) will be used to create a grid shift. |
 ##### Example SCSS:
 ```scss
+$example-grid: prepare-grid((
+    driver: float,
+    columns: 12,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
 .element {
     @include grid-shift(
-        $columns: (md: 2, lg: 3, xl: 4)
+        $columns: (md: 2, lg: 3, xl: 4),
+        $grid: $example-grid
     );
 }
 ```
@@ -1023,7 +1049,7 @@ Creates a media query before the breakpoint width and applies @content to it.
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -1032,7 +1058,7 @@ $example-grid: (
         xl: 1200px, // Extra large screen
         xx: 1600px // Extra extra large screen
     )
-);
+));
 .element {
     display: block;
     @include media-breakpoint-before(sm, $grid: $example-grid) {
@@ -1063,7 +1089,7 @@ Creates a media query from the breakpoint width and applies @content to it.
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -1072,7 +1098,7 @@ $example-grid: (
         xl: 1200px, // Extra large screen
         xx: 1600px // Extra extra large screen
     )
-);
+));
 .element {
     display: block;
     @include media-breakpoint-from(sm) {
@@ -1104,7 +1130,7 @@ Creates a media query that spans multiple breakpoint widths and applies @content
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -1113,7 +1139,7 @@ $example-grid: (
         xl: 1200px, // Extra large screen
         xx: 1600px // Extra extra large screen
     )
-);
+));
 .element {
     display: block;
     @include media-breakpoint-between($from: sm, $to: lg, $grid: $example-grid) {
@@ -1144,7 +1170,7 @@ Creates a media query between the breakpoint's minimum and maximum widths and ap
 | `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`breakpoints`) will be used to create a media query. |
 ##### Example SCSS:
 ```scss
-$example-grid: (
+$example-grid: prepare-grid((
     breakpoints: (
         xs: 0, // Extra small screen
         sm: 576px, // Small screen
@@ -1153,7 +1179,7 @@ $example-grid: (
         xl: 1200px, // Extra large screen
         xx: 1600px // Extra extra large screen
     )
-);
+));
 .element {
     display: block;
     @include media-breakpoint-only(sm, $grid: $example-grid) {
