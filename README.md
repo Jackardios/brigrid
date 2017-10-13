@@ -36,6 +36,24 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 - Also I strongly recommend using [css-mqpacker](https://github.com/hail2u/node-css-mqpacker) and [autoprefixer](https://github.com/postcss/autoprefixer) to generate beautiful output CSS code
 
 ## Installation
+### Installing with bower
+1. Install brigrid:
+    ```bash
+    bower install --save brigrid
+    ```
+2. Import Brigrid in your stylesheet:
+    ```scss
+    @import "brigrid";
+    ```
+### Installing with npm
+1. Add Brigrid as a dev dependency:
+    ```bash
+    npm install --save-dev brigrid
+    ```
+2. Import Brigrid in your stylesheet:
+    ```scss
+    @import "node_modules/brigrid/core/brigrid";
+    ```
 ### Installing with npm and using a Node-based asset pipeline:
 1. Add Brigrid as a dev dependency:
     ```bash
