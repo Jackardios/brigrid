@@ -5,7 +5,7 @@
 /// @name Prepare grid
 ///
 /// @group functions
-///     
+///
 /// @argument {map} $grid
 ///     `grid-map` which will be prepared.
 ///
@@ -22,13 +22,19 @@
 ///             xl: 1200px
 ///         ),
 ///     ));
-/// 
+///
 ///     @debug $example-grid;
 ///     // > (
 ///     //     driver: float,
 ///     //     columns: 12,
-///     //     breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xx: 1600px),
-///     //     _breakpoints-sorting: min
+///     //     breakpoints: ( // was sorted
+///     //          xs: 0,
+///     //          sm: 576px,
+///     //          md: 768px,
+///     //          lg: 992px,
+///     //          xl: 1200px,
+///     //          xx: 1600px),
+///     //     _breakpoints-sorting: min // was added automatically
 ///     //   )
 
 @function prepare-grid($grid) {

@@ -206,7 +206,7 @@ $example-grid: set-grid-value(columns, 14,  $example-grid);
 $example-grid: set-grid-value(align-x, center, $example-grid);
 
 @debug $example-grid;
-// > ( 
+// > (
 //      driver: flex,
 //      columns: 14,
 //      breakpoints: ( // the default value is used
@@ -250,8 +250,14 @@ $example-grid: prepare-grid((
 // > (
 //     driver: float,
 //     columns: 12,
-//     breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xx: 1600px),
-//     _breakpoints-sorting: min
+//     breakpoints: ( // was sorted
+//          xs: 0,
+//          sm: 576px,
+//          md: 768px,
+//          lg: 992px,
+//          xl: 1200px,
+//          xx: 1600px),
+//     _breakpoints-sorting: min // was added automatically
 //   )
 ```
 
@@ -291,7 +297,7 @@ $example-grid: prepare-grid((
 .element {
     margin-left: auto;
     margin-right: auto;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     max-width: 768px;
 }
 @media only screen and (min-width: 992px) {
@@ -392,7 +398,7 @@ $example-grid: prepare-grid((
 ```css
 .element {
     justify-content: flex-start;
-    align-items: flex-start; 
+    align-items: flex-start;
 }
 @media only screen and (min-width: 992px) {
     .element {
@@ -404,7 +410,7 @@ $example-grid: prepare-grid((
     .element {
         justify-content: flex-end;
         align-items: flex-end;
-    } 
+    }
 }
 ```
 
@@ -642,7 +648,7 @@ $example-grid: prepare-grid((
         margin-left: auto;
         margin-right: auto;
         align-self: center;
-    } 
+    }
 }
 @media only screen and (min-width: 1200px) {
     .element {
