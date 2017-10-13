@@ -1,7 +1,7 @@
 {
   "name": "brigrid",
   "version": "1.2.0",
-  "description": "A powerful and flexible SASS grid system",
+  "description": "A simple, powerful, fully customizable, fully responsive SASS grid system",
   "main": "index.js",
   "style": "core/_brigrid.scss",
   "scripts": {
