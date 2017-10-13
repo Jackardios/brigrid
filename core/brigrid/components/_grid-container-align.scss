@@ -29,8 +29,10 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: flex,
+///         align-x: left, // will be ignored, because it uses align-x declared in grid-column-align
+///         align-y: top, // will be ignored, because it uses align-y declared in grid-column-align
 ///         breakpoints: (
 ///             xs: 0,
 ///             sm: 576px,
@@ -39,7 +41,7 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         @include grid-container-align(
 ///             $align-x: (
@@ -58,20 +60,20 @@
 ///
 /// @example css
 ///     .element {
-///         justify-content: flex-end;
-///         align-items: flex-end;
+///         justify-content: flex-start;
+///         align-items: flex-start; 
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .element {
-///             justify-content: flex-start;
-///             align-items: flex-start;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             justify-content: center;
 ///             align-items: center;
 ///         }
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             justify-content: flex-end;
+///             align-items: flex-end;
+///         } 
 ///     }
 
 @mixin grid-container-align($align-x: null, $align-y: null, $grid: $default-grid) {

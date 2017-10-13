@@ -1,3 +1,45 @@
+@charset "UTF-8";
+
+/// Sets the value for the key in the `grid-map`.
+///
+/// @name Set grid value
+///
+/// @group functions
+/// 
+/// @argument {String} $key
+///     The key for which the value will be set.
+/// 
+/// @argument {String} $value
+///     The value that will be set for the key.
+///     
+/// @argument {map} $grid [$default-grid]
+///     `grid-map` in which the value for the key will be set.
+///
+/// @example scss
+///     $example-grid: prepare-grid((
+///         driver: flex,
+///         columns: 16,
+///     ));
+///     
+///     $example-grid: set-grid-value(columns, 14,  $example-grid);
+///     $example-grid: set-grid-value(align-x, center, $example-grid);
+///     
+///     @debug $example-grid;
+///     // > ( 
+///     //      driver: flex,
+///     //      columns: 14,
+///     //      breakpoints: ( // the default value is used
+///     //          xs: 0,
+///     //          sm: 576px,
+///     //          md: 768px,
+///     //          lg: 992px,
+///     //          xl: 1200px,
+///     //          xx: 1600px
+///     //      ),
+///     //      _breakpoints-sorting: min, // automatically created by sorting function
+///     //      align-x: center
+///     //   )
+
 @function set-grid-value($key, $value, $grid: $default-grid) {
     @return map-merge($grid, ($key: $value));
 }

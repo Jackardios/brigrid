@@ -18,7 +18,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: flex,
 ///         breakpoints: (
 ///             xs: 0,
@@ -40,8 +40,7 @@
 ///         ),
 ///         gutter: (md: 10px, lg: 20px, xl: 30px),
 ///         collapse: true
-///     );
-///
+///     ));
 ///     .element {
 ///         @include grid-container(
 ///             $grid: $example-grid
@@ -53,26 +52,26 @@
 ///         display: flex;
 ///         flex-wrap: wrap;
 ///         box-sizing: border-box;
-///         justify-content: flex-end;
-///         align-items: flex-end;
-///         margin-left: -15px;
-///         margin-right: -15px;
+///         justify-content: flex-start;
+///         align-items: flex-start;
+///         margin-left: -5px;
+///         margin-right: -5px;
 ///         flex-direction: row;
 ///     }
-///     @media screen and (max-width: 991px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
-///             margin-left: -5px;
-///             margin-right: -5px;
-///             justify-content: flex-start;
-///             align-items: flex-start;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
-///         .element {
-///             margin-left: -10px;
-///             margin-right: -10px;
 ///             justify-content: center;
 ///             align-items: center;
+///             margin-left: -10px;
+///             margin-right: -10px;
+///         }
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             justify-content: flex-end;
+///             align-items: flex-end;
+///             margin-left: -15px;
+///             margin-right: -15px;
 ///         }
 ///     }
 
@@ -124,7 +123,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: float,
 ///         breakpoints: (
 ///             xs: 0,
@@ -134,20 +133,19 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         ),
-///         align-x: (
+///         align-x: ( // will be ignored, because alignment is not supported in float driver
 ///             md: left,
 ///             lg: center,
 ///             xl: right
 ///         ),
-///         align-y: (
+///         align-y: ( // will be ignored, because alignment is not supported in float driver
 ///             md: top,
 ///             lg: center,
 ///             xl: bottom
 ///         ),
 ///         gutter: (md: 10px, lg: 20px, xl: 30px),
 ///         collapse: true
-///     );
-///
+///     ));
 ///     .element {
 ///         @include grid-container(
 ///             $grid: $example-grid
@@ -157,8 +155,8 @@
 /// @example css
 ///     .element {
 ///         box-sizing: border-box;
-///         margin-left: -15px;
-///         margin-right: -15px;
+///         margin-left: -5px;
+///         margin-right: -5px;
 ///     }
 ///     .element::before, .element::after {
 ///         display: table;
@@ -167,16 +165,16 @@
 ///     .element::after {
 ///         clear: both;
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .element {
-///             margin-left: -5px;
-///             margin-right: -5px;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             margin-left: -10px;
 ///             margin-right: -10px;
+///         }
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             margin-left: -15px;
+///             margin-right: -15px;
 ///         }
 ///     }
 

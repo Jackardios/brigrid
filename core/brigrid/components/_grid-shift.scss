@@ -19,27 +19,41 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
+///     $example-grid: prepare-grid((
+///         driver: float,
+///         columns: 12,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     ));
 ///     .element {
 ///         @include grid-shift(
-///             $columns: (md: 2, lg: 3, xl: 4)
+///             $columns: (md: 2, lg: 3, xl: 4),
+///             $grid: $example-grid
 ///         );
 ///     }
 ///
 /// @example css
 ///     .element {
 ///         position: relative;
-///         left: 33.33333%;
+///         left: 16.66667%;
 ///     }
-///     @media screen and (max-width: 991px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
-///             left: 16.66667%;
+///            left: 25%;
 ///         }
 ///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 1200px) {
 ///         .element {
-///             left: 25%;
+///             left: 33.33333%;
 ///         }
 ///     }
+
 
 @mixin grid-shift($columns, $grid: $default-grid) {
     position: relative;

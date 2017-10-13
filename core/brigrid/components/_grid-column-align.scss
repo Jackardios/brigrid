@@ -27,7 +27,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: flex,
 ///         breakpoints: (
 ///             xs: 0,
@@ -37,7 +37,7 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         @include grid-column-align(
 ///             $align-x: (
@@ -56,22 +56,22 @@
 ///
 /// @example css
 ///     .element {
-///         margin-left: auto;
-///         margin-right: 0;
-///         align-self: flex-end;
+///         margin-right: auto;
+///         margin-left: 0;
+///         align-self: flex-start;
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .element {
-///             margin-right: auto;
-///             margin-left: 0;
-///             align-self: flex-start;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             margin-left: auto;
 ///             margin-right: auto;
 ///             align-self: center;
+///         } 
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             margin-left: auto;
+///             margin-right: 0;
+///             align-self: flex-end;
 ///         }
 ///     }
 

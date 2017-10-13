@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /// Collapses grid container by consuming the gutters of its container, for use in nested layouts.
 ///
 /// @name Grid collapse
@@ -9,18 +10,29 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///   $example-grid: (
-///       gutter: 20px
-///   );
-///   .element {
-///       @include grid-collapse($example-grid);
-///   }
+///     $example-grid: prepare-grid((
+///         gutter: (
+///             md: 20px,
+///             xl: 30px
+///         )
+///     ));
+///     .element {
+///         @include grid-collapse(
+///             $grid: $example-grid
+///         );
+///     }
 ///
 /// @example css
-///   .element {
-///       margin-left: -10px;
-///       margin-right: -10px;
-///   }
+///     .element {
+///         margin-left: -10px;
+///         margin-right: -10px;
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             margin-left: -15px;
+///             margin-right: -15px;
+///         }
+///     }
 
 @mixin grid-collapse($grid: $default-grid) {
     $grid-gutters: _convert-to-media-map(get-grid-value(gutter, $grid), $grid);

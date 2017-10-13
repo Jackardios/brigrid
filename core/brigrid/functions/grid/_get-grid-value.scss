@@ -1,3 +1,29 @@
+@charset "UTF-8";
+
+/// Returns the value of the requested key in the `grid-map`.
+/// If there is no value for the required key in `grid-map`, the function will return the default value.
+///
+/// @name Get grid value
+///
+/// @group functions
+/// 
+/// @argument {String} $key
+///     Requested key of the `grid-map`
+///     
+/// @argument {map} $grid [$default-grid]
+///     `grid-map` in which the requested key will be searched.
+///
+/// @example scss
+///     $example-grid: prepare-grid((
+///         driver: flex,
+///         columns: 16,
+///     ));
+/// 
+///     @debug get-grid-value(driver, $example-grid); // > flex
+///     @debug get-grid-value(columns, $example-grid); // > 16
+///     @debug get-grid-value(align-x, $example-grid); // > left (returns the default value)
+
+
 @function get-grid-value($key, $grid: $default-grid) {
     $value: map-get($grid, $key);
     @if $value == null {

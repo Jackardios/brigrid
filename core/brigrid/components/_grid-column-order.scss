@@ -19,7 +19,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: flex,
 ///         breakpoints: (
 ///             xs: 0,
@@ -29,7 +29,7 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         @include grid-column-order((
 ///             md: -1,
@@ -40,16 +40,16 @@
 ///
 /// @example css
 ///     .element {
-///         order: 1;
+///         order: -1;
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .grid-column--order-dynamic {
-///             order: -1;
+///     @media only screen and (min-width: 992px) {
+///         .element {
+///             order: 0;
 ///         }
 ///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
-///         .grid-column--order-dynamic {
-///             order: 0;
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             order: 1;
 ///         }
 ///     }
 

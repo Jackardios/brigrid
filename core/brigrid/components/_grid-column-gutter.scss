@@ -19,7 +19,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         gutter: 50px, // will be ignored
 ///         breakpoints: (
 ///             xs: 0,
@@ -29,7 +29,7 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         @include grid-column-gutter(
 ///             $gutter: (
@@ -43,21 +43,22 @@
 ///
 /// @example css
 ///     .element {
-///         padding-left: 15px;
-///         padding-right: 15px;
+///         padding-left: 5px;
+///         padding-right: 5px;
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .element {
-///             padding-left: 5px;
-///             padding-right: 5px;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             padding-left: 10px;
 ///             padding-right: 10px;
 ///         }
 ///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             padding-left: 15px;
+///             padding-right: 15px;
+///         }
+///     }
+
 
 @mixin grid-column-gutter($gutter: null, $grid: $default-grid) {
     @if ($gutter == null) {

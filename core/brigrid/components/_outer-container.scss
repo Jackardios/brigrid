@@ -20,7 +20,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid {
+///     $example-grid: prepare-grid((
 ///         breakpoints: (
 ///             xs: 0, // Extra small screen
 ///             sm: 576px, // Small screen
@@ -35,8 +35,8 @@
 ///             xl: 1170px, // Extra large screen
 ///             xx: 1400px // Extra extra large screen
 ///         )
-///     }
-///     .outer-container {
+///     ));
+///     .element {
 ///         @include outer-container($grid: $example-grid);
 ///     }
 ///
@@ -44,26 +44,20 @@
 ///     .element {
 ///         margin-left: auto;
 ///         margin-right: auto;
-///         box-sizing: border-box;
-///         transition: max-width .12s ease;
-///         max-width: 100%;
+///         box-sizing: border-box; 
+///         max-width: 768px;
 ///     }
-///     @media screen and (min-width: 768px) {
-///         .element {
-///             max-width: 768px;
-///         }
-///     }
-///     @media screen and (min-width: 992px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             max-width: 960px;
 ///         }
 ///     }
-///     @media screen and (min-width: 1200px) {
+///     @media only screen and (min-width: 1200px) {
 ///         .element {
 ///             max-width: 1170px;
 ///         }
 ///     }
-///     @media screen and (min-width: 1600px) {
+///     @media only screen and (min-width: 1600px) {
 ///         .element {
 ///             max-width: 1400px;
 ///         }

@@ -20,7 +20,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         driver: flex,
 ///         columns: 12,
 ///         breakpoints: (
@@ -31,7 +31,7 @@
 ///             xl: 1200px,
 ///             xx: 1600px
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         @include grid-column-width(
 ///             $columns: (
@@ -45,20 +45,20 @@
 ///
 /// @example css
 ///     .element {
-///         display: none;
+///         display: block;
+///         max-width: 100%;
+///         width: 100%;
 ///     }
-///     @media screen and (max-width: 991px) {
-///         .element {
-///             display: block;
-///             max-width: 100%;
-///             width: 100%;
-///         }
-///     }
-///     @media screen and (min-width: 992px) and (max-width: 1199px) {
+///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             display: block;
 ///             max-width: 50%;
 ///             width: 50%;
+///         }
+///     }
+///     @media only screen and (min-width: 1200px) {
+///         .element {
+///             display: none;
 ///         }
 ///     }
 

@@ -19,9 +19,22 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
+///     $example-grid: prepare-grid((
+///         driver: float,
+///         columns: 12,
+///         breakpoints: (
+///             xs: 0,
+///             sm: 576px,
+///             md: 768px,
+///             lg: 992px,
+///             xl: 1200px,
+///             xx: 1600px
+///         )
+///     ));
 ///     .element {
 ///         @include grid-push(
-///             $columns: (md: 2, lg: 3, xl: 4)
+///             $columns: (md: 2, lg: 3, xl: 4),
+///             $grid: $example-grid
 ///         );
 ///     }
 ///
@@ -39,6 +52,7 @@
 ///             margin-left: 25%;
 ///         }
 ///     }
+
 
 @mixin grid-push($columns, $grid: $default-grid) {
     $columns: _convert-to-media-map($columns, $grid);

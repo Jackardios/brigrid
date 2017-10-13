@@ -1,3 +1,36 @@
+@charset "UTF-8";
+
+/// Prepares a `grid-map` for use in components, helpers and functions (sorts breakpoints).
+///
+/// @name Prepare grid
+///
+/// @group functions
+///     
+/// @argument {map} $grid
+///     `grid-map` which will be prepared.
+///
+/// @example scss
+///     $example-grid: prepare-grid((
+///         driver: float,
+///         columns: 12,
+///         breakpoints: (
+///             xx: 1600px,
+///             sm: 576px,
+///             lg: 992px,
+///             md: 768px,
+///             xs: 0,
+///             xl: 1200px
+///         ),
+///     ));
+/// 
+///     @debug $example-grid;
+///     // > (
+///     //     driver: float,
+///     //     columns: 12,
+///     //     breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xx: 1600px),
+///     //     _breakpoints-sorting: min
+///     //   )
+
 @function prepare-grid($grid) {
     @if (type-of($grid) != map) {
         @error "The $grid argument must be a map!"

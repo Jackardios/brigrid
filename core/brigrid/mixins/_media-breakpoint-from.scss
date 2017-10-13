@@ -15,7 +15,7 @@
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
-///     $example-grid: (
+///     $example-grid: prepare-grid((
 ///         breakpoints: (
 ///             xs: 0, // Extra small screen
 ///             sm: 576px, // Small screen
@@ -24,7 +24,7 @@
 ///             xl: 1200px, // Extra large screen
 ///             xx: 1600px // Extra extra large screen
 ///         )
-///     );
+///     ));
 ///     .element {
 ///         display: block;
 ///         @include media-breakpoint-from(sm) {
@@ -36,11 +36,12 @@
 ///     .element {
 ///         display: block;
 ///     }
-///     @media screen and (min-width: 576px) {
+///     @media only screen and (min-width: 576px) {
 ///         .element {
 ///             display: none;
 ///         }
 ///     }
+
 
 @mixin media-breakpoint-from($bp-name, $grid: $default-grid) {
     $min-width: map-get(get-grid-value(breakpoints, $grid), $bp-name);
