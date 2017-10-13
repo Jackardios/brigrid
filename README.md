@@ -5,6 +5,9 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 ## Table of content
 1. [Requirements](#requirements)
 2. [Installation](#installation)
+    - [Installing with bower](#installing-with-bower)
+    - [Installing with npm](#installing-with-npm)
+    - [Installing with npm and using a Node-based asset pipeline](#installing-with-npm-and-using-a-node-based-asset-pipeline)
 3. [Documentation](#documentation)
     1. [Configuration](#configuration)
         - [Grid maps](#grid-maps)
