@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-// flex driver based grid-container
-%_grid-container--flex {
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
 /// Creates a grid container based on flexbox
 ///
 /// @name Grid container (flex driver)
@@ -76,40 +69,8 @@
 ///     }
 
 @mixin grid-container--flex($grid: $default-grid) {
-    @extend %_grid-container--flex;
-
-    flex-wrap: get-grid-value(wrap, $grid);
-
-
+    @include grid-container-base($grid: $grid);
     @include grid-container-align($grid: $grid);
-    
-    // collapse
-    $collapse: get-grid-value(collapse, $grid);
-    @if ($collapse) {
-        @include grid-collapse($grid: $grid);
-    }
-
-    // Reverse
-    $reversed: get-grid-value(reversed, $grid);
-    @if $reversed == true {
-        flex-direction: row-reverse;
-    } @else {
-        flex-direction: row;
-    }
-}
-
-
-// float driver based grid-container
-%_grid-container--float {
-    box-sizing: border-box;
-    &::before,
-    &::after {
-        display: table;
-        content: "";
-    }
-    &::after {
-        clear: both;
-    }
 }
 
 /// Creates a grid container based on float
@@ -179,13 +140,7 @@
 ///     }
 
 @mixin grid-container--float($grid: $default-grid) {
-    @extend %_grid-container--float;
-
-    // collapse
-    $collapse: get-grid-value(collapse, $grid);
-    @if ($collapse) {
-        @include grid-collapse($grid: $grid);
-    }
+    @include grid-container-base($grid: $grid);
 }
 
 

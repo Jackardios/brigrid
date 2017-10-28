@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+// flex driver based grid-container
+%_grid-container--flex {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+// float driver based grid-container
+%_grid-container--float {
+    box-sizing: border-box;
+    &::before,
+    &::after {
+        display: table;
+        content: "";
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+@mixin grid-container-base--flex($grid: $default-grid) {
+    @extend %_grid-container--flex;
+
+    flex-wrap: get-grid-value(wrap, $grid);
+
+    // collapse
+    $collapse: get-grid-value(collapse, $grid);
+    @if ($collapse) {
+        @include grid-collapse($grid: $grid);
+    }
+
+    // Reverse
+    $reversed: get-grid-value(reversed, $grid);
+    @if $reversed == true {
+        flex-direction: row-reverse;
+    } @else {
+        flex-direction: row;
+    }
+}
+
+@mixin grid-container-base--float($grid: $default-grid) {
+    @extend %_grid-container--float;
+
+    // collapse
+    $collapse: get-grid-value(collapse, $grid);
+    @if ($collapse) {
+        @include grid-collapse($grid: $grid);
+    }
+}
+
+@mixin grid-container-base($grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
+    @if ($driver == flex) {
+        @include grid-container-base--flex($grid: $grid);
+    } @else if ($driver == float) {
+        @include grid-container-base--float($grid: $grid);
+    } @else {
+        @error "Incorrect driver value: '#{$driver}'";
+    }
+}
