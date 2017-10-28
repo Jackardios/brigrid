@@ -1,5 +1,6 @@
-@import "mixins/media-breakpoint-before";
-@import "mixins/media-breakpoint-from";
-@import "mixins/media-breakpoint-between";
-@import "mixins/media-breakpoint-only";
-@import "mixins/for-media-map";
+@import "mixins/media/media-breakpoint-before";
+@import "mixins/media/media-breakpoint-from";
+@import "mixins/media/media-breakpoint-between";
+@import "mixins/media/media-breakpoint-only";
+@import "mixins/media/for-media-map";
+@import "mixins/grid-classes";

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+@import "grid-container/grid-container-base";
+@import "grid-container/grid-container-align";
+
 /// Creates a grid container based on flexbox
 ///
 /// @name Grid container (flex driver)

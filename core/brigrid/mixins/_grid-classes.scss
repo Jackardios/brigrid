@@ -1,0 +1,32 @@
+@import "grid-classes/grid-container-classes";
+@import "grid-classes/grid-column-classes";
+@import "grid-classes/grid-push-classes";
+@import "grid-classes/grid-shift-classes";
+
+$_grid-classes-default-options: (
+    'prefix': 'grid',
+    'names': (
+        'container': 'container',
+        'column': 'column',
+        'push': 'push',
+        'shift': 'shift',
+        'horizontal-alignment': 'h-align',
+        'vertical-alignment': 'v-align',
+        'order': 'order'
+    ),
+    'components': (
+        'container',
+        'container-alignment',
+        'column',
+        'column-alignment',
+        'column-order',
+        'push',
+        'shift',
+    )
+);
+
+$grid-classes-default-options: $_grid-classes-default-options !default;
+
+@mixin grid-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    
+}
