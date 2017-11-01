@@ -1,0 +1,7 @@
+@function get-map-value($key, $map, $defaults: null) {
+    $value: map-get($map, $key);
+    @if ($value == null) and ($defaults != null) {
+        $value: map-get($defaults, $key);
+    }
+    @return $value;
+}
