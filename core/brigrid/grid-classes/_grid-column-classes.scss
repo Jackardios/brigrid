@@ -1,24 +1,27 @@
 @mixin grid-column-base-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $column-name: map-get(map-get($options, 'names'), 'column');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
 
-    .#{$prefix}-#{$column-name} {
+    .#{$prefix}#{$column-name} {
         @include grid-column-base($grid: $grid);
         @include grid-column-gutter($grid: $grid);
     }
 }
 
 @mixin grid-column-width-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $names: map-get($options, 'names');
-    $column-name: map-get($names, 'column');
-    $components: map-get($options, 'components');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
+    $components: get-map-value('components', $options);
     $columns: get-grid-value('columns', $grid);
     
     @for $i from 1 through $columns {
-        .#{$prefix}-#{$column-name}-#{$i} {
+        .#{$prefix}#{$column-name}-#{$i} {
             @include grid-column-width(
                 $columns: $i,
                 $grid: $grid
@@ -32,7 +35,7 @@
             @if ($bp-name=='xs') {
                 @include media-breakpoint-before(sm) {
                     @for $i from 1 through $columns {
-                        .#{$prefix}-#{$column-name}-#{$bp-name}-#{$i} {
+                        .#{$prefix}#{$column-name}-#{$bp-name}-#{$i} {
                             @include grid-column-width(
                                 $columns: $i,
                                 $grid: $grid
@@ -43,7 +46,7 @@
             } @else {
                 @include media-breakpoint-from($bp-name) {
                     @for $i from 1 through $columns {
-                        .#{$prefix}-#{$column-name}-#{$bp-name}-#{$i} {
+                        .#{$prefix}#{$column-name}-#{$bp-name}-#{$i} {
                             @include grid-column-width(
                                 $columns: $i,
                                 $grid: $grid
@@ -57,15 +60,16 @@
 }
 
 @mixin grid-column-order-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $names: map-get($options, 'names');
-    $column-name: map-get($names, 'column');
-    $order-name: map-get($names, 'order');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
+    $order-name: get-map-value('order', $names, $default-names);
     $columns: get-grid-value('columns', $grid);
     
     @for $i from 1 through $columns {
-        .#{$prefix}-#{$column-name}-#{$order-name}-#{$i} {
+        .#{$prefix}#{$column-name}-#{$order-name}-#{$i} {
             @include grid-column-order(
                 $order: $i,
                 $grid: $grid
@@ -75,15 +79,16 @@
 }
 
 @mixin grid-column-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $names: map-get($options, 'names');
-    $column-name: map-get($names, 'column');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
 
     $h-align-name: map-get($names, 'horizontal-alignment');
     $h-alignments: ('left', 'center', 'right');
     @each $h-align in $h-alignments {
-        .#{$prefix}-#{$column-name}-#{$h-align-name} {
+        .#{$prefix}#{$column-name}-#{$h-align-name} {
             @include grid-column-align(
                 $align-x: $h-align,
                 $grid: $grid
@@ -94,7 +99,7 @@
     $v-align-name: map-get($names, 'vertical-alignment');
     $v-alignments: ('top', 'center', 'bottom');
     @each $v-align in $v-alignments {
-        .#{$prefix}-#{$column-name}-#{$v-align-name} {
+        .#{$prefix}#{$column-name}-#{$v-align-name} {
             @include grid-column-align(
                 $align-y: $v-align,
                 $grid: $grid
@@ -105,10 +110,12 @@
 
 
 @mixin grid-column-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $column-name: map-get(map-get($options, 'names'), 'column');
-    $components: map-get($options, 'components');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
+    $components: get-map-value('components', $options);
 
     @include grid-column-base-classes(
         $grid: $grid,

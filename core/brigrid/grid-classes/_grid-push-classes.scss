@@ -1,13 +1,14 @@
 @mixin grid-push-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $names: map-get($options, 'names');
-    $push-name: map-get($names, 'push');
-    $components: map-get($options, 'components');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $components: get-map-value('components', $options);
+    $push-name: get-map-value('push', $names, $default-names);
     $columns: get-grid-value('columns', $grid);
 
     @for $i from 1 through $columns {
-        .#{$prefix}-#{$push-name}-#{$i} {
+        .#{$prefix}#{$push-name}-#{$i} {
             @include grid-push(
                 $columns: $i,
                 $grid: $grid
@@ -21,7 +22,7 @@
             @if ($bp-name=='xs') {
                 @include media-breakpoint-before(sm) {
                     @for $i from 1 through $columns {
-                        .#{$prefix}-#{$push-name}-#{$bp-name}-#{$i} {
+                        .#{$prefix}#{$push-name}-#{$bp-name}-#{$i} {
                             @include grid-push(
                                 $columns: $i,
                                 $grid: $grid
@@ -32,7 +33,7 @@
             } @else {
                 @include media-breakpoint-from($bp-name) {
                     @for $i from 1 through $columns {
-                        .#{$prefix}-#{$push-name}-#{$bp-name}-#{$i} {
+                        .#{$prefix}#{$push-name}-#{$bp-name}-#{$i} {
                             @include grid-push(
                                 $columns: $i,
                                 $grid: $grid

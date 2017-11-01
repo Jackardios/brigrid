@@ -1,9 +1,11 @@
 @mixin outer-container-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    $options: map-merge($grid-classes-default-options, $options);
-    $prefix: map-get($options, 'prefix');
-    $outer-container-name: map-get(map-get($options, 'names'), 'outer-container');
+    $default-options: $grid-classes-default-options;
+    $default-names: get-map-value('names', $default-options);
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $outer-container-name: get-map-value('outer-container', $names, $default-names);
 
-    .#{$prefix}-#{$outer-container-name} {
+    .#{$prefix}#{$outer-container-name} {
         @include outer-container($grid: $grid);
     }
 }
