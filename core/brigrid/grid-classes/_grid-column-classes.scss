@@ -77,9 +77,10 @@
 @mixin grid-column-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
     $options: map-merge($grid-classes-default-options, $options);
     $prefix: map-get($options, 'prefix');
-    $column-name: map-get(map-get($options, 'names'), 'column');
+    $names: map-get($options, 'names');
+    $column-name: map-get($names, 'column');
 
-    $h-align-name: map-get(map-get($options, 'names'), 'horizontal-alignment');
+    $h-align-name: map-get($names, 'horizontal-alignment');
     $h-alignments: ('left', 'center', 'right');
     @each $h-align in $h-alignments {
         .#{$prefix}-#{$column-name}-#{$h-align-name} {
@@ -90,7 +91,7 @@
         }
     }
 
-    $v-align-name: map-get(map-get($options, 'names'), 'vertical-alignment');
+    $v-align-name: map-get($names, 'vertical-alignment');
     $v-alignments: ('top', 'center', 'bottom');
     @each $v-align in $v-alignments {
         .#{$prefix}-#{$column-name}-#{$v-align-name} {

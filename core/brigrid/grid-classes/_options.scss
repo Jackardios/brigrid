@@ -1,6 +1,7 @@
 $_grid-classes-default-options: (
     'prefix': 'grid',
     'names': (
+        'outer-container': 'outer-container',
         'container': 'container',
         'column': 'column',
         'push': 'push',
@@ -11,14 +12,15 @@ $_grid-classes-default-options: (
     ),
     'components': (
         'container',
-        'container-media',
         'container-alignment',
         'column',
         'column-media',
         'column-alignment',
         'column-order',
         'push',
+        'push-media',
         'shift',
+        'shift-media',
         'outer-container'
     )
 );

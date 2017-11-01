@@ -1,3 +1,60 @@
-@mixin grid-container-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-container-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $names: map-get($options, 'names');
+    $container-name: map-get($names, 'container');
 
+    $h-align-name: map-get($names, 'horizontal-alignment');
+    $h-alignments: ('left', 'center', 'right');
+    @each $h-align in $h-alignments {
+        .#{$prefix}-#{$container-name}-#{$h-align-name} {
+            @include grid-container-align(
+                $align-x: $h-align,
+                $grid: $grid
+            );
+        }
+    }
+
+    $v-align-name: map-get($names, 'vertical-alignment');
+    $v-alignments: ('top', 'center', 'bottom');
+    @each $v-align in $v-alignments {
+        .#{$prefix}-#{$container-name}-#{$v-align-name} {
+            @include grid-container-align(
+                $align-y: $v-align,
+                $grid: $grid
+            );
+        }
+    }
+
+}
+
+@mixin grid-container-base-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $container-name: map-get(map-get($options, 'names'), 'container');
+    
+    .#{$prefix}-#{$container-name} {
+        @include grid-container-base($grid: $grid);
+    }
+}
+
+@mixin grid-container-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $container-name: map-get(map-get($options, 'names'), 'container');
+    $components: map-get($options, 'components');
+    @include grid-container-base-classes(
+        $grid: $grid,
+        $options: $options
+    );
+
+    $driver: get-grid-value(driver, $options);
+    @if ($driver == 'flex') {
+        @if (index($components, 'container-alignment') != null) {
+            @include grid-container-align-classes(
+                $grid: $grid,
+                $options: $options
+            );
+        }
+    }
 }

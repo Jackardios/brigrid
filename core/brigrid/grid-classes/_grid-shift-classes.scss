@@ -1,3 +1,37 @@
 @mixin grid-shift-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $names: map-get($options, 'names');
+    $shift-name: map-get($names, 'shift');
+    $components: map-get($options, 'components');
+    $columns: get-grid-value('columns', $grid);
+    @for $i from 1 through $columns {
+        .#{$prefix}-#{$shift-name}-#{$i} {
+            @include grid-shift( $columns: $i, $grid: $grid);
+        }
+    }
+    @if (index($components, 'shift-media') !=null) {
+        $breakpoints: get-grid-value('breakpoints', $grid);
+        @each $bp-name,
+        $bp-value in $breakpoints {
+            @if ($bp-name=='xs') {
+                @include media-breakpoint-before(sm) {
+                    @for $i from 1 through $columns {
+                        .#{$prefix}-#{$shift-name}-#{$bp-name}-#{$i} {
+                            @include grid-shift( $columns: $i, $grid: $grid);
+                        }
+                    }
+                }
+            }
+            @else {
+                @include media-breakpoint-from($bp-name) {
+                    @for $i from 1 through $columns {
+                        .#{$prefix}-#{$shift-name}-#{$bp-name}-#{$i} {
+                            @include grid-shift( $columns: $i, $grid: $grid);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

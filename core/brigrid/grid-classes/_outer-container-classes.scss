@@ -1,3 +1,9 @@
 @mixin outer-container-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $outer-container-name: map-get(map-get($options, 'names'), 'outer-container');
+
+    .#{$prefix}-#{$outer-container-name} {
+        @include outer-container($grid: $grid);
+    }
 }
