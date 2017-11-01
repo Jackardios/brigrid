@@ -22,3 +22,12 @@ $my-grid: prepare-grid((
 ));
 
 $default-grid: $my-grid;
+
+@include grid-classes(
+    $options: (
+        'prefix': '',
+        'names': (
+            'outer-container': 'wrapper',
+        )
+    )
+);
