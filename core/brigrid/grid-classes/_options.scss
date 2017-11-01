@@ -7,16 +7,29 @@ $_grid-classes-default-options: (
         'push': 'push',
         'shift': 'shift',
         'horizontal-alignment': 'h-align',
+        'horizontal-alignments': (
+            'left',
+            'center',
+            'right'
+        ),
         'vertical-alignment': 'v-align',
+        'vertical-alignments': (
+            'top',
+            'center',
+            'bottom'
+        ),
         'order': 'order'
     ),
     'components': (
         'container',
         'container-alignment',
+        'container-alignment-media',
         'column',
         'column-media',
         'column-alignment',
+        'column-alignment-media',
         'column-order',
+        'column-order-media',
         'push',
         'push-media',
         'shift',

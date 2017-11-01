@@ -13,25 +13,13 @@
         }
     }
     @if (index($components, 'shift-media') !=null) {
-        $breakpoints: get-grid-value('breakpoints', $grid);
-        @each $bp-name,
-        $bp-value in $breakpoints {
-            @if ($bp-name=='xs') {
-                @include media-breakpoint-before(sm) {
-                    @for $i from 1 through $columns {
-                        .#{$prefix}#{$shift-name}-#{$bp-name}-#{$i} {
-                            @include grid-shift( $columns: $i, $grid: $grid);
-                        }
-                    }
-                }
-            }
-            @else {
-                @include media-breakpoint-from($bp-name) {
-                    @for $i from 1 through $columns {
-                        .#{$prefix}#{$shift-name}-#{$bp-name}-#{$i} {
-                            @include grid-shift( $columns: $i, $grid: $grid);
-                        }
-                    }
+        @include grid-media($grid: $grid) {
+            @for $i from 1 through $columns {
+                .#{$prefix}#{$shift-name}-#{$_grid-media-bp-name}-#{$i} {
+                    @include grid-shift(
+                        $columns: $i,
+                        $grid: $grid
+                    );
                 }
             }
         }

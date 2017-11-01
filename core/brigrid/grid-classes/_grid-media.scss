@@ -1,0 +1,15 @@
+@mixin grid-media($grid: $default-grid) {
+    $breakpoints: get-grid-value('breakpoints', $grid);
+    @each $bp-name, $bp-value in $breakpoints {
+        $_grid-media-bp-name: $bp-name !global;
+        @if ($_grid-media-bp-name=='xs') {
+            @include media-breakpoint-before(sm) {
+                @content;
+            }
+        } @else {
+            @include media-breakpoint-from($_grid-media-bp-name) {
+                @content;
+            }
+        }
+    }
+}
