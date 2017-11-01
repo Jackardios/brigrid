@@ -88,7 +88,7 @@
     $h-align-name: map-get($names, 'horizontal-alignment');
     $h-alignments: ('left', 'center', 'right');
     @each $h-align in $h-alignments {
-        .#{$prefix}#{$column-name}-#{$h-align-name} {
+        .#{$prefix}#{$column-name}-#{$h-align-name}-#{$h-align} {
             @include grid-column-align(
                 $align-x: $h-align,
                 $grid: $grid
@@ -99,7 +99,7 @@
     $v-align-name: map-get($names, 'vertical-alignment');
     $v-alignments: ('top', 'center', 'bottom');
     @each $v-align in $v-alignments {
-        .#{$prefix}#{$column-name}-#{$v-align-name} {
+        .#{$prefix}#{$column-name}-#{$v-align-name}-#{$v-align} {
             @include grid-column-align(
                 $align-y: $v-align,
                 $grid: $grid

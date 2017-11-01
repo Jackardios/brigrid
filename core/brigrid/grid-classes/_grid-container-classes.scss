@@ -8,7 +8,7 @@
     $h-align-name: get-map-value('horizontal-alignment', $names, $default-names);
     $h-alignments: ('left', 'center', 'right');
     @each $h-align in $h-alignments {
-        .#{$prefix}#{$container-name}-#{$h-align-name} {
+        .#{$prefix}#{$container-name}-#{$h-align-name}-#{$h-align} {
             @include grid-container-align(
                 $align-x: $h-align,
                 $grid: $grid
@@ -19,7 +19,7 @@
     $v-align-name: get-map-value('vertical-alignment', $names, $default-names);
     $v-alignments: ('top', 'center', 'bottom');
     @each $v-align in $v-alignments {
-        .#{$prefix}#{$container-name}-#{$v-align-name} {
+        .#{$prefix}#{$container-name}-#{$v-align-name}-#{$v-align} {
             @include grid-container-align(
                 $align-y: $v-align,
                 $grid: $grid
