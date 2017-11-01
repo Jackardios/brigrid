@@ -9,4 +9,7 @@
 @import "./base/common";
 @import "./base/test";
 
-@import "./components/*.scss";
+@import "./components/card";
+@import "./components/demo-section";
+@import "./components/header";
+@import "./components/states";

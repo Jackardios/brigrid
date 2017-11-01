@@ -1,8 +1,3 @@
-@import "grid-classes/grid-container-classes";
-@import "grid-classes/grid-column-classes";
-@import "grid-classes/grid-push-classes";
-@import "grid-classes/grid-shift-classes";
-
 $_grid-classes-default-options: (
     'prefix': 'grid',
     'names': (
@@ -16,17 +11,16 @@ $_grid-classes-default-options: (
     ),
     'components': (
         'container',
+        'container-media',
         'container-alignment',
         'column',
+        'column-media',
         'column-alignment',
         'column-order',
         'push',
         'shift',
+        'outer-container'
     )
 );
 
 $grid-classes-default-options: $_grid-classes-default-options !default;
-
-@mixin grid-classes($grid: $default-grid, $options: $grid-classes-default-options) {
-    
-}

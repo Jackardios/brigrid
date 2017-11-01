@@ -1,0 +1,84 @@
+@mixin grid-column-order-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $names: map-get($options, 'names');
+    $column-name: map-get($names, 'column');
+    $order-name: map-get($names, 'order');
+    $columns: get-grid-value('columns', $grid);
+    
+    @for $i from 1 through $columns {
+        .#{$prefix}-#{$column-name}-#{$order-name}-#{$i} {
+            @include grid-column-order(
+                $order: $i,
+                $grid: $grid
+            );
+        }
+    }
+}
+
+@mixin grid-column-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $column-name: map-get(map-get($options, 'names'), 'column');
+
+    $h-align-name: map-get(map-get($options, 'names'), 'horizontal-alignment');
+    $h-alignments: ('left', 'center', 'right');
+    @each $h-align in $h-alignments {
+        .#{$prefix}-#{$column-name}-#{$h-align-name} {
+            @include grid-column-align(
+                $align-x: $h-align,
+                $grid: $grid
+            );
+        }
+    }
+
+    $v-align-name: map-get(map-get($options, 'names'), 'vertical-alignment');
+    $v-alignments: ('top', 'center', 'bottom');
+    @each $v-align in $v-alignments {
+        .#{$prefix}-#{$column-name}-#{$v-align-name} {
+            @include grid-column-align(
+                $align-y: $v-align,
+                $grid: $grid
+            );
+        }
+    }
+}
+
+@mixin grid-column-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+    $options: map-merge($grid-classes-default-options, $options);
+    $prefix: map-get($options, 'prefix');
+    $column-name: map-get(map-get($options, 'names'), 'column');
+    $columns: get-grid-value('columns', $grid);
+
+    .#{$prefix}-#{$column-name} {
+        @include grid-column-base( $grid: $grid );
+        @include grid-column-gutter( $grid: $grid );
+    }
+
+    @for $i from 1 through $columns {
+        .#{$prefix}-#{$column-name}-#{$i} {
+            @include grid-column-width(
+                $columns: $i,
+                $grid: $grid
+            );
+        }
+    }
+    
+    $driver: get-grid-value('driver', $grid);
+    $components: map-get($options, 'components');
+
+    @if ($driver == flex) {
+        @if (index($components, 'column-alignment') != null) {
+            @include grid-column-align-classes(
+                $grid: $grid,
+                $options: $options
+            );
+        }
+        @if (index($components, 'column-order') != null) {
+            @include grid-column-order-classes(
+                $grid: $grid,
+                $options: $options
+            );
+        }
+    }
+}

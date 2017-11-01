@@ -23,7 +23,6 @@
 ///     @debug get-grid-value(columns, $example-grid); // > 16
 ///     @debug get-grid-value(align-x, $example-grid); // > left (returns the default value)
 
-
 @function get-grid-value($key, $grid: $default-grid) {
     $value: map-get($grid, $key);
     @if $value == null {
