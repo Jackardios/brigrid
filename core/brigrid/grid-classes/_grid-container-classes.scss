@@ -7,7 +7,10 @@
     $components: get-map-value('components', $options);
 
     $h-align-name: get-map-value('horizontal-alignment', $names, $default-names);
-    $h-alignments: ('left', 'center', 'right');
+    $h-alignments: map-values(map-merge(
+        get-map-value('horizontal-alignments', $default-names),
+        get-map-value('horizontal-alignments', $names, $default-names)
+    ));
     @each $h-align in $h-alignments {
         .#{$prefix}#{$container-name}-#{$h-align-name}-#{$h-align} {
             @include grid-container-align(
@@ -18,7 +21,10 @@
     }
 
     $v-align-name: get-map-value('vertical-alignment', $names, $default-names);
-    $v-alignments: ('top', 'center', 'bottom');
+    $v-alignments: map-values(map-merge(
+        get-map-value('vertical-alignments', $default-names),
+        get-map-value('vertical-alignments', $names, $default-names)
+    ));
     @each $v-align in $v-alignments {
         .#{$prefix}#{$container-name}-#{$v-align-name}-#{$v-align} {
             @include grid-container-align(

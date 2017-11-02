@@ -8,15 +8,15 @@ $_grid-classes-default-options: (
         'shift': 'shift',
         'horizontal-alignment': 'h-align',
         'horizontal-alignments': (
-            'left',
-            'center',
-            'right'
+            'left': 'left',
+            'center': 'center',
+            'right': 'right'
         ),
         'vertical-alignment': 'v-align',
         'vertical-alignments': (
-            'top',
-            'center',
-            'bottom'
+            'top': 'top',
+            'center': 'center',
+            'bottom': 'bottom'
         ),
         'order': 'order'
     ),

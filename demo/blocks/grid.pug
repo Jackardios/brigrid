@@ -21,7 +21,7 @@
                 h3.container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
             - var i = 1; 
             while (i <= cols)
-                .column-media
+                .column.column-xs-12.column-sm-6.column-md-4.column-lg-3.column-xl-2.column-xx-1
                     .card
                 - i++;
     section.demo-section
@@ -89,7 +89,7 @@
                 .card 
             .column.column-1
                 .card 
-            .column.column-2.column--h-dynamic
+            .column.column-2.column-md--h-left.column-lg--h-center.column-xl--h-right
                 .card.card--accent DYNAMIC
             .column.column-1
                 .card
@@ -148,7 +148,7 @@
                 .card.card--large 
             .column.column-2
                 .card.card--large 
-            .column.column-4.column--v-dynamic
+            .column.column-4.column-md--v-top.column-lg--v-center.column-xl--v-bottom
                 .card.card--accent.card--small DYNAMIC
             .column.column-2
                 .card.card--large 
@@ -207,7 +207,7 @@
                 .card
             .column.column-1
                 .card
-        .container.container--h-dynamic
+        .container.container-md--h-left.container-lg--h-center.container-xl--h-right
             div(class="column column-" + cols)
                 h2.container__title
                     | Dynamic horizontal alignment 
@@ -262,7 +262,7 @@
                 .card.card--small
             .column.column-3
                 .card.card--large
-        .container.container--v-dynamic
+        .container.container-md--v-top.container-lg--v-center.container-xl--v-bottom
             div(class="column column-" + cols)
                 h2.container__title
                     | Dynamic vertical alignment 
@@ -314,7 +314,7 @@
                 .card
             .column.column-1
                 .card
-            .column.column-2.column--order-dynamic
+            .column.column-2.column-sm-order-0.column-md-order-1.column-lg-order-2
                 .card.card--accent DYNAMIC
             .column.column-1
                 .card
@@ -351,7 +351,7 @@
                 .card 
             .column.column-1
                 .card 
-            .column.column-2.push-dynamic
+            .column.column-2.push-md-2.push-lg-3.push-xl-4
                 .card.card--accent DYNAMIC
             .column.column-1
                 .card
@@ -390,7 +390,7 @@
                 .card 
             .column.column-1
                 .card 
-            .column.column-2.grid-shift-dynamic
+            .column.column-2.shift-md-2.shift-lg-3.shift-xl-4
                 .card.card--accent DYNAMIC
             .column.column-1
                 .card
