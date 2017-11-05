@@ -53,7 +53,7 @@
     $order-name: get-map-value('order', $names, $default-names);
     $columns: get-grid-value('columns', $grid);
     
-    @for $i from 1 through $columns {
+    @for $i from 0 through $columns {
         .#{$prefix}#{$column-name}-#{$order-name}-#{$i} {
             @include grid-column-order(
                 $order: $i,
@@ -63,7 +63,7 @@
     }
     @if (index($components, 'column-order-media') !=null) {
         @include grid-media($grid: $grid) {
-            @for $i from 1 through $columns {
+            @for $i from 0 through $columns {
                 .#{$prefix}#{$column-name}-#{$_grid-media-bp-name}-#{$order-name}-#{$i} {
                     @include grid-column-order(
                         $order: $i,

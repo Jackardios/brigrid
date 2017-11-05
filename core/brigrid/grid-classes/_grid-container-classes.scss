@@ -34,7 +34,7 @@
         }
     }
     
-    @if (index($components, 'container-alignment-media') !=null) {
+    @if (index($components, 'container-alignment-media') != null) {
         @include grid-media($grid: $grid) {
             @each $h-align in $h-alignments {
                 .#{$prefix}#{$container-name}-#{$_grid-media-bp-name}-#{$h-align-name}-#{$h-align} {
