@@ -6,7 +6,7 @@
     section.demo-section
         .container
             div(class="column column-" + cols)
-                h3.container__title Grid columns
+                h2.container__title Grid columns
             - var i = 1;
             while (i < cols)
                 div(class="column column-12--xs column-" + i)
@@ -18,7 +18,7 @@
                 .card= cols
         .container
             div(class="column column-12--xs column-" + cols)
-                h3.container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
+                h2.container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
             - var i = 1; 
             while (i <= cols)
                 div(class="column column-12--xs column-6--sm column-4--md column-3--lg column-2--xl column-1--xx")
@@ -45,7 +45,7 @@
                 .card  
         .container
             div(class="column column-" + cols)
-                h2.container__title Central horizontal self alignment
+                h3.container__title Central horizontal self alignment
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -62,7 +62,7 @@
                 .card   
         .container
             div(class="column column-" + cols)
-                h2.container__title Right-side horizontal self alignment
+                h3.container__title Right-side horizontal self alignment
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -101,7 +101,7 @@
         h2.demo-section__title Vertical self alignment
         .container
             div(class="column column-" + cols)
-                h2.container__title Top vertical self alignment
+                h3.container__title Top vertical self alignment
             .column.column-12--xs.column-2
                 .card.card--large 
             .column.column-12--xs.column-2
@@ -114,7 +114,7 @@
                 .card.card--large 
         .container
             div(class="column column-" + cols)
-                h2.container__title Central vertical self alignment
+                h3.container__title Central vertical self alignment
             .column.column-12--xs.column-2
                 .card.card--large 
             .column.column-12--xs.column-2
@@ -127,7 +127,7 @@
                 .card.card--large 
         .container
             div(class="column column-" + cols)
-                h2.container__title Bottom vertical self alignment
+                h3.container__title Bottom vertical self alignment
             .column.column-12--xs.column-2
                 .card.card--large 
             .column.column-12--xs.column-2
@@ -175,7 +175,7 @@
                 .card
         .container.container--h-center
             div(class="column column-" + cols)
-                h2.container__title Central horizontal alignment
+                h3.container__title Central horizontal alignment
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -192,7 +192,7 @@
                 .card
         .container.container--h-right
             div(class="column column-" + cols)
-                h2.container__title Right-side horizontal alignment
+                h3.container__title Right-side horizontal alignment
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -209,7 +209,7 @@
                 .card
         .container.container--h-left--md.container--h-center--lg.container--h-right--xl
             div(class="column column-" + cols)
-                h2.container__title
+                h3.container__title
                     | Dynamic horizontal alignment 
                     span.accent (md:left, lg:center, xl:right)
                     div.additional (resize the window to see the changes)
@@ -231,7 +231,7 @@
         h2.demo-section__title Vertical container columns alignment
         .container.container--v-left
             div(class="column column-" + cols)
-                h2.container__title Top vertical alignment
+                h3.container__title Top vertical alignment
             .column.column-12--xs.column-3
                 .card.card--large 
             .column.column-12--xs.column-3
@@ -242,7 +242,7 @@
                 .card.card--large
         .container.container--v-center
             div(class="column column-" + cols)
-                h2.container__title Central vertical alignment
+                h3.container__title Central vertical alignment
             .column.column-12--xs.column-3
                 .card.card--large 
             .column.column-12--xs.column-3
@@ -253,7 +253,7 @@
                 .card.card--large
         .container.container--v-bottom
             div(class="column column-" + cols)
-                h2.container__title Bottom vertical alignment
+                h3.container__title Bottom vertical alignment
             .column.column-12--xs.column-3
                 .card.card--large 
             .column.column-12--xs.column-3
@@ -264,7 +264,7 @@
                 .card.card--large
         .container.container--v-top--md.container--v-center--lg.container--v-bottom--xl
             div(class="column column-" + cols)
-                h2.container__title
+                h3.container__title
                     | Dynamic vertical alignment 
                     span.accent (md:top, lg:center, xl:bottom)
                     div.additional (resize the window to see the changes)
@@ -324,7 +324,7 @@
         h2.demo-section__title Grid push
         .container
             div(class="column column-" + cols)
-                h2.container__title Column with push(4)
+                h3.container__title Column with push(4)
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -341,7 +341,7 @@
                 .card
         .container
             div(class="column column-" + cols)
-                h2.container__title
+                h3.container__title
                     | Dynamic push 
                     span.accent (md: 2, lg: 3, xl: 4)
                     div.additional (resize the window to see the changes)
@@ -363,7 +363,7 @@
         h2.demo-section__title Grid shift
         .container
             div(class="column column-" + cols)
-                h2.container__title Column with grid-shift(4)
+                h3.container__title Column with grid-shift(4)
             .column.column-12--xs.column-1
                 .card
             .column.column-12--xs.column-1
@@ -380,7 +380,7 @@
                 .card
         .container
             div(class="column column-" + cols)
-                h2.container__title
+                h3.container__title
                     | Dynamic grid-shift 
                     span.accent (md: 2, lg: 3, xl: 4)
                     div.additional (resize the window to see the changes)
