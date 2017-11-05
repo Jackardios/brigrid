@@ -25,6 +25,7 @@
     $default-names: get-map-value('names', $default-options);
     $names: get-map-value('names', $options, $default-options);
     $column-name: get-map-value('column', $names, $default-names);
+    $with-media: index($components, 'column-media') != null;
 
     @for $i from 1 through $columns {
         $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter);
@@ -35,8 +36,15 @@
             );
         }
     }
+    
+    .hidden {
+        display: none;
+    }
+    .visible {
+        display: block;
+    }
 
-    @if (index($components, 'column-media') != null) {
+    @if ($with-media) {
         @include grid-media($grid: $grid) {
             @for $i from 1 through $columns {
                 $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter)
@@ -48,6 +56,12 @@
                         $grid: $grid
                     );
                 }
+            }
+            .hidden#{$media-delimiter}#{$_grid-media-bp-name} {
+                display: none;
+            }
+            .visible#{$media-delimiter}#{$_grid-media-bp-name} {
+                display: block;
             }
         }
     }
