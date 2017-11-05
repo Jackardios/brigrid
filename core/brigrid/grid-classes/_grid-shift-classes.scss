@@ -1,21 +1,32 @@
 @mixin grid-shift-classes($grid: $default-grid, $options: $grid-classes-default-options) {
     $default-options: $grid-classes-default-options;
-    $default-names: get-map-value('names', $default-options);
     $prefix: get-map-value('prefix', $options, $default-options);
-    $names: get-map-value('names', $options, $default-options);
+    $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
+    $media-delimiter: get-map-value('media-delimiter', $options, $default-options);
     $components: get-map-value('components', $options);
-    $shift-name: get-map-value('shift', $names, $default-names);
     $columns: get-grid-value('columns', $grid);
 
+    $default-names: get-map-value('names', $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $shift-name: get-map-value('shift', $names, $default-names);
+
     @for $i from 1 through $columns {
-        .#{$prefix}#{$shift-name}-#{$i} {
-            @include grid-shift( $columns: $i, $grid: $grid);
+        $class-name: list-to-string(($prefix, $shift-name, $i), $names-delimiter);
+        .#{$class-name} {
+            @include grid-shift(
+                $columns: $i,
+                $grid: $grid
+            );
         }
     }
-    @if (index($components, 'shift-media') !=null) {
+
+    @if (index($components, 'shift-media') != null) {
         @include grid-media($grid: $grid) {
             @for $i from 1 through $columns {
-                .#{$prefix}#{$shift-name}-#{$_grid-media-bp-name}-#{$i} {
+                $class-name: list-to-string(($prefix, $shift-name, $i), $names-delimiter)
+                             + $media-delimiter
+                             + $_grid-media-bp-name;
+                .#{$class-name} {
                     @include grid-shift(
                         $columns: $i,
                         $grid: $grid

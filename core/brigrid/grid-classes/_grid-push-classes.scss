@@ -1,14 +1,18 @@
 @mixin grid-push-classes($grid: $default-grid, $options: $grid-classes-default-options) {
     $default-options: $grid-classes-default-options;
-    $default-names: get-map-value('names', $default-options);
     $prefix: get-map-value('prefix', $options, $default-options);
-    $names: get-map-value('names', $options, $default-options);
+    $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
+    $media-delimiter: get-map-value('media-delimiter', $options, $default-options);
     $components: get-map-value('components', $options);
-    $push-name: get-map-value('push', $names, $default-names);
     $columns: get-grid-value('columns', $grid);
 
+    $default-names: get-map-value('names', $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $push-name: get-map-value('push', $names, $default-names);
+
     @for $i from 1 through $columns {
-        .#{$prefix}#{$push-name}-#{$i} {
+        $class-name: list-to-string(($prefix, $push-name, $i), $names-delimiter);
+        .#{$class-name} {
             @include grid-push(
                 $columns: $i,
                 $grid: $grid
@@ -19,7 +23,10 @@
     @if (index($components, 'push-media') != null) {
         @include grid-media($grid: $grid) {
             @for $i from 1 through $columns {
-                .#{$prefix}#{$push-name}-#{$_grid-media-bp-name}-#{$i} {
+                $class-name: list-to-string(($prefix, $push-name, $i), $names-delimiter)
+                             + $media-delimiter
+                             + $_grid-media-bp-name;
+                .#{$class-name} {
                     @include grid-push(
                         $columns: $i,
                         $grid: $grid

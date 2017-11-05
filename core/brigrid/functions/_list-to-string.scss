@@ -1,0 +1,14 @@
+@function list-to-string($list, $delimiter: '') {
+    $string: '';
+    @each $item in $list {
+        @if ($item !='')
+            or ($item != null) {
+                @if ($string == '') {
+                    $string: $item;
+                } @else {
+                    $string: $string + $delimiter + $item;
+                }
+        }
+    }
+    @return $string;
+}
