@@ -17,9 +17,10 @@
             div(class="column column-12--xs column-" + cols)
                 .card= cols
         .container
-            div(class="column column-12--xs column-" + cols)
+            div(class="column column-" + cols)
                 h2.container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
-            - var i = 1; 
+        .container
+            - var i = 1;
             while (i <= cols)
                 div(class="column column-12--xs column-6--sm column-4--md column-3--lg column-2--xl column-1--xx")
                     .card

@@ -1,0 +1,28 @@
+@mixin grid-column-clearfix($nth-child: null, $grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
+    $reversed: get-grid-value(reversed, $grid);
+    $clear: left;
+    @if ($reversed) {
+        $clear: right;
+    }
+    @if ($driver == float) {
+         @if ($nth-child == null) {
+            clear: $clear;
+        } @else {
+            $nth-child: _convert-to-media-map($nth-child, $grid);
+            $last-nth-child-selector: null;
+            @include _for-media-map($nth-child, $grid) {
+                $nth-child-selector: $_for-media-map-value;
+                @if ($last-nth-child-selector != null) {
+                    &:nth-child(#{$last-nth-child-selector}) {
+                        clear: none;
+                    }
+                }
+                &:nth-child(#{$nth-child-selector}) {
+                    clear: $clear;
+                }
+                $last-nth-child-selector: $nth-child-selector;
+            }
+        }
+    }
+}
