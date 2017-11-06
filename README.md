@@ -19,12 +19,15 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
     3. [Components](#components)
         - [outer-container](#outer-container)
         - [grid-collapse](#grid-collapse)
+        - [grid-container-base](#grid-container-base)
         - [grid-container-align](#grid-container-align)
         - [grid-container](#grid-container)
+        - [grid-column-base](#grid-column-base)
         - [grid-column-width](#grid-column-width)
         - [grid-column-align](#grid-column-align)
         - [grid-column-gutter](#grid-column-gutter)
         - [grid-column-order](#grid-column-order)
+        - [grid-column-clearfix](#grid-column-clearfix)
         - [grid-column](#grid-column)
         - [grid-push](#grid-push)
         - [grid-shift](#grid-shift)
@@ -376,6 +379,59 @@ $example-grid: prepare-grid((
 
 ---
 
+#### `grid-container-base`
+Creates container base by `$grid` options
+##### Arguments
+| Name | Type | Default | Description |
+|------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings will be used to create a container base. |
+##### Example SCSS:
+```scss
+$example-grid: prepare-grid((
+    driver: flex,
+    align-x: left,
+    align-y: top,
+    gutter: (
+        sm: 20px,
+        md: 30px
+    ),
+    collapse: true,
+    reversed: false,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
+.element {
+    @include grid-container-base(
+        $grid: $example-grid
+    );
+}
+```
+##### Output CSS:
+```css
+.element {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin-left: -10px;
+    margin-right: -10px;
+    flex-direction: row;
+}
+@media only screen and (min-width: 768px) {
+    .element {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+```
+
+---
+
 #### `grid-container-align`
 Creates grid columns alignment in container (Supported only in flex driver)
 ##### Arguments
@@ -559,6 +615,59 @@ $example-grid: prepare-grid((
         align-items: flex-end;
         margin-left: -15px;
         margin-right: -15px;
+    }
+}
+```
+
+---
+
+#### `grid-column-base`
+Creates column base by `$grid` options
+##### Arguments
+| Name | Type | Default | Description |
+|------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings will be used to create a column base. |
+##### Example SCSS:
+```scss
+$example-grid: prepare-grid((
+    driver: flex,
+    align-x: left,
+    align-y: top,
+    gutter: (
+        sm: 20px,
+        md: 30px
+    ),
+    collapse: true,
+    reversed: false,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
+
+.element {
+    @include grid-column-base(
+        $grid: $example-grid
+    );
+}
+```
+##### Output CSS:
+```css
+.element {
+    box-sizing: border-box;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .element {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 ```
@@ -776,6 +885,164 @@ $example-grid: prepare-grid((
 @media only screen and (min-width: 1200px) {
     .element {
         order: 1;
+    }
+}
+```
+
+
+---
+
+#### `grid-column-clearfix`
+Clears float from grid-column elements. It can target a specific element, or every nth-child occurrence. (Supports only in float driver)
+##### Arguments
+| Name | Type | Default | Description |
+|------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$nth-child` | `String` or [`Media-map`](#media-maps) | `null` | Specifies the nth-child selector. By default current selector will be used |
+| `grid` | [`Grid-map`](#grid-maps) | `$default-grid` | The [`grid-map`](#grid-maps) settings (`driver`, `breakpoints`) will be used to create a column clearfix. |
+##### Example #1 SCSS:
+```scss
+$example-grid: prepare-grid((
+    driver: float,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
+
+.column-clearfix {
+    @include grid-column-clearfix(
+        $grid: $example-grid
+    );
+}
+```
+##### Output #1 CSS:
+```css
+.column-clearfix {
+    clear: left;
+}
+```
+
+##### Example #2 SCSS:
+```scss
+$example-grid: prepare-grid((
+    driver: float,
+    breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xx: 1600px
+    )
+));
+
+.test-column {
+    @include grid-column(
+        $columns: (
+            xs: 12,
+            sm: 6,
+            md: 4,
+            lg: 3,
+            xl: 2,
+            xx: 1
+        ),
+        $grid: $example-grid
+    );
+    @include grid-column-clearfix(
+        $nth-child: (
+            xs: '1n+1',
+            sm: '2n+1',
+            md: '3n+1',
+            lg: '4n+1',
+            xl: '6n+1',
+            xx: '12n+1'
+        ),
+        $grid: $example-grid
+    )
+}
+```
+
+
+##### Output  #2 CSS:
+```css
+.test-column {
+    float: left;
+    display: block;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.test-column:nth-child(1n+1) {
+    clear: left;
+}
+
+@media only screen and (min-width: 576px) {
+    .test-column {
+        display: block;
+        width: 50%;
+    }
+    .test-column:nth-child(1n+1) {
+        clear: none;
+    }
+    .test-column:nth-child(2n+1) {
+        clear: left;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .test-column {
+        display: block;
+        width: 33.33333%;
+    }
+    .test-column:nth-child(2n+1) {
+        clear: none;
+    }
+    .test-column:nth-child(3n+1) {
+        clear: left;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .test-column {
+        display: block;
+        width: 25%;
+    }
+    .test-column:nth-child(3n+1) {
+        clear: none;
+    }
+    .test-column:nth-child(4n+1) {
+        clear: left;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .test-column {
+        display: block;
+        width: 16.66667%;
+    }
+    .test-column:nth-child(4n+1) {
+        clear: none;
+    }
+    .test-column:nth-child(6n+1) {
+        clear: left;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .test-column {
+        display: block;
+        width: 8.33333%;
+    }
+    .test-column:nth-child(6n+1) {
+        clear: none;
+    }
+    .test-column:nth-child(12n+1) {
+        clear: left;
     }
 }
 ```
