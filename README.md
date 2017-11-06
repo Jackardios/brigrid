@@ -104,13 +104,13 @@ To generate CSS properties, all components in Brigrid use `grid-map`, which defi
 |------------------|------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `driver` | `String` (`flex` or `float`) | `flex` | The driver that will be used to build the grid. |
 | `columns` | `Number (unitless)` | `12` | The number of columns in the grid. |
-| `gutter` | `Number (with unit)` or [`Media-map`](#media-maps) | `20px` | The grid gutter width beetween columns. |
+| `gutter` | `Number (with unit)` or [`Media-map`](#media-maps) | `30px` | The grid gutter width beetween columns. |
 | `align-x` | `String` or [`Media-map`](#media-maps) | `left` | Specifies the horizontal alignment of the columns (Supported only in `flex` driver). Possible values: `null`, `flex-start`, `flex-end`, `left`, `right`, `center`, `baseline`, `stretch`, `auto` |
 | `align-y` | `String` or [`Media-map`](#media-maps) | `top` | Specifies the vertical alignment of the columns (Supported only in `flex` driver). Possible values: `null`, `flex-start`, `flex-end`, `top`, `bottom`, `center`, `baseline`, `stretch`, `auto` |
 | `reversed` | `Boolean` | `false` | Defines the reverse order of the elements in the grid. |
 | `collapse` | `Boolean` | `false` | Defines the grid collapse by consuming the gutters of its container, for use in nested layouts. |
-| `breakpoints` | `Map` | `(xs:0, sm:576px, md:768px, lg:992px, xl:1200px, xx:1600px)` | The breakpoints of the grid, where each key is the name of the breakpoint, and the value is its minimum width. |
-| `container-widths` | `Number (with unit)` or [`Media-map`](#media-maps) | `(sm:576px, md:768px, lg:960px, xl:1170px,  xx:1400px)` | Maximum width of the outer container for each breakpoint. |
+| `breakpoints` | `Map` | `(xs:0, sm:576px, md:768px, lg:992px, xl:1200px)` | The breakpoints of the grid, where each key is the name of the breakpoint, and the value is its minimum width. |
+| `container-widths` | `Number (with unit)` or [`Media-map`](#media-maps) | `(md:768px, lg:960px, xl:1170px)` | Maximum width of the outer container for each breakpoint. |
 
 You can override the `$default-grid` by assigning it a map, where each key-value pair replaces the default settings. For all non-overridden keys, the standard values will be used.
 ##### Example SCSS:
