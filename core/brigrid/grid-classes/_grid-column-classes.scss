@@ -10,7 +10,6 @@
     $class-name: list-to-string(($prefix, $column-name), $names-delimiter);
     .#{$class-name} {
         @include grid-column-base($grid: $grid);
-        @include grid-column-gutter($grid: $grid);
     }
 }
 

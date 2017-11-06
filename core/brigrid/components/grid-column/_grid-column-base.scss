@@ -1,17 +1,22 @@
 @charset "UTF-8";
 
+@import "grid-column-gutter";
+
 // common styles of grid-column
 %_grid-column-base {
     box-sizing: border-box;
     min-height: 1px;
 }
 
-@mixin grid-column-base--flex($grid: $default-grid) {
+@mixin grid-column-base--flex($gutter: null, $grid: $default-grid) {
+    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
     @extend %_grid-column-base;
 }
 
-@mixin grid-column-base--float($grid: $default-grid) {
+@mixin grid-column-base--float($gutter: null, $grid: $default-grid) {
+    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
     @extend %_grid-column-base;
+
     $reversed: get-grid-value(reversed, $grid);
     @if $reversed == true {
         float: right;
@@ -20,12 +25,12 @@
     }
 }
 
-@mixin grid-column-base($grid: $default-grid) {
+@mixin grid-column-base($gutter: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
-        @include grid-column-base--flex($grid: $grid);
+        @include grid-column-base--flex($gutter: $gutter, $grid: $grid);
     } @else if ($driver == float) {
-        @include grid-column-base--float($grid: $grid);
+        @include grid-column-base--float($gutter: $gutter, $grid: $grid);
     } @else {
         @error "Incorrect driver value: '#{$driver}'";
     }

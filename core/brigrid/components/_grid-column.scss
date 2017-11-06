@@ -2,7 +2,6 @@
 
 @import "grid-column/grid-column-base";
 @import "grid-column/grid-column-width";
-@import "grid-column/grid-column-gutter";
 @import "grid-column/grid-column-align";
 @import "grid-column/grid-column-order";
 @import "grid-column/grid-column-clearfix";
@@ -156,9 +155,8 @@
 
 
 @mixin grid-column--flex($columns, $align-x: null, $align-y: null, $gutter: null, $order: null, $grid: $default-grid) {
-    @include grid-column-base($grid: $grid);
+    @include grid-column-base($gutter: $gutter, $grid: $grid);
     @include grid-column-width($columns: $columns, $grid: $grid);
-    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
     @include grid-column-align($align-y: $align-y, $align-x: $align-x, $grid: $grid);
     @include grid-column-order($order: $order, $grid: $grid);
 }
@@ -270,9 +268,8 @@
 
 
 @mixin grid-column--float($columns, $gutter: null, $grid: $default-grid) {
-    @include grid-column-base($grid: $grid);
+    @include grid-column-base($gutter: $gutter, $grid: $grid);
     @include grid-column-width($columns: $columns, $grid: $grid);
-    @include grid-column-gutter($gutter: $gutter, $grid: $grid);
 }
 
 
