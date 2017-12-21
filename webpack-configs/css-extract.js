@@ -3,47 +3,55 @@ const autoprefixer = require('autoprefixer');
 const cssNano = require('cssnano');
 const cssMqpacker = require('css-mqpacker');
 
-module.exports = function(sassPaths) {
-    let postCSS = {
+module.exports = function( sassPaths, optimize = true ) {
+    const postCSS = {
         loader: 'postcss-loader',
         options: {
             plugins: [
                 autoprefixer(),
-                cssMqpacker(),
-                cssNano()
+                cssMqpacker({
+                    sort: true
+                }),
+                cssNano({
+                    reduceIdents: false,
+                    discardComments: {
+                        removeAll: true
+                    }
+                })
             ]
         }
     };
+    
+    let sassLoader = {
+        loader: 'sass-loader',
+        options: { includePaths: sassPaths }
+    };
+
+    let baseUse = [ 'css-loader' ];
+
+    if ( optimize ) {
+        baseUse.push(postCSS);
+    }
 
     return {
         module: {
             rules: [
                 {
-                    test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        publicPath: '../',
-                        fallback: 'style-loader',
-                        use: [
-                            'css-loader',
-                            postCSS,
-                            {
-                                loader: 'sass-loader',
-                                options: { includePaths: sassPaths }
-                            }
-                        ]
-                    })
-                },
-                {
                     test: /\.css$/,
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',
-                        use: [
-                            'css-loader',
-                            postCSS
-                        ]
+                        use: baseUse
                     })
                 },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        publicPath: '../',
+                        fallback: 'style-loader',
+                        use: baseUse.concat( sassLoader )
+                    })
+                }
             ]
         },
         plugins: [

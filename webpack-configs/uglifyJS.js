@@ -6,7 +6,10 @@ module.exports = function() {
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: true,
                 compress: {
-                    warnings: false,
+                    warnings: false
+                },
+                output: {
+                    comments: false
                 }
             })
         ]

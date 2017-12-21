@@ -1,5 +1,5 @@
 module.exports = function(paths = [], optimize = true) {
-    var config = {
+    let config = {
         module: {
             rules: []
         }
