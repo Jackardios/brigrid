@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer');
 const cssNano = require('cssnano');
 const cssMqpacker = require('css-mqpacker');
 
-module.exports = function( sassPaths, optimize = true ) {
+module.exports = function( optimize = true ) {
     const postCSS = {
         loader: 'postcss-loader',
         options: {
@@ -24,7 +24,6 @@ module.exports = function( sassPaths, optimize = true ) {
     
     let sassLoader = {
         loader: 'sass-loader',
-        options: { includePaths: sassPaths }
     };
 
     let baseUse = [ 'css-loader' ];
@@ -32,7 +31,7 @@ module.exports = function( sassPaths, optimize = true ) {
     if ( optimize ) {
         baseUse.push(postCSS);
     }
-
+    
     return {
         module: {
             rules: [
@@ -55,7 +54,7 @@ module.exports = function( sassPaths, optimize = true ) {
             ]
         },
         plugins: [
-            new ExtractTextPlugin('./css/[name].[hash].css')
+            new ExtractTextPlugin('./css/[name].css')
         ]
     };
 }

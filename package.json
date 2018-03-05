@@ -3,18 +3,20 @@
   "version": "1.3.0",
   "description": "A simple, powerful, fully customizable, fully responsive SASS grid system",
   "main": "index.js",
-  "style": "core/_brigrid.scss",
-  "scripts": {
-    "clean": "rm demo_build -r -f",
-    "clean--win": "rd /s /q demo_build",
-    "prod": "webpack -p --env=production",
-    "build": "webpack --env=production",
-    "dev": "webpack-dev-server --env=development"
-  },
+  "sass": "core/brigrid.scss",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jackardios/brigrid.git"
   },
+  "bugs": {
+    "url": "https://github.com/Jackardios/brigrid/issues"
+  },
+  "author": {
+    "name": "Jackardios (Salahutdinov Salavat)",
+    "url": "https://github.com/Jackardios"
+  },
+  "homepage": "https://github.com/Jackardios/brigrid",
+  "license": "MIT",
   "keywords": [
     "css",
     "sass",
@@ -31,41 +33,31 @@
     "media-queries",
     "brigrid"
   ],
-  "author": {
-    "name": "Jackardios (Salahutdinov Salavat)",
-    "url": "https://github.com/Jackardios"
+  "scripts": {
+    "clean": "rm dist -r -f",
+    "clean--win": "rd /s /q dist",
+    "build": "webpack --env=development",
+    "build:production": "npm run clean && webpack -p --env=production",
+    "start": "webpack-dev-server --env=development"
   },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Jackardios/brigrid/issues"
-  },
-  "homepage": "https://github.com/Jackardios/brigrid",
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
-    "babel-preset-env": "^1.6.0",
-    "css-loader": "^0.28.4",
-    "css-mqpacker": "^6.0.1",
+    "autoprefixer": "^7.2.6",
+    "css-loader": "^0.28.9",
+    "css-mqpacker": "^6.0.2",
     "cssnano": "^3.10.0",
-    "extract-text-webpack-plugin": "^3.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
-    "image-webpack-loader": "^3.3.1",
+    "image-webpack-loader": "^3.6.0",
     "import-glob": "^1.5.0",
-    "node-sass": "^4.5.3",
-    "normalize-scss": "^7.0.0",
-    "postcss-loader": "^2.0.6",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.1.0",
     "pug": "^2.0.0-rc.2",
     "pug-loader": "^2.3.0",
-    "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "svgo": "^0.7.2",
-    "svgo-loader": "^1.2.1",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.1",
-    "webpack-merge": "^4.1.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
   }
 }

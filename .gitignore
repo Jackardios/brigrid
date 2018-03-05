@@ -1,5 +1,6 @@
 node_modules/*
-contrib_build/*
+bower_components/*
+dist/*
+build/*
 .idea/*
 npm-debug.log
-yarn-debug.log
