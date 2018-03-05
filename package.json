@@ -34,8 +34,8 @@
     "brigrid"
   ],
   "scripts": {
-    "clean": "rm dist -r -f",
-    "clean--win": "rd /s /q dist",
+    "clean": "rm demo_build -r -f",
+    "clean--win": "rd /s /q demo_build",
     "build": "webpack --env=development",
     "build:production": "npm run clean && webpack -p --env=production",
     "start": "webpack-dev-server --env=development"
