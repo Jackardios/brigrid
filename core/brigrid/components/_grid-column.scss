@@ -35,7 +35,7 @@
 ///     1) a string (null | start | end | center | baseline | stretch | auto)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical self-alignment of the column
-///         (Example: (md: top, lg: center, xl: bottom))
+///         (Example: (md: start, lg: center, xl: end))
 ///
 /// @argument {number (with unit) | map} $gutter [null]
 ///     Grid gutter width around column.
@@ -85,9 +85,9 @@
 ///                 xl: end
 ///             ),
 ///             $align-y: (
-///                 md: top,
+///                 md: start,
 ///                 lg: center,
-///                 xl: bottom
+///                 xl: end
 ///             ),
 ///             $gutter: (
 ///                 sm: 10px,
@@ -212,9 +212,9 @@
 ///                 xl: end
 ///             ), // ! will be ignored because alignment is not supported in float driver!
 ///             $align-y: (
-///                 md: top,
+///                 md: start,
 ///                 lg: center,
-///                 xl: bottom
+///                 xl: end
 ///             ), // ! will be ignored because alignment is not supported in float driver!
 ///             $gutter: (
 ///                 sm: 10px,
@@ -302,7 +302,7 @@
 ///     1) a string (null | start | end | center | baseline | stretch | auto)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical self-alignment of the column
-///         (Example: (md: top, lg: center, xl: bottom))
+///         (Example: (md: start, lg: center, xl: end))
 ///
 /// @argument {number (with unit) | map} $gutter [null]
 ///     Grid gutter width around column.

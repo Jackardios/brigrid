@@ -13,19 +13,19 @@
         .container
             - i = 1;
             while (i < cols)
-                div(class="col col-12-xs col-" + i)
+                div(class=`col col-${i}-sm`)
                     .card= i
-                div(class="col col-12-xs col-" + (cols - i))
+                div(class=`col col-${cols - i}-sm`)
                     .card= (cols - i)
                 - i++;
-            div(class="col col-12-xs col-" + cols)
+            div(class=`col col-${cols}-sm`)
                 .card= cols
                 
         h3 Dynamic grid cols (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
         .container
             - i = 1;
             while (i <= cols)
-                div(class="col col-12-xs col-6-sm col-4-md col-3-lg col-2-xl col-1-xx")
+                div(class="col col-6-sm col-4-md col-3-lg col-2-xl col-1-xx")
                     .card
                 - i++;
             
@@ -34,53 +34,53 @@
 
         h3 Start horizontal self alignment
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.col--h-start
+            .col.col-2-sm.col--h-start
                 .card.card--accent LEFT
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card  
 
         h3 Central horizontal self alignment
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.col--h-center
+            .col.col-2-sm.col--h-center
                 .card.card--accent CENTER
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card   
 
         h3 End horizontal self alignment
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.col--h-end
+            .col.col-2-sm.col--h-end
                 .card.card--accent RIGHT
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
 
         h3
@@ -88,19 +88,19 @@
             span.accent (md:start, lg:center, xl:end)
             div.additional (resize the window to see the changes)
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.col--h-start-md.col--h-center-lg.col--h-end-xl
+            .col.col-2-sm.col--h-start-md.col--h-center-lg.col--h-end-xl
                 .card.card--accent DYNAMIC
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card  
 
     section.demo-section
@@ -109,41 +109,41 @@
         h3 Top vertical self alignment
         .container
             div(class="col col-" + cols)
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-4.col--v-start
+            .col.col-4-sm.col--v-start
                 .card.card--accent.card--small TOP
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
         
         h3 Central vertical self alignment
         .container
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-4.col--v-center
+            .col.col-4-sm.col--v-center
                 .card.card--accent.card--small CENTER
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
         
         h3 Bottom vertical self alignment
         .container
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-4.col--v-end
+            .col.col-4-sm.col--v-end
                 .card.card--accent.card--small BOTTOM
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
 
         
@@ -152,15 +152,15 @@
             span.accent (md:start, lg:center, xl:end)
             div.additional (resize the window to see the changes)
         .container
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-4.col--v-start-md.col--v-center-lg.col--v-end-xl
+            .col.col-4-sm.col--v-start-md.col--v-center-lg.col--v-end-xl
                 .card.card--accent.card--small DYNAMIC
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
-            .col.col-12-xs.col-2
+            .col.col-2-sm
                 .card.card--large 
     
     section.demo-section
@@ -168,53 +168,53 @@
 
         h3 Start horizontal alignment
         .container.container--h-start
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
 
         h3 Central horizontal alignment
         .container.container--h-center
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
         
         h3 End horizontal alignment
         .container.container--h-end
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
 
         h3
@@ -222,19 +222,19 @@
             span.accent (md:start, lg:center, xl:end)
             div.additional (resize the window to see the changes)
         .container.container--h-start-md.container--h-center-lg.container--h-end-xl
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
                 
     section.demo-section
@@ -242,35 +242,35 @@
 
         h3 Top vertical alignment
         .container.container--v-start
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large 
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--small
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large
                 
         h3 Central vertical alignment
         .container.container--v-center
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large 
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--small
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large
 
         h3 Bottom vertical alignment
         .container.container--v-end
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large 
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--small
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large
 
                 
@@ -279,58 +279,58 @@
             span.accent (md:start, lg:center, xl:end)
             div.additional (resize the window to see the changes)
         .container.container--v-start-md.container--v-center-lg.container--v-end-xl
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large 
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--small
-            .col.col-12-xs.col-3
+            .col.col-3-sm
                 .card.card--large
 
     section.demo-section
         h2 Grid col order
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-2.col--order--1
+            .col.col-2-sm.col--order--1
                 .card.card--accent -1
-            .col.col-12-xs.col-2.col--order-0
+            .col.col-2-sm.col--order-0
                 .card.card--accent 0
-            .col.col-12-xs.col-2.col--order-1
+            .col.col-2-sm.col--order-1
                 .card.card--accent 1
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-2.col--order--1-sm.col--order-0-md.col--order-1-lg
+            .col.col-2-sm.col--order--1-sm.col--order-0-md.col--order-1-lg
                 .card.card--accent DYNAMIC
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
 
     section.demo-section
@@ -338,19 +338,19 @@
         
         h3 col with push(4)
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.push-4
+            .col.col-2-sm.push-4
                 .card.card--accent PUSH(4)
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
     
     
@@ -360,19 +360,19 @@
             div.additional (resize the window to see the changes)
         
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.push-2-md.push-3-lg.push-4-xl
+            .col.col-2-sm.push-2-md.push-3-lg.push-4-xl
                 .card.card--accent DYNAMIC
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
     
     section.demo-section
@@ -380,19 +380,19 @@
 
         h3 col with grid-shift(4)
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.shift-4
+            .col.col-2-sm.shift-4
                 .card.card--accent SHIFT(4)
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
         
         h3
@@ -400,18 +400,18 @@
             span.accent (md: 2, lg: 3, xl: 4)
             div.additional (resize the window to see the changes)
         .container
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card 
-            .col.col-12-xs.col-2.shift-2-md.shift-3-lg.shift-4-xl
+            .col.col-2-sm.shift-2-md.shift-3-lg.shift-4-xl
                 .card.card--accent DYNAMIC
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card
-            .col.col-12-xs.col-1
+            .col.col-1-sm
                 .card            
         
