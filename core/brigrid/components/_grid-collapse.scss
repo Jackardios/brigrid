@@ -39,7 +39,7 @@
     @include _for-media-map($grid-gutters, $grid) {
         $bp-gutter: $_for-media-map-value;
         @if (unit($bp-gutter) == '%') {
-            @warn "grid-collapse in percentage gutter based grids may not work correctly";
+            @warn "[Brigrid]: grid-collapse in percentage gutter based grids may not work correctly";
         }
         margin-left: ($bp-gutter / -2);
         margin-right: ($bp-gutter / -2);

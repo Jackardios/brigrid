@@ -22,18 +22,13 @@
 
 @mixin grid-container-base--flex($grid: $default-grid) {
     @extend %_grid-container--flex;
+    @include grid-collapse($grid: $grid);
 
     flex-wrap: get-grid-value(wrap, $grid);
 
-    // collapse
-    $collapse: get-grid-value(collapse, $grid);
-    @if ($collapse) {
-        @include grid-collapse($grid: $grid);
-    }
-
     // Reverse
     $reversed: get-grid-value(reversed, $grid);
-    @if $reversed == true {
+    @if $reversed {
         flex-direction: row-reverse;
     } @else {
         flex-direction: row;

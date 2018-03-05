@@ -63,11 +63,11 @@
                 @if (type-of($bp-order) == number) {
                     order: $bp-order;
                 } @else {
-                    @error "Invalid type of order. Order must be a number!";
+                    @error "[Brigrid]: Invalid type of order. Order must be a number!";
                 }
             }
         }
     } @else {
-        @warn "Driver '#{$driver}' is not support alignment";
+        @warn "[Brigrid]: Driver '#{$driver}' is not support alignment";
     }
 }

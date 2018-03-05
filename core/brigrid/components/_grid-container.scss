@@ -164,6 +164,6 @@
     } @else if ($driver == float) {
         @include grid-container--float($grid: $grid);
     } @else {
-        @error "Incorrect driver value: '#{$driver}'";
+        @error "[Brigrid]: Incorrect driver value: '#{$driver}'";
     }
 }

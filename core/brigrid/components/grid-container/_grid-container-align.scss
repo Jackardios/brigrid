@@ -96,7 +96,7 @@
                         justify-content: $bp-align-x;
                     }
                 } @else {
-                    @error "Unknown $align-x value: '#{$bp-align-x}'";
+                    @error "[Brigrid]: Unknown $align-x value: '#{$bp-align-x}'";
                 }
             }
         }
@@ -117,11 +117,11 @@
                         align-items: $bp-align-y;
                     }
                 } @else {
-                    @error "Unknown $align-y value: '#{$bp-align-y}'";
+                    @error "[Brigrid]: Unknown $align-y value: '#{$bp-align-y}'";
                 }
             }
         }
     } @else {
-        @warn "Driver '#{$driver}' is not support alignment";
+        @warn "[Brigrid]: Driver '#{$driver}' is not support alignment";
     }
 }

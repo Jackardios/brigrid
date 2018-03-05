@@ -80,7 +80,7 @@
                 flex-grow: 1;
                 max-width: 100%;
             } @else {
-                @warn "Flex column width supported only in 'flex' driver!";
+                @warn "[Brigrid]: Flex column width supported only in 'flex' driver!";
             }
         } @else {
             display: block;

@@ -16,7 +16,7 @@
 /// @group components
 ///
 /// @argument {map} $grid [$default-grid]
-///     The grid map settings (breakpoints, container-widths) will be used to create the outer container.
+///     The grid map settings (breakpoints, outer-container-widths) will be used to create the outer container.
 ///     By default, the global '$default-grid' will be used.
 ///
 /// @example scss
@@ -29,7 +29,7 @@
 ///             xl: 1200px, // Extra large screen
 ///             xx: 1600px // Extra extra large screen
 ///         ),
-///         container-widths: (
+///         outer-container-widths: (
 ///             md: 768px, // Medium screen
 ///             lg: 960px, // Large screen
 ///             xl: 1170px, // Extra large screen
@@ -66,18 +66,38 @@
 @mixin outer-container($grid: $default-grid) {
     @extend %_outer-container;
 
-    $container-widths: get-grid-value(container-widths, $grid);
-    $container-widths-type: type-of($container-widths);
+    $outer-container-offsets: map-get($grid, outer-container-offset);
+    $min-half-gutter: nth(map-values(_min-breakpoint(get-grid-value(gutter, $grid))), 1) / 2;
+    @if ($outer-container-offsets == null) {
+        $outer-container-offsets: $min-half-gutter;
+        $grid: set-grid-value(outer-container-offset, $outer-container-offsets, $grid);
+    }
 
-    @if ($container-widths-type == number) {
-        max-width: $container-widths;
-    } @else if ($container-widths-type == map) {
-        $container-widths: _convert-to-media-map($container-widths, $grid);
-        @include _for-media-map($container-widths, $grid) {
+    $outer-container-offsets: _convert-to-media-map($outer-container-offsets, $grid);
+    $min-container-offset: nth(map-values(_min-breakpoint($outer-container-offsets)), 1);
+    @include _for-media-map($outer-container-offsets, $grid) {
+        $container-offset: $_for-media-map-value;
+        @if ( $container-offset < $min-container-offset ) {
+            @error "[Brigrid]: container-offset should be >= #{$min-half-gutter}(half of min gutter) to function correctly!";
+        } @else {
+            padding: {
+                left: $container-offset;
+                right: $container-offset;
+            };
+        }
+    }
+
+    $outer-container-widths: get-grid-value(outer-container-widths, $grid);
+    $outer-container-widths-type: type-of($outer-container-widths);
+    @if ($outer-container-widths-type == number) {
+        max-width: $outer-container-widths;
+    } @else if ($outer-container-widths-type == map) {
+        $outer-container-widths: _convert-to-media-map($outer-container-widths, $grid);
+        @include _for-media-map($outer-container-widths, $grid) {
             $container-width: $_for-media-map-value;
             max-width: $container-width;
         }
     } @else {
-        @error "Wrong type of `$container-widths`. It must be a map or number";
+        @error "Wrong type of `$outer-container-widths`. It must be a map or number";
     }
 }

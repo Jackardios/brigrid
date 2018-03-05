@@ -34,6 +34,6 @@
     } @else if ($driver == float) {
         @include grid-column-base--float($gutter: $gutter, $grid: $grid);
     } @else {
-        @error "Incorrect driver value: '#{$driver}'";
+        @error "[Brigrid]: Incorrect driver value: '#{$driver}'";
     }
 }
