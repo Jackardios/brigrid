@@ -47,13 +47,13 @@
 ///     .element {
 ///         display: block;
 ///         max-width: 100%;
-///         width: 100%;
+///         flex: 0 0 100%;
 ///     }
 ///     @media only screen and (min-width: 992px) {
 ///         .element {
 ///             display: block;
 ///             max-width: 50%;
-///             width: 50%;
+///             flex: 0 0 50%;
 ///         }
 ///     }
 ///     @media only screen and (min-width: 1200px) {
@@ -70,12 +70,13 @@
             display: none;
         } @else {
             display: block;
+            $width: _column-width($bp-columns, $grid);
 
             $driver: get-grid-value(driver, $grid);
             @if ($driver == flex) {
-                max-width: _column-width($bp-columns, $grid);
+                flex: 0 0 $width;
             }
-            width: _column-width($bp-columns, $grid);
+            max-width: $width;
         }
     }
 }
