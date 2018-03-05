@@ -4,6 +4,9 @@ $_grid-classes-default-options: (
         'outer-container': 'wrapper',
         'container': 'container',
         'column': 'col',
+        'column-flex': 'col-flex',
+        'column-auto': 'col-auto',
+        'hidden': 'hidden',
         'push': 'push',
         'shift': 'shift',
         'horizontal-alignment': 'h',
@@ -22,7 +25,7 @@ $_grid-classes-default-options: (
             baseline: 'baseline',
             stretch: 'stretch',
         ),
-        'order': order
+        'order': order,
     ),
     'names-delimiter': '-',
     'modifier-delimiter': '--',
@@ -37,11 +40,15 @@ $_grid-classes-default-options: (
         'column-alignment-media',
         'column-order',
         'column-order-media',
+        'column-flex',
+        'column-auto',
+        'hidden',
+        'hidden-media',
         'push',
         'push-media',
         'shift',
         'shift-media',
-        'outer-container'
+        'outer-container',
     )
 );
 

@@ -12,14 +12,14 @@
 ///
 /// @group components
 ///
-/// @argument {number (unitless) | string ('hide', 'hidden', 'auto') | map} $columns
+/// @argument {number (unitless) | string ('hide', 'hidden', 'auto', 'flex') | map} $columns
 ///     The number of columns that the item should occupy.
 ///     It can be indicated by:
 ///     1) a number of columns
-///     2) a string ('hide' or 'hidden' - that hides an element, 'auto' - based on the natural width of its content)
+///     2) a string ('hide' or 'hidden' - that hides an element, 'auto', 'flex')
 ///     3) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the number of columns that the item should occupy
-///         (Example: (sm: 12, md: auto, lg: 6, xl: hidden))
+///         (Example: (sm: flex, md: auto, lg: 6, xl: hidden))
 ///
 /// @argument {string | map} $align-x [null]
 ///     Specifies the horizontal alignment of the column
@@ -168,14 +168,14 @@
 ///
 /// @group components
 ///
-/// @argument {number (unitless) | string ('hide', 'hidden', 'auto') | map} $columns
+/// @argument {number (unitless) | string ('hide', 'hidden', 'auto', 'flex') | map} $columns
 ///     The number of columns that the item should occupy.
 ///     It can be indicated by:
 ///     1) a number of columns
-///     2) a string ('hide' or 'hidden' - that hides an element, 'auto' - based on the natural width of its content)
+///     2) a string ('hide' or 'hidden' - that hides an element, 'auto', 'flex')
 ///     3) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the number of columns that the item should occupy
-///         (Example: (sm: 12, md: auto, lg: 6, xl: hidden))
+///         (Example: (sm: flex, md: auto, lg: 6, xl: hidden))
 ///
 /// @argument {number (with unit) | map} $gutter [null]
 ///     Grid gutter width around column.
@@ -279,14 +279,14 @@
 ///
 /// @group components
 ///
-/// @argument {number (unitless) | string ('hide', 'hidden', 'auto') | map} $columns
+/// @argument {number (unitless) | string ('hide', 'hidden', 'auto', 'flex') | map} $columns
 ///     The number of columns that the item should occupy.
 ///     It can be indicated by:
 ///     1) a number of columns
-///     2) a string ('hide' or 'hidden' - that hides an element, 'auto' - based on the natural width of its content)
+///     2) a string ('hide' or 'hidden' - that hides an element, 'auto', 'flex')
 ///     3) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the number of columns that the item should occupy
-///         (Example: (sm: 12, md: auto, lg: 6, xl: hidden))
+///         (Example: (sm: flex, md: auto, lg: 6, xl: hidden))
 ///
 /// @argument {string | map} $align-x [null]
 ///     Specifies the horizontal alignment of the column

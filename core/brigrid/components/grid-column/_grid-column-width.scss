@@ -6,14 +6,14 @@
 ///
 /// @group components
 ///
-/// @argument {number (unitless) | string ('hide', 'hidden', 'auto') | map} $columns
+/// @argument {number (unitless) | string ('hide', 'hidden', 'auto', 'flex') | map} $columns
 ///     The number of columns that the item should occupy.
 ///     It can be indicated by:
 ///     1) a number of columns
-///     2) a string ('hide' or 'hidden' - that hides an element, 'auto' - based on the natural width of its content)
+///     2) a string ('hide' or 'hidden' - that hides an element, 'auto', 'flex')
 ///     3) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the number of columns that the item should occupy
-///         (Example: (sm: 12, md: auto, lg: 6, xl: hidden))
+///         (Example: (sm: flex, md: auto, lg: 6, xl: hidden))
 ///
 /// @argument {map} $grid [$default-grid]
 ///     The grid map settings (breakpoints, columns, driver) will be used to generate a column width.
@@ -63,7 +63,9 @@
 ///     }
 
 @mixin grid-column-width($columns, $grid: $default-grid) {
+    $driver: get-grid-value(driver, $grid);
     $columns: _convert-to-media-map($columns, $grid);
+
     @include _for-media-map($columns, $grid) {
         $bp-columns: $_for-media-map-value;
         @if (($bp-columns == hidden) or ($bp-columns == hide) or ($bp-columns == 0)) {
@@ -72,11 +74,17 @@
             flex: 0 0 auto;
             width: auto;
             max-width: none;
+        } @else if ($bp-columns == flex) {
+            @if ($driver == flex) {
+                flex-basis: 0;
+                flex-grow: 1;
+                max-width: 100%;
+            } @else {
+                @warn "Flex column width supported only in 'flex' driver!";
+            }
         } @else {
             display: block;
             $width: _column-width($bp-columns, $grid);
-
-            $driver: get-grid-value(driver, $grid);
             @if ($driver == flex) {
                 flex: 0 0 $width;
             }
