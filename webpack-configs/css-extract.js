@@ -4,33 +4,32 @@ const cssNano = require('cssnano');
 const cssMqpacker = require('css-mqpacker');
 
 module.exports = function( optimize = true ) {
-    const postCSS = {
-        loader: 'postcss-loader',
-        options: {
-            plugins: [
-                autoprefixer(),
-                cssMqpacker({
-                    sort: true
-                }),
-                cssNano({
-                    reduceIdents: false,
-                    discardComments: {
-                        removeAll: true
-                    }
-                })
-            ]
+    let baseUse = [
+        'css-loader',
+        {
+            loader: 'postcss-loader',
+            options: {
+                plugins: []
+            }
         }
-    };
-    
-    let sassLoader = {
-        loader: 'sass-loader',
-    };
-
-    let baseUse = [ 'css-loader' ];
+    ];
 
     if ( optimize ) {
-        baseUse.push(postCSS);
+        baseUse[1].options.plugins.concat([
+            autoprefixer(),
+            cssMqpacker({
+                sort: true
+            }),
+            cssNano({
+                reduceIdents: false,
+                discardComments: {
+                    removeAll: true
+                }
+            })
+        ]);
     }
+
+    let sassLoader = { loader: 'sass-loader' };
     
     return {
         module: {
