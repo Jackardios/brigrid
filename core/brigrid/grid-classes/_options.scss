@@ -8,21 +8,25 @@ $_grid-classes-default-options: (
         'shift': 'shift',
         'horizontal-alignment': 'h',
         'horizontal-alignments': (
-            'left': left,
-            'center': center,
-            'right': right,
+            start: 'start',
+            center: 'center',
+            end: 'end',
+            space-around: 'around', // ONLY FOR FLEX DRIVER
+            space-between: 'between', // ONLY FOR FLEX DRIVER
         ),
         'vertical-alignment': 'v',
-        'vertical-alignments': (
-            'top': top,
-            'center': center,
-            'bottom': bottom
+        'vertical-alignments': ( // ONLY FOR FLEX DRIVER
+            start: 'start',
+            center: 'center',
+            end: 'end',
+            baseline: 'baseline',
+            stretch: 'stretch',
         ),
         'order': order
     ),
     'names-delimiter': '-',
     'modifier-delimiter': '--',
-    'breakpoint-delimiter': '--',
+    'breakpoint-delimiter': '-',
     'components': (
         'container',
         'container-alignment',

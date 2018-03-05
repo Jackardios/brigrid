@@ -2,8 +2,8 @@ $_default-grid-settings: ( // don't change this map!
     driver: flex,
     columns: 12,
     gutter: 30px,
-    align-x: left,
-    align-y: top,
+    align-x: start,
+    align-y: start,
     reversed: false,
     collapse: false,
     breakpoints: (

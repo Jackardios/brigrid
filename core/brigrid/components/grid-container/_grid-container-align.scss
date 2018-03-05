@@ -9,16 +9,16 @@
 /// @argument {string | map} $align-x [null]
 ///     Specifies the horizontal alignment of the container columns.
 ///     It can be indicated by:
-///     1) a string (null | flex-start | flex-end | left | right | center | baseline | stretch | auto)
+///     1) a string (null | start | end | center | space-between | space-around)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the horizontal alignment of the container columns
-///         (Example: (md: left, lg: center, xl: right))
+///         (Example: (md: start, lg: center, xl: end))
 ///     By default, the value of align-x in the grid map will be used
 ///
 /// @argument {string | map} $align-y [null]
 ///     Specifies the vertical alignment of the container columns
 ///     It can be indicated by:
-///     1) a string (null | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     1) a string (null | start | end | center | baseline | stretch)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical alignment of the container columns
 ///         (Example: (md: top, lg: center, xl: bottom))
@@ -31,8 +31,8 @@
 /// @example scss
 ///     $example-grid: prepare-grid((
 ///         driver: flex,
-///         align-x: left, // will be ignored, because it uses align-x declared in grid-column-align
-///         align-y: top, // will be ignored, because it uses align-y declared in grid-column-align
+///         align-x: start, // will be ignored, because it uses align-x declared in grid-column-align
+///         align-y: start, // will be ignored, because it uses align-y declared in grid-column-align
 ///         breakpoints: (
 ///             xs: 0,
 ///             sm: 576px,
@@ -42,17 +42,18 @@
 ///             xx: 1600px
 ///         )
 ///     ));
+
 ///     .element {
 ///         @include grid-container-align(
 ///             $align-x: (
-///                 md: left,
+///                 md: start,
 ///                 lg: center,
-///                 xl: right
+///                 xl: end
 ///             ),
 ///             $align-y: (
-///                 md: top,
+///                 md: start,
 ///                 lg: center,
-///                 xl: bottom
+///                 xl: end
 ///             ),
 ///             $grid: $example-grid
 ///         );
@@ -79,29 +80,22 @@
 @mixin grid-container-align($align-x: null, $align-y: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     @if ($driver == flex) {
-        $reversed: get-grid-value(reversed, $grid);
-        @if ($align-x == null) {
-            $align-x: get-grid-value(align-x, $grid);
-        }
-        @if ($align-y == null) {
-            $align-y: get-grid-value(align-y, $grid);
-        }
-
         // X-axis alignment
         @if ($align-x != null) {
             $align-x: _convert-to-media-map($align-x, $grid);
             $grid: set-grid-value(align-x, $align-x $grid);
+            $allowed-align-x-values: (start, end, center, space-between, space-around);
+
             @include _for-media-map($align-x, $grid) {
                 $bp-align-x: $_for-media-map-value;
-                $allowed-align-x-values: (flex-start, flex-end, center, space-between, space-around);
-                @if ($bp-align-x == left and $reversed == false) or
-                    ($bp-align-x == right and $reversed == true) {
-                    justify-content: flex-start;
-                } @else if ($bp-align-x == left and $reversed == true) or
-                           ($bp-align-x == right and $reversed == false) {
-                    justify-content: flex-end;
-                } @else if (index($allowed-align-x-values, $bp-align-x) != null) {
-                    justify-content: $bp-align-x;
+                @if (index($allowed-align-x-values, $bp-align-x) != null) {
+                    @if ($bp-align-x == start) {
+                        justify-content: flex-start;
+                    } @else if ($bp-align-x == end) {
+                        justify-content: flex-end;
+                    } @else {
+                        justify-content: $bp-align-x;
+                    }
                 } @else {
                     @error "Unknown $align-x value: '#{$bp-align-x}'";
                 }
@@ -112,15 +106,18 @@
         @if ($align-y != null) {
             $align-y: _convert-to-media-map($align-y, $grid);
             $grid: set-grid-value(align-y, $align-y $grid);
+            $allowed-align-y-values: (start, end, center, baseline, stretch);
+
             @include _for-media-map($align-y, $grid) {
                 $bp-align-y: $_for-media-map-value;
-                $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
-                @if ($bp-align-y == top) {
-                    align-items: flex-start;
-                } @else if ($bp-align-y == bottom) {
-                    align-items: flex-end;
-                } @else if (index($allowed-align-y-values, $bp-align-y) != null) {
-                    align-items: $bp-align-y;
+                @if (index($allowed-align-y-values, $bp-align-y) != null) {
+                    @if ($bp-align-y == start) {
+                        align-items: flex-start;
+                    } @else if ($bp-align-y == end) {
+                        align-items: flex-end;
+                    } @else {
+                        align-items: $bp-align-y;
+                    }
                 } @else {
                     @error "Unknown $align-y value: '#{$bp-align-y}'";
                 }

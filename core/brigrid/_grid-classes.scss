@@ -9,10 +9,7 @@
 @mixin grid-classes($grid: $default-grid, $options: $grid-classes-default-options) {
     $options: map-merge($grid-classes-default-options, $options);
     $components: map-get($options, 'components');
-
-    @debug $options;
-    @debug $components;
-
+    
     @if (index($components, 'outer-container') !=null) {
         @include outer-container-classes(
             $grid: $grid,

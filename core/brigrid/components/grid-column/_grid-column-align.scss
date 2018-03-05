@@ -9,18 +9,18 @@
 /// @argument {string | map} $align-x [null]
 ///     Specifies the horizontal alignment of the column
 ///     It can be indicated by:
-///     1) a string (null | left | center | right)
+///     1) a string (null | start | center | end)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the horizontal self-alignment of the column
-///         (Example: (md: left, lg: center, xl: right))
+///         (Example: (md: start, lg: center, xl: end))
 ///
 /// @argument {string | map} $align-y [null]
 ///     Specifies the vertical alignment of the column
 ///     It can be indicated by:
-///     1) a string (null | flex-start | flex-end | top | bottom | center | baseline | stretch | auto)
+///     1) a string (null | start | end | center | baseline | stretch | auto)
 ///     2) or a media map where each of its keys points to a breakpoint,
 ///     and the value specifies the vertical self-alignment of the column
-///         (Example: (md: top, lg: center, xl: bottom))
+///         (Example: (md: start, lg: center, xl: end))
 ///
 /// @argument {map} $grid [$default-grid]
 ///     The grid map settings (driver, breakpoints) will be used to create a column alignment.
@@ -41,14 +41,14 @@
 ///     .element {
 ///         @include grid-column-align(
 ///             $align-x: (
-///                 md: left,
+///                 md: start,
 ///                 lg: center,
-///                 xl: right
+///                 xl: end
 ///             ),
 ///             $align-y: (
-///                 md: top,
+///                 md: start,
 ///                 lg: center,
-///                 xl: bottom
+///                 xl: end
 ///             ),
 ///             $grid: $example-grid
 ///         );
@@ -77,16 +77,18 @@
 
 @mixin grid-column-align($align-x: null, $align-y: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
+    $reversed: get-grid-value(reversed, $grid);
+
     @if ($driver == flex) {
         // X-axis alignment
         @if ($align-x != null) {
             $align-x: _convert-to-media-map($align-x, $grid);
             @include _for-media-map($align-x, $grid) {
                 $bp-align-x: $_for-media-map-value;
-                @if ($bp-align-x == left) {
+                @if ($bp-align-x == start) or (($bp-align-x == end) and $reversed) {
                     margin-right: auto;
                     margin-left: 0;
-                } @else if ($bp-align-x == right) {
+                } @else if ($bp-align-x == end) or (($bp-align-x == start) and $reversed) {
                     margin-left: auto;
                     margin-right: 0;
                 } @else if ($bp-align-x == center) {
@@ -101,15 +103,17 @@
         // Y-axis alignment
         @if ($align-y != null) {
             $align-y: _convert-to-media-map($align-y, $grid);
+            $allowed-align-y-values: (start, end, center, baseline, stretch, auto);
             @include _for-media-map($align-y, $grid) {
                 $bp-align-y: $_for-media-map-value;
-                $allowed-align-y-values: (flex-start, flex-end, center, baseline, stretch, auto);
-                @if ($bp-align-y == top) {
-                    align-self: flex-start;
-                } @else if ($bp-align-y == bottom) {
-                    align-self: flex-end;
-                } @else if (index($allowed-align-y-values, $bp-align-y) != null) {
-                    align-self: $bp-align-y;
+                @if (index($allowed-align-y-values, $bp-align-y) != null) {
+                    @if ($bp-align-y == start) {
+                        align-self: flex-start;
+                    } @else if ($bp-align-y == end) {
+                        align-self: flex-end;
+                    } @else {
+                        align-self: $bp-align-y;
+                    }
                 } @else {
                     @error "Unknown $align-y value: '#{$bp-align-y}'";
                 }

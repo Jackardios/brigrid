@@ -131,6 +131,9 @@
         get-map-value('horizontal-alignments', $names, $default-names)
     );
 
+    // remove unnecessary alignments
+    $h-alignments: map-remove($h-alignments, space-around, space-between);
+
     @each $h-align, $h-align-name in $h-alignments {
         $modifier-name: list-to-string(($h-align-prefix, $h-align-name), $names-delimiter);
         $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter);
