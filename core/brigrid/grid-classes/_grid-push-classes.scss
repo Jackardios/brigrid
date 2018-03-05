@@ -2,7 +2,7 @@
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
-    $media-delimiter: get-map-value('media-delimiter', $options, $default-options);
+    $breakpoint-delimiter: get-map-value('breakpoint-delimiter', $options, $default-options);
     $components: get-map-value('components', $options);
     $columns: get-grid-value('columns', $grid);
 
@@ -24,7 +24,7 @@
         @include grid-media($grid: $grid) {
             @for $i from 1 through $columns {
                 $class-name: list-to-string(($prefix, $push-name, $i), $names-delimiter)
-                             + $media-delimiter
+                             + $breakpoint-delimiter
                              + $_grid-media-bp-name;
                 .#{$class-name} {
                     @include grid-push(

@@ -1,18 +1,18 @@
 $_grid-classes-default-options: (
     'prefix': 'grid',
     'names': (
-        'outer-container': 'outer-container',
+        'outer-container': 'wrapper',
         'container': 'container',
-        'column': 'column',
+        'column': 'col',
         'push': 'push',
         'shift': 'shift',
-        'horizontal-alignment': 'h-align',
+        'horizontal-alignment': 'h',
         'horizontal-alignments': (
             'left': left,
             'center': center,
-            'right': right
+            'right': right,
         ),
-        'vertical-alignment': 'v-align',
+        'vertical-alignment': 'v',
         'vertical-alignments': (
             'top': top,
             'center': center,
@@ -22,7 +22,7 @@ $_grid-classes-default-options: (
     ),
     'names-delimiter': '-',
     'modifier-delimiter': '--',
-    'media-delimiter': '--',
+    'breakpoint-delimiter': '--',
     'components': (
         'container',
         'container-alignment',

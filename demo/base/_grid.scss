@@ -27,9 +27,12 @@ $default-grid: $my-grid;
     $options: (
         'prefix': '',
         'names': (
-            'outer-container': 'wrapper',
-            'vertical-alignment': 'v',
-            'horizontal-alignment': 'h',
+            'column': 'column',
+            'horizontal-alignments': (
+                left: 'left',
+                center: 'middle',
+                right: 'right',
+            ),
         ),
     )
 );
