@@ -98,6 +98,6 @@
             max-width: $container-width;
         }
     } @else {
-        @error "Wrong type of `$outer-container-widths`. It must be a map or number";
+        @error "[Brigrid]: Wrong type of `$outer-container-widths`. It must be a map or number";
     }
 }
