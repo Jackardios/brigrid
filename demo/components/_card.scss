@@ -1,15 +1,19 @@
 .card {
-    margin-top: 10px;
-    margin-bottom: 10px;
     background-color: $color-primary;
     border-radius: 3px;
     text-align: center;
     padding: 1rem;
-    min-height: 50px;
+    min-height: 52px;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
     font-weight: bold;
+    position: relative;
+
+    &--fill {
+        position: relative;
+        height: 100%;
+    }
     
     &--small {
         padding-top: .25rem !important;
@@ -24,6 +28,6 @@
     }
 
     &--accent {
-        background-color: $color-accent;
+        background: linear-gradient(-70deg, $color-accent, $color-accent--light);
     }
 }

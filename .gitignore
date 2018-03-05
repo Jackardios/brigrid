@@ -2,5 +2,6 @@ node_modules/*
 bower_components/*
 dist/*
 build/*
+demo_build/*
 .idea/*
 npm-debug.log

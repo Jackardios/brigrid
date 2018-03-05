@@ -21,13 +21,35 @@
             div(class=`col col-${cols}-sm`)
                 .card= cols
                 
-        h3 Dynamic grid cols (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
+        h3 Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
         .container
             - i = 1;
             while (i <= cols)
                 div(class="col col-6-sm col-4-md col-3-lg col-2-xl col-1-xx")
                     .card
                 - i++;
+
+        h3 Flex grid column
+        .container.container--h-center
+            .col.col-2
+                .card
+            .col.col-flex
+                .card.card--accent Flex
+            .col.col-2
+                .card
+
+        h3 Auto grid column
+        .container.container--h-center
+            .col.col-2
+                .card
+            .col.col-2
+                .card
+            .col.col-auto
+                .card.card--accent Auto
+            .col.col-2
+                .card
+            .col.col-2
+                .card
             
     section.demo-section
         h2 Horizontal self alignment
@@ -41,7 +63,7 @@
             .col.col-1-sm
                 .card 
             .col.col-2-sm.col--h-start
-                .card.card--accent LEFT
+                .card.card--accent START
             .col.col-1-sm
                 .card
             .col.col-1-sm
@@ -75,7 +97,7 @@
             .col.col-1-sm
                 .card 
             .col.col-2-sm.col--h-end
-                .card.card--accent RIGHT
+                .card.card--accent END
             .col.col-1-sm
                 .card
             .col.col-1-sm
@@ -105,8 +127,6 @@
 
     section.demo-section
         h2 Vertical self alignment
-
-        h3 Top vertical self alignment
         .container
             div(class="col col-" + cols)
             .col.col-2-sm
@@ -114,13 +134,11 @@
             .col.col-2-sm
                 .card.card--large 
             .col.col-4-sm.col--v-start
-                .card.card--accent.card--small TOP
+                .card.card--accent.card--small START
             .col.col-2-sm
                 .card.card--large 
             .col.col-2-sm
                 .card.card--large 
-        
-        h3 Central vertical self alignment
         .container
             .col.col-2-sm
                 .card.card--large 
@@ -131,22 +149,53 @@
             .col.col-2-sm
                 .card.card--large 
             .col.col-2-sm
-                .card.card--large 
-        
-        h3 Bottom vertical self alignment
+                .card.card--large
         .container
             .col.col-2-sm
                 .card.card--large 
             .col.col-2-sm
                 .card.card--large 
             .col.col-4-sm.col--v-end
-                .card.card--accent.card--small BOTTOM
+                .card.card--accent.card--small END
             .col.col-2-sm
                 .card.card--large 
             .col.col-2-sm
                 .card.card--large 
+        .container
+            .col.col-2-sm
+                .card.card--large 
+            .col.col-2-sm
+                .card.card--large 
+            .col.col-4-sm.col--v-stretch
+                .card.card--fill.card--accent STRETCH
+            .col.col-2-sm
+                .card.card--large 
+            .col.col-2-sm
+                .card.card--large 
+        .container
+            .col.col-2-sm
+                .card.font-size-small.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-2-sm
+                .card.font-size-small.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur
+            .col.col-4-sm.col--v-baseline
+                .card.card--accent.card--small BASELINE
+            .col.col-2-sm
+                .card.font-size-small.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-2-sm
+                .card.font-size-small.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
 
-        
         h3
             | Dynamic vertical self alignment 
             span.accent (md:start, lg:center, xl:end)
@@ -216,6 +265,40 @@
                 .card
             .col.col-1-sm
                 .card
+            
+        h3 Space-between horizontal alignment
+        .container.container--h-between
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card 
+            .col.col-1-sm
+                .card 
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
+        
+        h3 Space-around horizontal alignment
+        .container.container--h-around
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card 
+            .col.col-1-sm
+                .card 
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
+            .col.col-1-sm
+                .card
 
         h3
             | Dynamic horizontal alignment 
@@ -240,39 +323,121 @@
     section.demo-section
         h2 Vertical container cols alignment
 
-        h3 Top vertical alignment
+        h3 Start vertical alignment
         .container.container--v-start
             .col.col-3-sm
-                .card.card--large 
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
             .col.col-3-sm
-                .card
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur
             .col.col-3-sm
-                .card.card--small
+                .card.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
             .col.col-3-sm
-                .card.card--large
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
                 
         h3 Central vertical alignment
         .container.container--v-center
             .col.col-3-sm
-                .card.card--large 
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit
             .col.col-3-sm
-                .card
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in
             .col.col-3-sm
-                .card.card--small
+                .card.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
             .col.col-3-sm
-                .card.card--large
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
 
-        h3 Bottom vertical alignment
+        h3 End vertical alignment
         .container.container--v-end
             .col.col-3-sm
-                .card.card--large 
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit
             .col.col-3-sm
-                .card
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in
             .col.col-3-sm
-                .card.card--small
+                .card.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
             .col.col-3-sm
-                .card.card--large
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
 
+        h3 Stretch vertical alignment
+        .container.container--v-stretch
+            .col.col-3-sm
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit
+            .col.col-3-sm
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in
+            .col.col-3-sm
+                .card.card--fill.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-3-sm
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+
+        h3 Baseline vertical alignment
+        .container.container--v-baseline
+            .col.col-3-sm
+                .card.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-3-sm
+                .card.font-size-small.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-3-sm
+                .card.font-size-large.
+                    Duis aute irure dolor in 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+            .col.col-3-sm
+                .card.font-size-extra-small.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
                 
         h3
             | Dynamic vertical alignment 
@@ -280,13 +445,25 @@
             div.additional (resize the window to see the changes)
         .container.container--v-start-md.container--v-center-lg.container--v-end-xl
             .col.col-3-sm
-                .card.card--large 
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Duis aute irure dolor in reprehenderit
             .col.col-3-sm
-                .card
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in
             .col.col-3-sm
-                .card.card--small
+                .card.card--fill.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
             .col.col-3-sm
-                .card.card--large
+                .card.card--fill.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
 
     section.demo-section
         h2 Grid col order
