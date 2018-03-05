@@ -56,7 +56,7 @@
 
 
 @mixin grid-shift($columns, $grid: $default-grid) {
-    position: relative;
+    z-index: 1;
     $columns: _convert-to-media-map($columns, $grid);
     @include _for-media-map($columns, $grid) {
         $bp-columns: $_for-media-map-value;
