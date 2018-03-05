@@ -10,12 +10,12 @@ $_grid-classes-default-options: (
         'push': 'push',
         'shift': 'shift',
         'horizontal-alignment': 'h',
-        'horizontal-alignments': (
+        'horizontal-alignments': ( // ONLY FOR FLEX DRIVER
             start: 'start',
             center: 'center',
             end: 'end',
-            space-around: 'around', // ONLY FOR FLEX DRIVER
-            space-between: 'between', // ONLY FOR FLEX DRIVER
+            space-around: 'around',
+            space-between: 'between',
         ),
         'vertical-alignment': 'v',
         'vertical-alignments': ( // ONLY FOR FLEX DRIVER
