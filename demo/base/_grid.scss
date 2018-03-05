@@ -26,8 +26,5 @@ $default-grid: $my-grid;
 @include grid-classes(
     $options: (
         'prefix': '',
-        'names': (
-            'column': 'column',
-        ),
     )
 );

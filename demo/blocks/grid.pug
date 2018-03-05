@@ -1,402 +1,417 @@
-- var cols = 12;
+- 
+    const cols = 12;
+    let i;
+
 .wrapper
     h1.header
         | Brigrid 
         span.accent Demo
+    
     section.demo-section
+
+        h3 Grid columns
         .container
-            div(class="column column-" + cols)
-                h2.container__title Grid columns
-            - var i = 1;
+            - i = 1;
             while (i < cols)
-                div(class="column column-12--xs column-" + i)
+                div(class="col col-12-xs col-" + i)
                     .card= i
-                div(class="column column-12--xs column-" + (cols - i))
+                div(class="col col-12-xs col-" + (cols - i))
                     .card= (cols - i)
                 - i++;
-            div(class="column column-12--xs column-" + cols)
+            div(class="col col-12-xs col-" + cols)
                 .card= cols
+                
+        h3 Dynamic grid cols (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
         .container
-            div(class="column column-" + cols)
-                h2.container__title Dynamic grid columns (xs:12, sm:6, md:4, lg:3, xl:2, xx:1)
-        .container
-            - var i = 1;
+            - i = 1;
             while (i <= cols)
-                div(class="column column-12--xs column-6--sm column-4--md column-3--lg column-2--xl column-1--xx")
+                div(class="col col-12-xs col-6-sm col-4-md col-3-lg col-2-xl")
                     .card
                 - i++;
+            
     section.demo-section
-        h2.demo-section__title Horizontal self alignment
+        h2 Horizontal self alignment
+
+        h3 Start horizontal self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Left-side horizontal self alignment
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.column--h-left
+            .col.col-12-xs.col-2.col--h-start
                 .card.card--accent LEFT
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card  
+
+        h3 Central horizontal self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Central horizontal self alignment
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.column--h-center
+            .col.col-12-xs.col-2.col--h-center
                 .card.card--accent CENTER
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card   
+
+        h3 End horizontal self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Right-side horizontal self alignment
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.column--h-right
+            .col.col-12-xs.col-2.col--h-end
                 .card.card--accent RIGHT
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+
+        h3
+            | Dynamic horizontal self alignment 
+            span.accent (md:start, lg:center, xl:end)
+            div.additional (resize the window to see the changes)
         .container
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic horizontal self alignment 
-                    span.accent (md:left, lg:center, xl:right)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.column--h-left--md.column--h-center--lg.column--h-right--xl
+            .col.col-12-xs.col-2.col--h-start-md.col--h-center-lg.col--h-end-xl
                 .card.card--accent DYNAMIC
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card  
+
     section.demo-section
-        h2.demo-section__title Vertical self alignment
+        h2 Vertical self alignment
+
+        h3 Top vertical self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Top vertical self alignment
-            .column.column-12--xs.column-2
+            div(class="col col-" + cols)
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-4.column--v-top
+            .col.col-12-xs.col-4.col--v-start
                 .card.card--accent.card--small TOP
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
+        
+        h3 Central vertical self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Central vertical self alignment
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-4.column--v-center
+            .col.col-12-xs.col-4.col--v-center
                 .card.card--accent.card--small CENTER
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
+        
+        h3 Bottom vertical self alignment
         .container
-            div(class="column column-" + cols)
-                h3.container__title Bottom vertical self alignment
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-4.column--v-bottom
+            .col.col-12-xs.col-4.col--v-end
                 .card.card--accent.card--small BOTTOM
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
+
+        
+        h3
+            | Dynamic vertical self alignment 
+            span.accent (md:start, lg:center, xl:end)
+            div.additional (resize the window to see the changes)
         .container
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic vertical self alignment 
-                    span.accent (md:top, lg:center, xl:bottom)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-4.column--v-top--md.column--v-center--lg.column--v-bottom--xl
+            .col.col-12-xs.col-4.col--v-start-md.col--v-center-lg.col--v-end-xl
                 .card.card--accent.card--small DYNAMIC
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
-            .column.column-12--xs.column-2
+            .col.col-12-xs.col-2
                 .card.card--large 
+    
     section.demo-section
-        h2.demo-section__title Horizontal container columns alignment
-        .container.container--h-left
-            div(class="column column-" + cols)
-                h3.container__title Left-side horizontal alignment
-            .column.column-12--xs.column-1
+        h2 Horizontal container cols alignment
+
+        h3 Start horizontal alignment
+        .container.container--h-start
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+
+        h3 Central horizontal alignment
         .container.container--h-center
-            div(class="column column-" + cols)
-                h3.container__title Central horizontal alignment
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-        .container.container--h-right
-            div(class="column column-" + cols)
-                h3.container__title Right-side horizontal alignment
-            .column.column-12--xs.column-1
+        
+        h3 End horizontal alignment
+        .container.container--h-end
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-        .container.container--h-left--md.container--h-center--lg.container--h-right--xl
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic horizontal alignment 
-                    span.accent (md:left, lg:center, xl:right)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-1
+
+        h3
+            | Dynamic horizontal alignment 
+            span.accent (md:start, lg:center, xl:end)
+            div.additional (resize the window to see the changes)
+        .container.container--h-start-md.container--h-center-lg.container--h-end-xl
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+                
     section.demo-section
-        h2.demo-section__title Vertical container columns alignment
-        .container.container--v-left
-            div(class="column column-" + cols)
-                h3.container__title Top vertical alignment
-            .column.column-12--xs.column-3
+        h2 Vertical container cols alignment
+
+        h3 Top vertical alignment
+        .container.container--v-start
+            .col.col-12-xs.col-3
                 .card.card--large 
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--small
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--large
+                
+        h3 Central vertical alignment
         .container.container--v-center
-            div(class="column column-" + cols)
-                h3.container__title Central vertical alignment
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--large 
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--small
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--large
-        .container.container--v-bottom
-            div(class="column column-" + cols)
-                h3.container__title Bottom vertical alignment
-            .column.column-12--xs.column-3
+
+        h3 Bottom vertical alignment
+        .container.container--v-end
+            .col.col-12-xs.col-3
                 .card.card--large 
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--small
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--large
-        .container.container--v-top--md.container--v-center--lg.container--v-bottom--xl
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic vertical alignment 
-                    span.accent (md:top, lg:center, xl:bottom)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-3
+
+                
+        h3
+            | Dynamic vertical alignment 
+            span.accent (md:start, lg:center, xl:end)
+            div.additional (resize the window to see the changes)
+        .container.container--v-start-md.container--v-center-lg.container--v-end-xl
+            .col.col-12-xs.col-3
                 .card.card--large 
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--small
-            .column.column-12--xs.column-3
+            .col.col-12-xs.col-3
                 .card.card--large
+
     section.demo-section
-        h2.demo-section__title Grid column order
+        h2 Grid col order
         .container
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-2.column--order--1
+            .col.col-12-xs.col-2.col--order--1
                 .card.card--accent -1
-            .column.column-12--xs.column-2.column--order-0
+            .col.col-12-xs.col-2.col--order-0
                 .card.card--accent 0
-            .column.column-12--xs.column-2.column--order-1
+            .col.col-12-xs.col-2.col--order-1
                 .card.card--accent 1
         .container
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-2.column--order--1--sm.column--order-0--md.column--order-1--lg
+            .col.col-12-xs.col-2.col--order--1-sm.col--order-0-md.col--order-1-lg
                 .card.card--accent DYNAMIC
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+
     section.demo-section
-        h2.demo-section__title Grid push
+        h2 Grid push
+        
+        h3 col with push(4)
         .container
-            div(class="column column-" + cols)
-                h3.container__title Column with push(4)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.push-4
+            .col.col-12-xs.col-2.push-4
                 .card.card--accent PUSH(4)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+    
+    
+        h3
+            | Dynamic push 
+            span.accent (md: 2, lg: 3, xl: 4)
+            div.additional (resize the window to see the changes)
+        
         .container
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic push 
-                    span.accent (md: 2, lg: 3, xl: 4)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.push-2--md.push-3--lg.push-4--xl
+            .col.col-12-xs.col-2.push-2-md.push-3-lg.push-4-xl
                 .card.card--accent DYNAMIC
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+    
     section.demo-section
-        h2.demo-section__title Grid shift
+        h2 Grid shift
+
+        h3 col with grid-shift(4)
         .container
-            div(class="column column-" + cols)
-                h3.container__title Column with grid-shift(4)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.shift-4
+            .col.col-12-xs.col-2.shift-4
                 .card.card--accent SHIFT(4)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
+        
+        h3
+            | Dynamic grid-shift 
+            span.accent (md: 2, lg: 3, xl: 4)
+            div.additional (resize the window to see the changes)
         .container
-            div(class="column column-" + cols)
-                h3.container__title
-                    | Dynamic grid-shift 
-                    span.accent (md: 2, lg: 3, xl: 4)
-                    div.additional (resize the window to see the changes)
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card 
-            .column.column-12--xs.column-2.shift-2--md.shift-3--lg.shift-4--xl
+            .col.col-12-xs.col-2.shift-2-md.shift-3-lg.shift-4-xl
                 .card.card--accent DYNAMIC
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card
-            .column.column-12--xs.column-1
+            .col.col-12-xs.col-1
                 .card            
         

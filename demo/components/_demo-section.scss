@@ -1,7 +1,16 @@
 .demo-section {
-    margin-bottom: 7rem;
-    &__title {
+    padding-bottom: 4rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid #eee;
+
+    h2 {
         font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.25rem;
         font-weight: 700;
         text-align: center;
     }
