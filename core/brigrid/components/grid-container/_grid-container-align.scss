@@ -83,7 +83,6 @@
         // X-axis alignment
         @if ($align-x != null) {
             $align-x: _convert-to-media-map($align-x, $grid);
-            $grid: set-grid-value(align-x, $align-x $grid);
             $allowed-align-x-values: (start, end, center, space-between, space-around);
 
             @include _for-media-map($align-x, $grid) {
@@ -105,7 +104,6 @@
         // Y-axis alignment
         @if ($align-y != null) {
             $align-y: _convert-to-media-map($align-y, $grid);
-            $grid: set-grid-value(align-y, $align-y $grid);
             $allowed-align-y-values: (start, end, center, baseline, stretch);
 
             @include _for-media-map($align-y, $grid) {

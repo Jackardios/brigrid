@@ -1,5 +1,6 @@
 $my-grid: prepare-grid((
     driver: flex,
+    collapse: false,
     gutter: (
         sm: 16px,
         md: 24px
@@ -18,7 +19,6 @@ $my-grid: prepare-grid((
         xx: 1400px, // Extra extra large screen
         md: 768px, // Medium screen
     ),
-    collapse: false
 ));
 
 $default-grid: $my-grid;
