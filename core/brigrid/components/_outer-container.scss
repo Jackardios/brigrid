@@ -67,7 +67,9 @@
     @extend %_outer-container;
 
     $outer-container-offsets: map-get($grid, outer-container-offset);
-    $min-half-gutter: nth(map-values(_min-breakpoint(get-grid-value(gutter, $grid))), 1) / 2;
+
+    $gutters: _convert-to-media-map(get-grid-value(gutter, $grid), $grid);
+    $min-half-gutter: nth(map-values(_min-breakpoint($gutters)), 1) / 2;
     @if ($outer-container-offsets == null) {
         $outer-container-offsets: $min-half-gutter;
         $grid: set-grid-value(outer-container-offset, $outer-container-offsets, $grid);
