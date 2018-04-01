@@ -1,4 +1,4 @@
-@mixin grid-column-base-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-column-base-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
@@ -13,7 +13,7 @@
     }
 }
 
-@mixin grid-column-width-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-column-width-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $driver: get-grid-value('driver', $grid);
     $prefix: get-map-value('prefix', $options, $default-options);
@@ -81,12 +81,12 @@
         $hidden-class-name: get-map-value('hidden', $names, $default-names);
 
         .#{$hidden-class-name} {
-            display: none;
+            display: none !important;
 
             @if (index($components, 'hidden-media') != null) {
                 @include grid-media($grid: $grid) {
                     &#{$breakpoint-delimiter}#{$_grid-media-bp-name} {
-                        display: none;
+                        display: none !important;
                     }
                 }
 
@@ -104,7 +104,7 @@
     }
 }
 
-@mixin grid-column-order-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-column-order-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
@@ -148,7 +148,7 @@
     }
 }
 
-@mixin grid-column-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-column-align-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
@@ -234,17 +234,17 @@
 }
 
 
-@mixin grid-column-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-column-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $components: get-map-value('components', $options);
 
     @include grid-column-base-classes(
-        $grid: $grid,
-        $options: $options
+        $options: $options,
+        $grid: $grid
     );
 
     @include grid-column-width-classes(
-        $grid: $grid,
-        $options: $options
+        $options: $options,
+        $grid: $grid
     );
 
     $driver: get-grid-value('driver', $grid);
@@ -252,14 +252,14 @@
     @if ($driver == flex) {
         @if (index($components, 'column-alignment') != null) {
             @include grid-column-align-classes(
-                $grid: $grid,
-                $options: $options
+                $options: $options,
+                $grid: $grid
             );
         }
         @if (index($components, 'column-order') != null) {
             @include grid-column-order-classes(
-                $grid: $grid,
-                $options: $options
+                $options: $options,
+                $grid: $grid
             );
         }
     }

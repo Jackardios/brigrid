@@ -1,4 +1,4 @@
-@mixin grid-push-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-push-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);

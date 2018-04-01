@@ -1,4 +1,4 @@
-@mixin grid-container-align-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-container-align-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
@@ -79,7 +79,7 @@
     }
 }
 
-@mixin grid-container-base-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-container-base-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $default-options: $grid-classes-default-options;
     $prefix: get-map-value('prefix', $options, $default-options);
     $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
@@ -94,20 +94,20 @@
     }
 }
 
-@mixin grid-container-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-container-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $components: get-map-value('components', $options);
 
     @include grid-container-base-classes(
-        $grid: $grid,
-        $options: $options
+        $options: $options,
+        $grid: $grid
     );
 
     $driver: get-grid-value(driver, $options);
     @if ($driver == 'flex') {
         @if (index($components, 'container-alignment') != null) {
             @include grid-container-align-classes(
-                $grid: $grid,
-                $options: $options
+                $options: $options,
+                $grid: $grid
             );
         }
     }

@@ -6,38 +6,38 @@
 @import "grid-classes/grid-push-classes";
 @import "grid-classes/grid-shift-classes";
 
-@mixin grid-classes($grid: $default-grid, $options: $grid-classes-default-options) {
+@mixin grid-classes($options: $grid-classes-default-options, $grid: $default-grid) {
     $options: map-merge($grid-classes-default-options, $options);
     $components: map-get($options, 'components');
     
     @if (index($components, 'outer-container') !=null) {
         @include outer-container-classes(
-            $grid: $grid,
-            $options: $options
+            $options: $options,
+            $grid: $grid
         );
     }
     @if (index($components, 'container') !=null) {
         @include grid-container-classes(
-            $grid: $grid,
-            $options: $options
+            $options: $options,
+            $grid: $grid
         );
     }
     @if (index($components, 'column') != null) {
         @include grid-column-classes(
-            $grid: $grid,
-            $options: $options
+            $options: $options,
+            $grid: $grid
         );
     }
     @if (index($components, 'push') != null) {
         @include grid-push-classes(
-            $grid: $grid,
-            $options: $options
+            $options: $options,
+            $grid: $grid
         );
     }
     @if (index($components, 'shift') != null) {
         @include grid-shift-classes(
-            $grid: $grid,
-            $options: $options
+            $options: $options,
+            $grid: $grid
         );
     }
 }
