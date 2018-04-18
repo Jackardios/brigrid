@@ -35,22 +35,6 @@
             );
         }
     }
-
-    @if (index($components, 'column-media') != null) {
-        @include grid-media($grid: $grid) {
-            @for $i from 1 through $columns {
-                $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter)
-                             + $breakpoint-delimiter
-                             + $_grid-media-bp-name;
-                .#{$class-name} {
-                    @include grid-column-width(
-                        $columns: $i,
-                        $grid: $grid
-                    );
-                }
-            }
-        }
-    }
     
     // flex classes
     @if (index($components, 'column-flex') != null) {
@@ -73,6 +57,22 @@
                 $columns: auto,
                 $grid: $grid
             );
+        }
+    }
+
+    @if (index($components, 'column-media') != null) {
+        @include grid-media($grid: $grid) {
+            @for $i from 1 through $columns {
+                $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter)
+                             + $breakpoint-delimiter
+                             + $_grid-media-bp-name;
+                .#{$class-name} {
+                    @include grid-column-width(
+                        $columns: $i,
+                        $grid: $grid
+                    );
+                }
+            }
         }
     }
     
