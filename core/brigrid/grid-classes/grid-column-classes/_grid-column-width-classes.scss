@@ -10,6 +10,8 @@
     $default-names: get-map-value('names', $default-options);
     $names: get-map-value('names', $options, $default-options);
     $column-name: get-map-value('column', $names, $default-names);
+    $column-auto-name: get-map-value('column-auto', $names, $default-names);
+    $column-flex-name: get-map-value('column-flex', $names, $default-names);
 
     @for $i from 1 through $columns {
         $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter);
@@ -23,7 +25,6 @@
     
     // flex classes
     @if (index($components, 'column-flex') != null) {
-        $column-flex-name: get-map-value('column-flex', $names, $default-names);
         $class-name: list-to-string(($prefix, $column-flex-name), $names-delimiter);
         .#{$class-name} {
             @include grid-column-width(
@@ -35,7 +36,6 @@
 
     // auto classes
     @if (index($components, 'column-auto') != null) {
-        $column-auto-name: get-map-value('column-auto', $names, $default-names);
         $class-name: list-to-string(($prefix, $column-auto-name), $names-delimiter);
         .#{$class-name} {
             @include grid-column-width(
@@ -45,18 +45,48 @@
         }
     }
 
-    @if (index($components, 'column-media') != null) {
-        @include grid-media($grid: $grid) {
+    $has-column-media: (index($components, 'column-media') != null);
+    $has-column-flex-media: (index($components, 'column-flex-media') != null);
+    $has-column-auto-media: (index($components, 'column-auto-media') != null);
+    @include grid-media($grid: $grid) {
+        // column media classes
+        @if ($has-column-media) {
             @for $i from 1 through $columns {
                 $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter)
-                             + $breakpoint-delimiter
-                             + $_grid-media-bp-name;
+                            + $breakpoint-delimiter
+                            + $_grid-media-bp-name;
                 .#{$class-name} {
                     @include grid-column-width(
                         $columns: $i,
                         $grid: $grid
                     );
                 }
+            }
+        }
+
+        // column flex media classes
+        @if ($has-column-flex-media) {
+            $class-name: list-to-string(($prefix, $column-flex-name), $names-delimiter)
+                        + $breakpoint-delimiter
+                        + $_grid-media-bp-name;
+            .#{$class-name} {
+                @include grid-column-width(
+                    $columns: flex,
+                    $grid: $grid
+                );
+            }
+        }
+
+        // column auto media classes
+        @if ($has-column-auto-media) {
+            $class-name: list-to-string(($prefix, $column-auto-name), $names-delimiter)
+                        + $breakpoint-delimiter
+                        + $_grid-media-bp-name;
+            .#{$class-name} {
+                @include grid-column-width(
+                    $columns: auto,
+                    $grid: $grid
+                );
             }
         }
     }
