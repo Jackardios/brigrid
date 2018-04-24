@@ -1,0 +1,14 @@
+@mixin grid-column-base-classes($options: $grid-classes-default-options, $grid: $default-grid) {
+    $default-options: $grid-classes-default-options;
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
+
+    $default-names: get-map-value('names', $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
+
+    $class-name: list-to-string(($prefix, $column-name), $names-delimiter);
+    .#{$class-name} {
+        @include grid-column-base($grid: $grid);
+    }
+}

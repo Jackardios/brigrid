@@ -1,0 +1,84 @@
+@mixin grid-column-align-classes($options: $grid-classes-default-options, $grid: $default-grid) {
+    $default-options: $grid-classes-default-options;
+    $prefix: get-map-value('prefix', $options, $default-options);
+    $names-delimiter: get-map-value('names-delimiter', $options, $default-options);
+    $modifier-delimiter: get-map-value('modifier-delimiter', $options, $default-options);
+    $breakpoint-delimiter: get-map-value('breakpoint-delimiter', $options, $default-options);
+    $components: get-map-value('components', $options);
+
+    $default-names: get-map-value('names', $default-options);
+    $names: get-map-value('names', $options, $default-options);
+    $column-name: get-map-value('column', $names, $default-names);
+    $columns: get-grid-value('columns', $grid);
+
+    $base-name: list-to-string(($prefix, $column-name), $names-delimiter);
+
+    $h-align-prefix: get-map-value('horizontal-alignment', $names, $default-names);
+    $h-alignments: map-merge(
+        get-map-value('horizontal-alignments', $default-names),
+        get-map-value('horizontal-alignments', $names, $default-names)
+    );
+
+    // remove unnecessary alignments
+    $h-alignments: map-remove($h-alignments, space-around, space-between);
+
+    @each $h-align, $h-align-name in $h-alignments {
+        $modifier-name: list-to-string(($h-align-prefix, $h-align-name), $names-delimiter);
+        $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter);
+        .#{$class-name} {
+            @include grid-column-align(
+                $align-x: $h-align,
+                $grid: $grid
+            );
+        }
+    }
+
+    $v-align-prefix: get-map-value('vertical-alignment', $names, $default-names);
+    $v-alignments: map-merge(
+        get-map-value('vertical-alignments', $default-names),
+        get-map-value('vertical-alignments', $names, $default-names)
+    );
+
+    @each $v-align, $v-align-name in $v-alignments {
+        $modifier-name: list-to-string(($v-align-prefix, $v-align-name), $names-delimiter);
+        $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter);
+        .#{$class-name} {
+            @include grid-column-align(
+                $align-y: $v-align,
+                $grid: $grid
+            );
+        }
+    }
+
+    @if (index($components, 'column-alignment-media') != null) {
+        @include grid-media($grid: $grid) {
+            @each $h-align, $h-align-name in $h-alignments {
+                $modifier-name: list-to-string(($h-align-prefix, $h-align-name), $names-delimiter);
+                $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter)
+                            + $breakpoint-delimiter
+                            + $_grid-media-bp-name;
+                            
+                .#{$class-name} {
+                    @include grid-column-align(
+                        $align-x: $h-align,
+                        $grid: $grid
+                    );
+                }
+            }
+
+            @each $v-align, $v-align-name in $v-alignments {
+                $modifier-name: list-to-string(($v-align-prefix, $v-align-name), $names-delimiter);
+                $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter)
+                            + $breakpoint-delimiter
+                            + $_grid-media-bp-name;
+
+                .#{$class-name} {
+                    @include grid-column-align(
+                        $align-y: $v-align,
+                        $grid: $grid
+                    );
+                }
+            }
+        }
+    }
+}

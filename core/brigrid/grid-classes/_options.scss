@@ -4,12 +4,12 @@ $_grid-classes-default-options: (
         'outer-container': 'wrapper',
         'container': 'container',
         'column': 'col',
-        'column-flex': 'col-flex',
-        'column-auto': 'col-auto',
+        'column-flex': 'col-flex', // ONLY FOR FLEX DRIVER
+        'column-auto': 'col-auto', // ONLY FOR FLEX DRIVER
         'hidden': 'hidden',
         'push': 'push',
         'shift': 'shift',
-        'horizontal-alignment': 'h',
+        'horizontal-alignment': 'h', // ONLY FOR FLEX DRIVER
         'horizontal-alignments': ( // ONLY FOR FLEX DRIVER
             start: 'start',
             center: 'center',
@@ -17,7 +17,7 @@ $_grid-classes-default-options: (
             space-around: 'around',
             space-between: 'between',
         ),
-        'vertical-alignment': 'v',
+        'vertical-alignment': 'v', // ONLY FOR FLEX DRIVER
         'vertical-alignments': ( // ONLY FOR FLEX DRIVER
             start: 'start',
             center: 'center',
@@ -25,23 +25,25 @@ $_grid-classes-default-options: (
             baseline: 'baseline',
             stretch: 'stretch',
         ),
-        'order': order,
+        'order': order, // ONLY FOR FLEX DRIVER
     ),
     'names-delimiter': '-',
     'modifier-delimiter': '--',
     'breakpoint-delimiter': '-',
     'components': (
         'container',
-        'container-alignment',
-        'container-alignment-media',
+        'container-alignment', // ONLY FOR FLEX DRIVER
+        'container-alignment-media', // ONLY FOR FLEX DRIVER
         'column',
         'column-media',
-        'column-alignment',
-        'column-alignment-media',
-        'column-order',
-        'column-order-media',
-        'column-flex',
-        'column-auto',
+        'column-flex', // ONLY FOR FLEX DRIVER
+        'column-flex-media', // ONLY FOR FLEX DRIVER
+        'column-auto', // ONLY FOR FLEX DRIVER
+        'column-auto-media', // ONLY FOR FLEX DRIVER
+        'column-alignment', // ONLY FOR FLEX DRIVER
+        'column-alignment-media', // ONLY FOR FLEX DRIVER
+        'column-order', // ONLY FOR FLEX DRIVER
+        'column-order-media', // ONLY FOR FLEX DRIVER
         'hidden',
         'hidden-media',
         'push',

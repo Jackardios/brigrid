@@ -1,11 +1,11 @@
 @mixin grid-column-clearfix($nth-child: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
     $reversed: get-grid-value(reversed, $grid);
-    $clear: left;
-    @if ($reversed) {
-        $clear: right;
-    }
     @if ($driver == float) {
+        $clear: left;
+        @if ($reversed) {
+            $clear: right;
+        }
          @if ($nth-child == null) {
             clear: $clear;
         } @else {
