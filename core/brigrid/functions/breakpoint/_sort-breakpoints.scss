@@ -10,7 +10,17 @@
     }
 
     @for $i from 1 through length($breakpoints) {
-        $next-breakpoint: call($sortFunc, $breakpoints);
+        $next-breakpoint: null;
+
+        // sass 3.5 or greater
+        @if function-exists('get-function') {
+          $next-breakpoint: call(get-function($sortFunc), $breakpoints);
+        }
+        // sass 3.4 or less
+        @else {
+          $next-breakpoint: call($sortFunc, $breakpoints);
+        }
+        
         $sortedMap: map-merge($sortedMap, $next-breakpoint);
         $breakpoints: map-remove($breakpoints, nth(nth($next-breakpoint, 1), 1));
     }
