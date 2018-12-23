@@ -8,6 +8,7 @@
     $column-name: get-map-value('column', $names, $default-names);
 
     $class-name: list-to-string(($prefix, $column-name), $names-delimiter);
+
     .#{$class-name} {
         @include grid-column-base($grid: $grid);
     }

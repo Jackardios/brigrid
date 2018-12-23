@@ -13,29 +13,26 @@
     $columns: get-grid-value('columns', $grid);
 
     $base-name: list-to-string(($prefix, $column-name), $names-delimiter);
-    
+
     @for $i from -1 through $columns {
         $modifier-name: list-to-string(($order-name, $i), $names-delimiter);
         $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter);
+
         .#{$class-name} {
-            @include grid-column-order(
-                $order: $i,
-                $grid: $grid
-            );
+            @include grid-column-order($order: $i,
+                $grid: $grid);
         }
     }
-    @if (index($components, 'column-order-media') != null) {
+
+    @if (index($components, 'column-order-media') !=null) {
         @include grid-media($grid: $grid) {
             @for $i from -1 through $columns {
                 $modifier-name: list-to-string(($order-name, $i), $names-delimiter);
-                $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter)
-                       + $breakpoint-delimiter
-                       + $_grid-media-bp-name;
+                $class-name: list-to-string(($base-name, $modifier-name), $modifier-delimiter) + $breakpoint-delimiter + $_grid-media-bp-name;
+
                 .#{$class-name} {
-                    @include grid-column-order(
-                        $order: $i,
-                        $grid: $grid
-                    );
+                    @include grid-column-order($order: $i,
+                        $grid: $grid);
                 }
             }
         }

@@ -15,98 +15,89 @@
 
     @for $i from 1 through $columns {
         $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter);
+
         .#{$class-name} {
-            @include grid-column-width(
-                $columns: $i,
-                $grid: $grid
-            );
+            @include grid-column-width($columns: $i,
+                $grid: $grid);
         }
     }
-    
+
     // flex classes
-    @if (index($components, 'column-flex') != null) {
+    @if (index($components, 'column-flex') !=null) {
         $class-name: list-to-string(($prefix, $column-flex-name), $names-delimiter);
+
         .#{$class-name} {
-            @include grid-column-width(
-                $columns: flex,
-                $grid: $grid
-            );
+            @include grid-column-width($columns: flex,
+                $grid: $grid);
         }
     }
 
     // auto classes
-    @if (index($components, 'column-auto') != null) {
+    @if (index($components, 'column-auto') !=null) {
         $class-name: list-to-string(($prefix, $column-auto-name), $names-delimiter);
+
         .#{$class-name} {
-            @include grid-column-width(
-                $columns: auto,
-                $grid: $grid
-            );
+            @include grid-column-width($columns: auto,
+                $grid: $grid);
         }
     }
 
-    $has-column-media: (index($components, 'column-media') != null);
-    $has-column-flex-media: (index($components, 'column-flex-media') != null);
-    $has-column-auto-media: (index($components, 'column-auto-media') != null);
+    $has-column-media: (index($components, 'column-media') !=null);
+    $has-column-flex-media: (index($components, 'column-flex-media') !=null);
+    $has-column-auto-media: (index($components, 'column-auto-media') !=null);
+
     @include grid-media($grid: $grid) {
+
         // column media classes
         @if ($has-column-media) {
             @for $i from 1 through $columns {
-                $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter)
-                            + $breakpoint-delimiter
-                            + $_grid-media-bp-name;
+                $class-name: list-to-string(($prefix, $column-name, $i), $names-delimiter) + $breakpoint-delimiter + $_grid-media-bp-name;
+
                 .#{$class-name} {
-                    @include grid-column-width(
-                        $columns: $i,
-                        $grid: $grid
-                    );
+                    @include grid-column-width($columns: $i,
+                        $grid: $grid);
                 }
             }
         }
 
         // column flex media classes
         @if ($has-column-flex-media) {
-            $class-name: list-to-string(($prefix, $column-flex-name), $names-delimiter)
-                        + $breakpoint-delimiter
-                        + $_grid-media-bp-name;
+            $class-name: list-to-string(($prefix, $column-flex-name), $names-delimiter) + $breakpoint-delimiter + $_grid-media-bp-name;
+
             .#{$class-name} {
-                @include grid-column-width(
-                    $columns: flex,
-                    $grid: $grid
-                );
+                @include grid-column-width($columns: flex,
+                    $grid: $grid);
             }
         }
 
         // column auto media classes
         @if ($has-column-auto-media) {
-            $class-name: list-to-string(($prefix, $column-auto-name), $names-delimiter)
-                        + $breakpoint-delimiter
-                        + $_grid-media-bp-name;
+            $class-name: list-to-string(($prefix, $column-auto-name), $names-delimiter) + $breakpoint-delimiter + $_grid-media-bp-name;
+
             .#{$class-name} {
-                @include grid-column-width(
-                    $columns: auto,
-                    $grid: $grid
-                );
+                @include grid-column-width($columns: auto,
+                    $grid: $grid);
             }
         }
     }
-    
+
     // hidden classes
-    @if (index($components, 'hidden') != null) {
+    @if (index($components, 'hidden') !=null) {
         $hidden-class-name: get-map-value('hidden', $names, $default-names);
 
         .#{$hidden-class-name} {
             display: none !important;
 
-            @if (index($components, 'hidden-media') != null) {
+            @if (index($components, 'hidden-media') !=null) {
                 @include grid-media($grid: $grid) {
                     &#{$breakpoint-delimiter}#{$_grid-media-bp-name} {
                         display: none !important;
                     }
                 }
 
-                @each $bp-name, $bp-value in get-grid-value('breakpoints', $grid) {
-                    @if ($bp-name != xs) {
+                @each $bp-name,
+                $bp-value in get-grid-value('breakpoints', $grid) {
+                    @if ($bp-name !=xs) {
                         @include media-breakpoint-before($bp-name) {
                             &#{$breakpoint-delimiter}before-#{$bp-name} {
                                 display: none !important;

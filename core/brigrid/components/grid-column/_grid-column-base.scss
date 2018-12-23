@@ -20,20 +20,28 @@
     @extend %_grid-column-base;
 
     $reversed: get-grid-value(reversed, $grid);
-    @if $reversed == true {
+
+    @if $reversed==true {
         float: right;
-    } @else {
+    }
+
+    @else {
         float: left;
     }
 }
 
 @mixin grid-column-base($gutter: null, $grid: $default-grid) {
     $driver: get-grid-value(driver, $grid);
-    @if ($driver == flex) {
+
+    @if ($driver==flex) {
         @include grid-column-base--flex($gutter: $gutter, $grid: $grid);
-    } @else if ($driver == float) {
+    }
+
+    @else if ($driver==float) {
         @include grid-column-base--float($gutter: $gutter, $grid: $grid);
-    } @else {
+    }
+
+    @else {
         @error "[Brigrid]: Incorrect driver value: '#{$driver}'";
     }
 }

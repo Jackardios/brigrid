@@ -68,26 +68,37 @@
 
     @include _for-media-map($columns, $grid) {
         $bp-columns: $_for-media-map-value;
-        @if (($bp-columns == hidden) or ($bp-columns == hide) or ($bp-columns == 0)) {
+
+        @if (($bp-columns==hidden) or ($bp-columns==hide) or ($bp-columns==0)) {
             display: none;
-        } @else if ($bp-columns == auto) {
+        }
+
+        @else if ($bp-columns==auto) {
             flex: 0 0 auto;
             width: auto;
-            max-width: none;
-        } @else if ($bp-columns == flex) {
-            @if ($driver == flex) {
+            max-width: 100%;
+        }
+
+        @else if ($bp-columns==flex) {
+            @if ($driver==flex) {
                 flex-basis: 0;
                 flex-grow: 1;
                 max-width: 100%;
-            } @else {
+            }
+
+            @else {
                 @warn "[Brigrid]: Flex column width supported only in 'flex' driver!";
             }
-        } @else {
+        }
+
+        @else {
             display: block;
             $width: _column-width($bp-columns, $grid);
-            @if ($driver == flex) {
+
+            @if ($driver==flex) {
                 flex: 0 0 $width;
             }
+
             max-width: $width;
         }
     }
