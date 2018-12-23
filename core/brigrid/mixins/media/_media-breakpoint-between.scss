@@ -67,7 +67,7 @@
         }
 
         @if ($min-width-is-null) {
-            @media screen and (max-width: $max-width - 1) {
+            @media screen and (max-width: $max-width - 0.02) {
                 @content;
             }
         } @else {
@@ -79,7 +79,7 @@
                 $max-width: $temp;
             }
 
-            @media only screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+            @media only screen and (min-width: $min-width) and (max-width: $max-width - 0.02) {
                 @content;
             }
         }

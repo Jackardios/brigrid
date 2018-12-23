@@ -1,41 +1,47 @@
 # Brigrid
-A simple, powerful and fully customizable SASS grid system.
-Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.com/Coffeekraken/gridle) and  [Bootstrap](https://github.com/twbs/bootstrap)
+[![npm version](https://badge.fury.io/js/brigrid.svg)](https://badge.fury.io/js/brigrid)
+A simple, fully customizable and fully responsive SASS grid system.
+Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.com/Coffeekraken/gridle) and [Bootstrap](https://github.com/twbs/bootstrap)
 
 ## Table of content
-1. [Requirements](#requirements)
-2. [Installation](#installation)
-    - [Installing with bower](#installing-with-bower)
-    - [Installing with npm](#installing-with-npm)
-    - [Installing with npm and using a Node-based asset pipeline](#installing-with-npm-and-using-a-node-based-asset-pipeline)
-3. [Documentation](#documentation)
-    1. [Configuration](#configuration)
+1. [Quick start](#quick-start)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+        - [Installing with bower](#installing-with-bower)
+        - [Installing with npm](#installing-with-npm)
+    - [Grid configuration](#configuration)
         - [Grid maps](#grid-maps)
         - [Media maps](#media-maps)
-    2. [Functions](#functions)
-        - [get-grid-value](#get-grid-value)
-        - [set-grid-value](#set-grid-value)
-        - [prepare-grid](#prepare-grid)
-    3. [Components](#components)
-        - [outer-container](#outer-container)
-        - [grid-collapse](#grid-collapse)
-        - [grid-container-base](#grid-container-base)
-        - [grid-container-align](#grid-container-align)
-        - [grid-container](#grid-container)
-        - [grid-column-base](#grid-column-base)
-        - [grid-column-width](#grid-column-width)
-        - [grid-column-align](#grid-column-align)
-        - [grid-column-gutter](#grid-column-gutter)
-        - [grid-column-order](#grid-column-order)
-        - [grid-column-clearfix](#grid-column-clearfix)
-        - [grid-column](#grid-column)
-        - [grid-push](#grid-push)
-        - [grid-shift](#grid-shift)
-    4. [Helpers](#helpers)
-        - [media-breakpoint-before](#media-breakpoint-before)
-        - [media-breakpoint-from](#media-breakpoint-from)
-        - [media-breakpoint-between](#media-breakpoint-between)
-        - [media-breakpoint-only](#media-breakpoint-only)
+    - [Use the grid components](#use-the-grid-components)
+    - [Generate grid classes](#generate-grid-classes)
+    - [Use the media helpers](#use-the-media-helpers)
+2. [Components](#components)
+    - [outer-container](#outer-container)
+    - [grid-collapse](#grid-collapse)
+    - [grid-container-base](#grid-container-base)
+    - [grid-container-align](#grid-container-align)
+    - [grid-container](#grid-container)
+    - [grid-column-base](#grid-column-base)
+    - [grid-column-width](#grid-column-width)
+    - [grid-column-align](#grid-column-align)
+    - [grid-column-gutter](#grid-column-gutter)
+    - [grid-column-order](#grid-column-order)
+    - [grid-column-clearfix](#grid-column-clearfix)
+    - [grid-column](#grid-column)
+    - [grid-push](#grid-push)
+    - [grid-shift](#grid-shift)
+3. [Generate grid classes](#grid-classes)
+    - [grid-classes configuration](#grid-classes-configuration)
+    ...
+4. [Functions](#functions)
+    - [get-grid-value](#get-grid-value)
+    - [set-grid-value](#set-grid-value)
+    - [prepare-grid](#prepare-grid)
+5. [Media Helpers](#helpers)
+    - [media-breakpoint-before](#media-breakpoint-before)
+    - [media-breakpoint-from](#media-breakpoint-from)
+    - [media-breakpoint-between](#media-breakpoint-between)
+    - [media-breakpoint-only](#media-breakpoint-only)
 
 ## Requirements
 - [Sass](https://github.com/sass/sass) 3.4+ or [LibSass](https://github.com/sass/libsass) 3.3+
@@ -54,45 +60,11 @@ Inspired by [Neat](https://github.com/thoughtbot/neat), [Gridle](https://github.
 ### Installing with npm
 1. Add Brigrid as a dev dependency:
     ```bash
-    npm install --save-dev brigrid
+    npm install --save brigrid
     ```
 2. Import Brigrid in your stylesheet:
     ```scss
     @import "node_modules/brigrid/core/brigrid";
-    ```
-### Installing with npm and using a Node-based asset pipeline:
-1. Add Brigrid as a dev dependency:
-    ```bash
-    npm install --save-dev brigrid
-    ```
-2. Require includePaths of the Brigrid:
-    ```js
-    var brigridPaths = require("brigrid").includePaths;
-    ```
-3. Pass this array of directories to node-sass. Webpack example:
-     ```js
-    var brigridPaths = require("brigrid").includePaths;
-    module.exports = {
-        module: {
-            rules: [
-                {
-                    test: /\.scss$/,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        {
-                            loader: 'sass-loader',
-                            options: { includePaths: brigridPaths }
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-    ```
-4. Import Brigrid in your stylesheet:
-    ```scss
-    @import "brigrid";
     ```
 
 ## Documentation
